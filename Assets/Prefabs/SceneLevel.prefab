@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5576779961723329669}
   - component: {fileID: 5576779961723329668}
+  - component: {fileID: 1884884305}
   m_Layer: 0
   m_Name: BlueCollider
   m_TagString: Untagged
@@ -44,6 +45,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9, y: 3, z: 9}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1884884305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5576779961723329670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22ed5cf9971974f4c8767b5fdcfe6651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorMaterial: {fileID: 2100000, guid: 31ed3d3f27a512140bafbcaf7f658969, type: 2}
 --- !u!1 &5576779961737409929
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5576779961741473980}
   - component: {fileID: 5576779961741473979}
+  - component: {fileID: 557605737}
   m_Layer: 0
   m_Name: YellowCollider
   m_TagString: Untagged
@@ -183,6 +198,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9, y: 3, z: 9}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &557605737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5576779961741473981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22ed5cf9971974f4c8767b5fdcfe6651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorMaterial: {fileID: 2100000, guid: ab73141c50446654b9c00f042b66ad82, type: 2}
 --- !u!1 &5576779961845023056
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5576779961866451870}
   - component: {fileID: 5576779961866451869}
+  - component: {fileID: 16126486}
   m_Layer: 0
   m_Name: GreenCollider
   m_TagString: Untagged
@@ -322,6 +351,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9, y: 3, z: 9}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &16126486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5576779961866451871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22ed5cf9971974f4c8767b5fdcfe6651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorMaterial: {fileID: 2100000, guid: 9ef7868401282fb42b52668394017f3e, type: 2}
 --- !u!1 &5576779961964400519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,6 +1876,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5576779963566908647}
   - component: {fileID: 5576779963566908646}
+  - component: {fileID: 1761588498}
   m_Layer: 0
   m_Name: RedCollider
   m_TagString: Untagged
@@ -1868,6 +1911,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9, y: 3, z: 9}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1761588498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5576779963566908664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22ed5cf9971974f4c8767b5fdcfe6651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorMaterial: {fileID: 2100000, guid: 4b44713633704b44cb2788cf82b003fb, type: 2}
 --- !u!1 &5576779963618039825
 GameObject:
   m_ObjectHideFlags: 0
