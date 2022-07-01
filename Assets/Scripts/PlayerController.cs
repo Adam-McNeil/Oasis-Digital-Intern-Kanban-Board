@@ -16,6 +16,7 @@ public class PlayerController : NetworkBehaviour
 
     private void Start()
     {
+        gameObject.transform.position = new Vector3(0,2,0);
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
 
