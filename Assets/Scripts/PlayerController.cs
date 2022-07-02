@@ -5,10 +5,11 @@ using Mirror;
 
 public class PlayerController : NetworkBehaviour
 {
+    private CharacterController characterController;
+    private Rigidbody rigidbody;
     [Header("Adjustible Variables ")]
     [SerializeField] private float speed;
     [SerializeField] private float sensitivity;
-    private CharacterController characterController;
     [Header("Child Refences")]
     [SerializeField] private Camera myCamera;
     private float xRotation = 0;
@@ -16,13 +17,16 @@ public class PlayerController : NetworkBehaviour
 
     private void Start()
     {
-        gameObject.transform.position = new Vector3(0,2,0);
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
-
+        rigidbody = GetComponent<Rigidbody>();
         if (isLocalPlayer)
         {
             myCamera.gameObject.SetActive(true);
+        }
+        else
+        {
+            Destroy(rigidbody);
         }
     }
 
@@ -45,9 +49,6 @@ public class PlayerController : NetworkBehaviour
     {
         float xMouseChange = Input.GetAxis("Mouse X") * Time.deltaTime * sensitivity;
         float yMouseChange = Input.GetAxis("Mouse Y") * Time.deltaTime * sensitivity;
-
-        Debug.Log(xMouseChange);
-        Debug.Log(yMouseChange);
 
         yRotation += xMouseChange;
         xRotation -= yMouseChange;
