@@ -46,8 +46,8 @@ public class PlayerController : NetworkBehaviour
         float xMouseChange = Input.GetAxis("Mouse X") * Time.deltaTime * sensitivity;
         float yMouseChange = Input.GetAxis("Mouse Y") * Time.deltaTime * sensitivity;
 
-        Debug.Log(xMouseChange);
-        Debug.Log(yMouseChange);
+        //Debug.Log(xMouseChange);
+        //Debug.Log(yMouseChange);
 
         yRotation += xMouseChange;
         xRotation -= yMouseChange;
