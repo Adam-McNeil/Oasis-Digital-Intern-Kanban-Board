@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class SpawnTickets : MonoBehaviour
 {
-    public GameObject ticketGameObject;
-    public Vector3 spawnPosition;
-    private bool canInteract = false;
+    public GameObject ticketGameObject; //Ticket Prefab that will be spawned
+    public Vector3 spawnPosition;       //Postion where to spawn the prefab 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool canInteract = false;   //MNakes sure the user is close enough to spawn the prefab.
 
     // Update is called once per frame
     void Update() 

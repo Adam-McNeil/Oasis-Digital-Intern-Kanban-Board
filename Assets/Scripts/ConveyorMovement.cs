@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ConveyorMovement : MonoBehaviour
 {
+    private List<GameObject> objectsOnConveyor = new List<GameObject>(); //Stores a list of gameobjects that are on the conveyor belt
+    private GameObject movingObject;                                     //Objects that will be stored in the list to be moved  
 
-    public List<GameObject> objectsOnConveyor = new List<GameObject>();
-    public float speed;
-    public Vector3 direction;
-    private GameObject movingObject;
+    public Vector3 direction;                                            //Direction where the object is pushed 
+    public float speed;                                                  //Speed for the movement of the object 
 
-    private void FixedUpdate() 
+    private void Update()
     {
         for(int i = 0; i <= objectsOnConveyor.Count -1; i++)
         {
@@ -20,12 +20,9 @@ public class ConveyorMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if(other.tag == "Ticket")
-        {
-            objectsOnConveyor.Add(other.gameObject);
-        }
-        
+        objectsOnConveyor.Add(other.gameObject);
     }
+
     private void OnTriggerExit(Collider other) 
     {
         objectsOnConveyor.Remove(other.gameObject);
