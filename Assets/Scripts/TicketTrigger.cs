@@ -18,8 +18,7 @@ public class TicketTrigger : MonoBehaviour
 
     private void GetKeyPresses()
     {
-        // makes sure that when you click the code 
-        Debug.Log("Getting key presses");
+        // makes sure that when you click the code in OnTriggerStay is run
         wasEPressed = wasEPressed || Input.GetKeyDown(KeyCode.E);
         wasEscPressed = wasEscPressed || Input.GetKeyDown(KeyCode.Tab);
     }

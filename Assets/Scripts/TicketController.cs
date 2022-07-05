@@ -6,42 +6,43 @@ using TMPro;
 
 public class TicketController : NetworkBehaviour
 {
-    static List<TicketInfo> ticketList = new List<TicketInfo>();
+    //static List<TicketInfo> ticketList = new List<TicketInfo>();
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TextMeshProUGUI textObject;
-    private TicketInfo myTicketInfo;
+    //private TicketInfo myTicketInfo;
+
+    [SyncVar(hook = nameof(ChangeText))]
+    private string textSyncVar;
 
     private void Start()
     {
-        inputField.onValueChanged.AddListener(delegate { ChangeText(); });
-        myTicketInfo.networkIdentity = GetComponent<NetworkIdentity>();
-        ticketList.Add(myTicketInfo);
+        inputField.onValueChanged.AddListener(delegate { OnChangedInputField(); });
+        //myTicketInfo.networkIdentity = GetComponent<NetworkIdentity>();
+        //ticketList.Add(myTicketInfo);
     }
 
-    private void ChangeText()
+    private void OnChangedInputField()
     {
-        myTicketInfo.text = inputField.text;
-        ChangeTextCmd(myTicketInfo.text);
+        ChangeTextCmd(inputField.text);
     }
 
     [Command(requiresAuthority = false)]
     private void ChangeTextCmd(string text)
     {
-        Debug.Log("cOmmand called with: " + text);
-        ChangeTextRpc(text);
+        textSyncVar = text;
     }
 
-    [ClientRpc]
-    private void ChangeTextRpc(string text)
+    private void ChangeText(string oldText, string newText)
     {
-        Debug.Log("Client Rpc called with:" + text);
-        textObject.text = text;
+        textObject.text = newText;
     }
 }
 
+/*
 struct TicketInfo
 {
     public GameObject gameObject;
     public NetworkIdentity networkIdentity;
     public string text;
 }
+*/
