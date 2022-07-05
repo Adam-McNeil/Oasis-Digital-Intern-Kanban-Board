@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SpawnTickets : MonoBehaviour
 {
-    public GameObject ticketGameobject;
+    public GameObject ticketGameObject;
     public Vector3 spawnPosition;
-    
+    private bool canInteract = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,18 +17,20 @@ public class SpawnTickets : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void OnTriggerStay(Collider other) {
-       Debug.Log("Player In Area");
-        
-        if(Input.GetKeyDown("space")){
-            Debug.Log("Ticket Spawned");
+        if(canInteract && Input.GetKeyDown("space")){
+            Instantiate(ticketGameObject, spawnPosition, ticketGameObject.transform.rotation);
         }
-         
     }
 
+    private void OnTriggerEnter(Collider other) {
+        Debug.Log("Player Entered Area");
+        canInteract = true;
+    }
+
+    private void OnTriggerExit(Collider other) {
+        Debug.Log("Player Exited Area");
+        canInteract = false;
+    }
 
 
 
