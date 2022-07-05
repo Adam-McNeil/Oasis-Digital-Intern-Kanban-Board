@@ -1,35 +1,47 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
+using TMPro;
 
-public class TicketController : MonoBehaviour
+public class TicketController : NetworkBehaviour
 {
-    [SerializeField] private Canvas screenSpaceCamera;
+    static List<TicketInfo> ticketList = new List<TicketInfo>();
+    [SerializeField] private TMP_InputField inputField;
+    [SerializeField] private TextMeshProUGUI textObject;
+    private TicketInfo myTicketInfo;
 
-    void OnCollisionEnter(Collision collision)
+    private void Start()
     {
-        
+        inputField.onValueChanged.AddListener(delegate { ChangeText(); });
+        myTicketInfo.networkIdentity = GetComponent<NetworkIdentity>();
+        ticketList.Add(myTicketInfo);
     }
 
-    void OnCollisionExit(Collision collision)
+    private void ChangeText()
     {
-       
+        myTicketInfo.text = inputField.text;
+        ChangeTextCmd(myTicketInfo.text);
     }
 
-    private void OnTriggerEnter(Collider other)
+    [Command(requiresAuthority = false)]
+    private void ChangeTextCmd(string text)
     {
-        Debug.Log("checking for collsion");
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("enter player");
-            screenSpaceCamera.gameObject.SetActive(true);
-        }
+        Debug.Log("cOmmand called with: " + text);
+        ChangeTextRpc(text);
     }
 
-    private void OnTriggerExit(Collider other)
+    [ClientRpc]
+    private void ChangeTextRpc(string text)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("enter player");
-            screenSpaceCamera.gameObject.SetActive(false);
-        }
+        Debug.Log("Client Rpc called with:" + text);
+        textObject.text = text;
     }
+}
+
+struct TicketInfo
+{
+    public GameObject gameObject;
+    public NetworkIdentity networkIdentity;
+    public string text;
 }

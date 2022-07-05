@@ -6,10 +6,14 @@ using Mirror;
 public class PlayerController : NetworkBehaviour
 {
     private CharacterController characterController;
-    private Rigidbody rigidbody;
+    private bool isGamePaused;
+    [HideInInspector]
+    public bool isEditing;
+
     [Header("Adjustible Variables ")]
     [SerializeField] private float speed;
     [SerializeField] private float sensitivity;
+
     [Header("Child Refences")]
     [SerializeField] private Camera myCamera;
     private float xRotation = 0;
@@ -19,14 +23,14 @@ public class PlayerController : NetworkBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
-        rigidbody = GetComponent<Rigidbody>();
         if (isLocalPlayer)
         {
             myCamera.gameObject.SetActive(true);
+            gameObject.tag = "Local Player";
         }
         else
         {
-            Destroy(rigidbody);
+            gameObject.tag = "Nonlocal Player";
         }
     }
 
@@ -34,11 +38,16 @@ public class PlayerController : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            DoMovement();
-            RotateCamera();
+            Escape();
+            if (!isGamePaused && !isEditing)
+            {
+                DoMovement();
+                RotateCamera();
+            }
         }
     }
 
+#region Movement
     void DoMovement()
     {
         Vector3 motion = (transform.right * Input.GetAxisRaw("Horizontal") + transform.forward * Input.GetAxisRaw("Vertical")).normalized * speed;
@@ -58,4 +67,35 @@ public class PlayerController : NetworkBehaviour
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
         myCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
     }
+#endregion
+
+#region Pause
+    private void Escape()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab) && !isEditing)
+        {
+            if (isGamePaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }            
+        }
+    }
+
+    public void Pause()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        isGamePaused = true;
+    }
+
+    private void Resume()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        isGamePaused = false;
+    }
+    #endregion
+
 }
