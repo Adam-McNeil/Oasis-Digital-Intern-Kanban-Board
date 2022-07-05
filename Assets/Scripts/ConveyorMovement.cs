@@ -5,38 +5,29 @@ using UnityEngine;
 public class ConveyorMovement : MonoBehaviour
 {
 
+    public List<GameObject> objectsOnConveyor = new List<GameObject>();
     public float speed;
     public Vector3 direction;
     private GameObject movingObject;
 
-    // Start is called before the first frame update
-    void Start()
+    private void FixedUpdate() 
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void FixedUpdate() {
-        if(movingObject != null)
+        for(int i = 0; i <= objectsOnConveyor.Count -1; i++)
         {
-            movingObject.transform.position += direction * speed * Time.deltaTime;
+            objectsOnConveyor[i].transform.position += direction * speed * Time.deltaTime;
         }
     }
 
     private void OnTriggerEnter(Collider other) 
     {
-        if(other.tag == "Ticket"){
-            movingObject = other.gameObject;
+        if(other.tag == "Ticket")
+        {
+            objectsOnConveyor.Add(other.gameObject);
         }
         
     }
     private void OnTriggerExit(Collider other) 
     {
-        movingObject = null;
+        objectsOnConveyor.Remove(other.gameObject);
     }
 }
