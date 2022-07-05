@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ticket
+  - Local Player
+  - Nonlocal Player
   layers:
   - Default
   - TransparentFX

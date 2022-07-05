@@ -5,10 +5,15 @@ using Mirror;
 
 public class PlayerController : NetworkBehaviour
 {
+    private CharacterController characterController;
+    private bool isGamePaused;
+    [HideInInspector]
+    public bool isEditing;
+
     [Header("Adjustible Variables ")]
     [SerializeField] private float speed;
     [SerializeField] private float sensitivity;
-    private CharacterController characterController;
+
     [Header("Child Refences")]
     [SerializeField] private Camera myCamera;
     private float xRotation = 0;
@@ -16,13 +21,16 @@ public class PlayerController : NetworkBehaviour
 
     private void Start()
     {
-        gameObject.transform.position = new Vector3(0,2,0);
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
-
         if (isLocalPlayer)
         {
             myCamera.gameObject.SetActive(true);
+            gameObject.tag = "Local Player";
+        }
+        else
+        {
+            gameObject.tag = "Nonlocal Player";
         }
     }
 
@@ -30,11 +38,16 @@ public class PlayerController : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            DoMovement();
-            RotateCamera();
+            Escape();
+            if (!isGamePaused && !isEditing)
+            {
+                DoMovement();
+                RotateCamera();
+            }
         }
     }
 
+#region Movement
     void DoMovement()
     {
         Vector3 motion = (transform.right * Input.GetAxisRaw("Horizontal") + transform.forward * Input.GetAxisRaw("Vertical")).normalized * speed;
@@ -46,9 +59,6 @@ public class PlayerController : NetworkBehaviour
         float xMouseChange = Input.GetAxis("Mouse X") * Time.deltaTime * sensitivity;
         float yMouseChange = Input.GetAxis("Mouse Y") * Time.deltaTime * sensitivity;
 
-        //Debug.Log(xMouseChange);
-        //Debug.Log(yMouseChange);
-
         yRotation += xMouseChange;
         xRotation -= yMouseChange;
 
@@ -57,4 +67,35 @@ public class PlayerController : NetworkBehaviour
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
         myCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
     }
+#endregion
+
+#region Pause
+    private void Escape()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab) && !isEditing)
+        {
+            if (isGamePaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }            
+        }
+    }
+
+    public void Pause()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        isGamePaused = true;
+    }
+
+    private void Resume()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        isGamePaused = false;
+    }
+    #endregion
+
 }

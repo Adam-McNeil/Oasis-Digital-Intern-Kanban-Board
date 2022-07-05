@@ -23,12 +23,12 @@ public class SpawnTickets : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("Player Entered Area");
+        //Debug.Log("Player Entered Area");
         canInteract = true;
     }
 
     private void OnTriggerExit(Collider other) {
-        Debug.Log("Player Exited Area");
+        //Debug.Log("Player Exited Area");
         canInteract = false;
     }
 
