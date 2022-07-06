@@ -11,7 +11,7 @@ public class TextSync : MonoBehaviour
     private void Start()
     {
         myText = GetComponent<TMP_Text>();
-        inputField.onValueChanged.AddListener(delegate { ChangeText(); });
+        //inputField.onValueChanged.AddListener(delegate { ChangeText(); });
     }
 
     private void ChangeText()

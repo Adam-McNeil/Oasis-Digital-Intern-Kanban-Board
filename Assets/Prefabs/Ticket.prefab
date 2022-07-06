@@ -295,6 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenSpaceCamera: {fileID: 6927727948642339388}
+  beingEdited: 0
 --- !u!1 &4716037419716730232
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +462,6 @@ GameObject:
   - component: {fileID: 3449206367119489374}
   - component: {fileID: 4979215381669518648}
   - component: {fileID: 7729382139251026661}
-  - component: {fileID: 8860884097230882141}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -585,19 +585,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8860884097230882141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5044558897068684620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d988a08e5b9ca5e4d863b457b3c723c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputField: {fileID: 1506188173533202859}
 --- !u!1 &5910848576103547204
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,10 +829,34 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6726665695971923731}
+        m_TargetAssemblyTypeName: TicketController, Assembly-CSharp
+        m_MethodName: SetShouldDoMovement
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6726665695971923731}
+        m_TargetAssemblyTypeName: TicketController, Assembly-CSharp
+        m_MethodName: SetShouldDoMovement
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_OnTextSelection:
     m_PersistentCalls:
       m_Calls: []
@@ -976,7 +987,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &6435467276571581424
 BoxCollider:

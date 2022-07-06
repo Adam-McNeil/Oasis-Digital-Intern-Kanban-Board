@@ -1,26 +1,36 @@
 using UnityEngine;
+using Mirror;
 
 public class TicketTrigger : MonoBehaviour
 {
     [SerializeField] private Canvas screenSpaceCamera;
+    private TicketController ticketController;
     private bool wasEPressed = false;
-    private bool wasEscPressed = false;
     private bool shouldGetKeyPresses;
-    private bool beingEdited;
+    [HideInInspector]
+    public bool beingEdited;
+    private GameObject editingPlayer;
+
+    private void Start()
+    {
+        ticketController = GetComponentInParent<TicketController>();
+    }
 
     private void Update()
     {
         if (shouldGetKeyPresses)
         {
-            GetKeyPresses();
+            // makes sure that when you click the code in OnTriggerStay is run
+            wasEPressed = wasEPressed || Input.GetKeyDown(KeyCode.E);
         }
     }
 
-    private void GetKeyPresses()
+    private void LateUpdate()
     {
-        // makes sure that when you click the code in OnTriggerStay is run
-        wasEPressed = wasEPressed || Input.GetKeyDown(KeyCode.E);
-        wasEscPressed = wasEscPressed || Input.GetKeyDown(KeyCode.Tab);
+        if (beingEdited && Input.GetKeyDown(KeyCode.Tab))
+        {
+            ExitEditMode(editingPlayer);
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -31,19 +41,7 @@ public class TicketTrigger : MonoBehaviour
         }
         if (wasEPressed)
         {
-            other.gameObject.GetComponent<PlayerController>().isEditing = true;
-            Cursor.lockState = CursorLockMode.None;
-            screenSpaceCamera.gameObject.SetActive(true);
-            wasEPressed = false;
-            beingEdited = true;
-        }
-        if (wasEscPressed && beingEdited)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            screenSpaceCamera.gameObject.SetActive(false);
-            other.gameObject.GetComponent<PlayerController>().isEditing = false;
-            wasEscPressed = false;
-            beingEdited = false;
+            EnterEditMode(other.gameObject);
         }
     }
 
@@ -61,5 +59,23 @@ public class TicketTrigger : MonoBehaviour
         {
             shouldGetKeyPresses = false;
         }
+    }
+
+    private void EnterEditMode(GameObject player)
+    {
+        editingPlayer = player;
+        Cursor.lockState = CursorLockMode.None;
+        player.GetComponent<PlayerController>().isEditing = true;
+        beingEdited = true;
+        screenSpaceCamera.gameObject.SetActive(true);
+        wasEPressed = false;
+    }
+
+    private void ExitEditMode(GameObject player)
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        player.GetComponent<PlayerController>().isEditing = false;
+        beingEdited = false;
+        screenSpaceCamera.gameObject.SetActive(false);
     }
 }
