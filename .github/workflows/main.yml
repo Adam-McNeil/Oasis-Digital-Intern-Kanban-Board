@@ -11,11 +11,16 @@ jobs:
             matrix:
                 targetPlatform:
                     - StandaloneWindows64 # Build a Windows 64-bit standalone.
+                    - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
         steps:
             - uses: actions/checkout@v2
               with:
                   fetch-depth: 0
                   lfs: true
+            - name: Checkout LFS objects
+                run: git lfs checkout
+            - name: Checkout LFS objects
+                run: git lfs pull
             - uses: actions/cache@v2
               with:
                   path: Library
