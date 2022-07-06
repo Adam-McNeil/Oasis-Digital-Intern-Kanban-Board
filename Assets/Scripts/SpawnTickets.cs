@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class SpawnTickets : MonoBehaviour
+public class SpawnTickets : NetworkBehaviour
 {
     public GameObject ticketGameObject; //Ticket Prefab that will be spawned
     public Vector3 spawnPosition;       //Postion where to spawn the prefab 
@@ -12,9 +13,17 @@ public class SpawnTickets : MonoBehaviour
     // Update is called once per frame
     void Update() 
     {
-        if(canInteract && Input.GetKeyDown("space")){
-            Instantiate(ticketGameObject, spawnPosition, ticketGameObject.transform.rotation);
+        if(canInteract && Input.GetKeyDown("space"))
+        {
+            SpawnTicketCmd();
         }
+    }
+
+    [Command(requiresAuthority = false)]
+    private void SpawnTicketCmd()
+    {
+        GameObject spawnedTicket = Instantiate(ticketGameObject, spawnPosition, ticketGameObject.transform.rotation);
+        NetworkServer.Spawn(spawnedTicket);
     }
 
     private void OnTriggerEnter(Collider other) 

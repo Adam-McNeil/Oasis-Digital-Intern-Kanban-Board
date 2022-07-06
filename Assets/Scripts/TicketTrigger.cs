@@ -64,6 +64,7 @@ public class TicketTrigger : MonoBehaviour
     private void EnterEditMode(GameObject player)
     {
         editingPlayer = player;
+        ticketController.SetShouldDoMovement(true);
         Cursor.lockState = CursorLockMode.None;
         player.GetComponent<PlayerController>().isEditing = true;
         beingEdited = true;
@@ -73,6 +74,7 @@ public class TicketTrigger : MonoBehaviour
 
     private void ExitEditMode(GameObject player)
     {
+        ticketController.SetShouldDoMovement(false);
         Cursor.lockState = CursorLockMode.Locked;
         player.GetComponent<PlayerController>().isEditing = false;
         beingEdited = false;
