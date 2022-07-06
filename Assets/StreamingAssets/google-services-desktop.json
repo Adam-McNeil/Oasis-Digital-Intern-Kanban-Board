@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "473299788282",
+    "project_id": "oasis-intern-kanban",
+    "storage_bucket": "oasis-intern-kanban.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:473299788282:android:79aa2b4613b81490058443",
+        "android_client_info": {
+          "package_name": "com.Oasis.Kanban"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "473299788282-mkk8e39tqb7k2a9bp9laadr07blgl1tt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwNI40QG-YksMXKZoQ_azboZSmDa9L3zE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "473299788282-mkk8e39tqb7k2a9bp9laadr07blgl1tt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
