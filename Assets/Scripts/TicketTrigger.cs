@@ -9,7 +9,7 @@ public class TicketTrigger : MonoBehaviour
     private bool shouldGetKeyPresses;
     [HideInInspector]
     public bool beingEdited;
-    private GameObject editingPlayer;
+    static private GameObject editingPlayer = null;
 
     private void Start()
     {
@@ -18,7 +18,7 @@ public class TicketTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (shouldGetKeyPresses)
+        if (shouldGetKeyPresses && editingPlayer == null)
         {
             // makes sure that when you click the code in OnTriggerStay is run
             wasEPressed = wasEPressed || Input.GetKeyDown(KeyCode.E);
@@ -39,10 +39,11 @@ public class TicketTrigger : MonoBehaviour
         {
             return;
         }
-        if (wasEPressed)
+        if (wasEPressed && !other.gameObject.GetComponent<PlayerController>().isEditing)
         {
             EnterEditMode(other.gameObject);
         }
+        wasEPressed = false;    
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,6 +51,7 @@ public class TicketTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Local Player"))
         {
             shouldGetKeyPresses = true;
+            wasEPressed = false;
         }
     }
 
@@ -58,6 +60,7 @@ public class TicketTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Local Player"))
         {
             shouldGetKeyPresses = false;
+            wasEPressed = false;
         }
     }
 
@@ -77,6 +80,7 @@ public class TicketTrigger : MonoBehaviour
         ticketController.SetShouldDoMovement(false);
         Cursor.lockState = CursorLockMode.Locked;
         editingPlayer.GetComponent<PlayerController>().isEditing = false;
+        editingPlayer = null;
         beingEdited = false;
         screenSpaceCamera.gameObject.SetActive(false);
     }

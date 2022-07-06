@@ -10,10 +10,9 @@ public class SpawnTickets : NetworkBehaviour
 
     private bool canInteract = false;   //MNakes sure the user is close enough to spawn the prefab.
 
-    // Update is called once per frame
-    void Update() 
+    public void SpawnTicket()
     {
-        if(canInteract && Input.GetKeyDown("space"))
+        if (canInteract)
         {
             SpawnTicketCmd();
         }
@@ -28,14 +27,18 @@ public class SpawnTickets : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        //Debug.Log("Player Entered Area");
-        canInteract = true;
+        if (other.gameObject.CompareTag("Local Player"))
+        {
+            canInteract = true;
+        }
     }
 
     private void OnTriggerExit(Collider other) 
     {
-        //Debug.Log("Player Exited Area");
-        canInteract = false;
+        if (other.gameObject.CompareTag("Local Player"))
+        {
+            canInteract = false;
+        }
     }
 
 

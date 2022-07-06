@@ -8,9 +8,10 @@ public class PlayerController : NetworkBehaviour
     private CharacterController characterController;
     private bool isGamePaused;
     [HideInInspector]
-    public bool isEditing;
+    public bool isEditing = false;
     private Camera myCamera;
     private CameraFollow myCameraScript;
+    private SpawnTickets spawnTicketsScript;
     private float xRotation = 0;
     private float yRotation = 0;
 
@@ -26,6 +27,7 @@ public class PlayerController : NetworkBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
+        spawnTicketsScript = GameObject.Find("SpawnStation").GetComponentInChildren<SpawnTickets>();
         if (isLocalPlayer)
         {
             gameObject.tag = "Local Player";
@@ -48,7 +50,9 @@ public class PlayerController : NetworkBehaviour
                 DoMovement();
                 RotateCamera();
                 myCameraScript.UpdateGoalPosition(cameraOffset.position);
+                SpawnTickets();
             }
+
         }
     }
 
@@ -103,5 +107,17 @@ public class PlayerController : NetworkBehaviour
         isGamePaused = false;
     }
     #endregion
+
+#region Spawn Tickets
+
+    private void SpawnTickets()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            spawnTicketsScript.SpawnTicket();
+        }
+    }
+
+#endregion
 
 }
