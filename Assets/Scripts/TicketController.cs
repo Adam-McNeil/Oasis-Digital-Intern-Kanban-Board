@@ -12,6 +12,9 @@ public class TicketController : NetworkBehaviour
     private float maxSpeed = 5;
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TextMeshProUGUI textObject;
+    private CameraFollow myCameraScript;
+    private GameObject myCamera;
+
     private TicketTrigger ticketTriggerScript;
     private Rigidbody body;
 
@@ -22,11 +25,10 @@ public class TicketController : NetworkBehaviour
 
     private bool shouldDoMovement = true;
 
-    //[SyncVar(hook = nameof (ChangePosition))]
-    //private Vector3 positionSyncVar;
-
     private void Start()
     {
+        myCamera = GameObject.Find("Camera");
+        myCameraScript = myCamera.GetComponent<CameraFollow>();
         body = GetComponent<Rigidbody>();
         ticketTriggerScript = GetComponentInChildren<TicketTrigger>();
         inputField.onValueChanged.AddListener(delegate { OnChangedInputField(); });
@@ -49,7 +51,8 @@ public class TicketController : NetworkBehaviour
             {
                 AddForceCmd(force);
             }
-           
+            myCameraScript.UpdateGoalPosition(transform.position + new Vector3(0, 10, 0));
+            myCamera.transform.rotation = Quaternion.Euler(90, 0, 0);
         }
     }
 

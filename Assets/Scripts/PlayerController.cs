@@ -9,15 +9,18 @@ public class PlayerController : NetworkBehaviour
     private bool isGamePaused;
     [HideInInspector]
     public bool isEditing;
+    private Camera myCamera;
+    private CameraFollow myCameraScript;
+    private float xRotation = 0;
+    private float yRotation = 0;
 
     [Header("Adjustible Variables ")]
     [SerializeField] private float speed;
     [SerializeField] private float sensitivity;
 
-    [Header("Child Refences")]
-    [SerializeField] private Camera myCamera;
-    private float xRotation = 0;
-    private float yRotation = 0;
+    [Header("Children Refences")]
+    [SerializeField] private Transform cameraOffset;
+
 
     private void Start()
     {
@@ -25,8 +28,9 @@ public class PlayerController : NetworkBehaviour
         characterController = GetComponent<CharacterController>();
         if (isLocalPlayer)
         {
-            myCamera.gameObject.SetActive(true);
             gameObject.tag = "Local Player";
+            myCamera = GameObject.Find("Camera").GetComponent<Camera>();
+            myCameraScript = myCamera.GetComponent<CameraFollow>();
         }
         else
         {
@@ -43,6 +47,7 @@ public class PlayerController : NetworkBehaviour
             {
                 DoMovement();
                 RotateCamera();
+                myCameraScript.UpdateGoalPosition(cameraOffset.position);
             }
         }
     }
@@ -67,6 +72,7 @@ public class PlayerController : NetworkBehaviour
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
         myCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
     }
+
 #endregion
 
 #region Pause
