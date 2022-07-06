@@ -29,7 +29,7 @@ public class TicketTrigger : MonoBehaviour
     {
         if (beingEdited && Input.GetKeyDown(KeyCode.Tab))
         {
-            ExitEditMode(editingPlayer);
+            ExitEditMode();
         }
     }
 
@@ -72,11 +72,11 @@ public class TicketTrigger : MonoBehaviour
         wasEPressed = false;
     }
 
-    private void ExitEditMode(GameObject player)
+    public void ExitEditMode()
     {
         ticketController.SetShouldDoMovement(false);
         Cursor.lockState = CursorLockMode.Locked;
-        player.GetComponent<PlayerController>().isEditing = false;
+        editingPlayer.GetComponent<PlayerController>().isEditing = false;
         beingEdited = false;
         screenSpaceCamera.gameObject.SetActive(false);
     }

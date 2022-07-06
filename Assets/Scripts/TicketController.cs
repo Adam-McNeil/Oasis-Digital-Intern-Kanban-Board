@@ -53,6 +53,18 @@ public class TicketController : NetworkBehaviour
         }
     }
 
+    #region Delete
+       
+    [Command(requiresAuthority = false)]
+    public void DeleteTicketCmd()
+    {
+        NetworkServer.Destroy(gameObject);
+    }
+
+    #endregion
+
+    #region Movement
+
     [Command(requiresAuthority = false)]
     private void AddForceCmd(Vector3 force)
     {
@@ -67,7 +79,7 @@ public class TicketController : NetworkBehaviour
     {
         shouldDoMovement = value;
     }
-
+    #endregion
 
     #region SyncText
     private void OnChangedInputField()
@@ -86,6 +98,7 @@ public class TicketController : NetworkBehaviour
         textObject.text = newText;
     }
     #endregion
+
 }
 
 /*
