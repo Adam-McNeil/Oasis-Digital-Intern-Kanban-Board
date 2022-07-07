@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30f2c90598228a74797da5cddda1610e, type: 3}
-  m_Name: PlayFlowConfig
+  m_Script: {fileID: 11500000, guid: 2d38fb1463c5c804b8847c20e8873623, type: 3}
+  m_Name: XRInteractionEditorSettings
   m_EditorClassIdentifier: 
-  token: a0c34a0ba44a7bcf76fc4d75ba6ba50c
-  playflowUrl: 
-  serverArguments: 
-  enableSSL: 0
-  serverLocation: 0
+  m_InteractionLayerUpdaterShown: 0
+  m_ShowOldInteractionLayerMaskInInspector: 0
