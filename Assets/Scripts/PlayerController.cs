@@ -97,7 +97,7 @@ public class PlayerController : NetworkBehaviour
         isGamePaused = true;
     }
 
-    private void Resume()
+    public void Resume()
     {
         Cursor.lockState = CursorLockMode.Locked;
         isGamePaused = false;

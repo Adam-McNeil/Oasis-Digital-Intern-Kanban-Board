@@ -8,14 +8,16 @@ public class SpawnTickets : NetworkBehaviour
     public GameObject ticketGameObject; //Ticket Prefab that will be spawned
     public Vector3 spawnPosition;       //Postion where to spawn the prefab 
 
-    private bool canInteract = false;   //MNakes sure the user is close enough to spawn the prefab.
+    private bool canInteract = false;   //Makes sure the user is close enough to spawn the prefab.
+    
+    public GameObject ticketCreator;
 
-    // Update is called once per frame
+    
     void Update() 
     {
         if(canInteract && Input.GetKeyDown("space"))
         {
-            SpawnTicketCmd();
+            DisplayCreatorScreen();
         }
     }
 
@@ -24,6 +26,32 @@ public class SpawnTickets : NetworkBehaviour
     {
         GameObject spawnedTicket = Instantiate(ticketGameObject, spawnPosition, ticketGameObject.transform.rotation);
         NetworkServer.Spawn(spawnedTicket);
+    }
+
+    private PlayerController GetPlayerController() {
+        GameObject player = GameObject.FindGameObjectWithTag("Local Player");
+        if (player == null) {
+            player = GameObject.FindGameObjectWithTag("Nonlocal Player");
+        }
+        PlayerController controller = player.GetComponent<PlayerController>();
+        return controller;
+    }
+
+    private void DisplayCreatorScreen() {
+        ticketCreator.SetActive(true);
+        PlayerController controller = GetPlayerController();
+        controller.Pause();
+    }
+
+    public void ExitCreatorScreen() {
+        ticketCreator.SetActive(false);
+        PlayerController controller = GetPlayerController();
+        controller.Resume();
+    }
+
+    public void CreateTicketObject() {
+        SpawnTicketCmd();
+        ExitCreatorScreen();
     }
 
     private void OnTriggerEnter(Collider other) 
