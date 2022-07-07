@@ -32,6 +32,10 @@ public class TicketController : NetworkBehaviour
         body = GetComponent<Rigidbody>();
         ticketTriggerScript = GetComponentInChildren<TicketTrigger>();
         inputField.onValueChanged.AddListener(delegate { OnChangedInputField(); });
+        if (isClientOnly)
+        {
+            Destroy(body);
+        }
         //myTicketInfo.networkIdentity = GetComponent<NetworkIdentity>();
         //ticketList.Add(myTicketInfo);
     }
