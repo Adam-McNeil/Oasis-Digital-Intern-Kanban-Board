@@ -13,7 +13,7 @@ public class PickUp : MonoBehaviour
 
     private GameObject heldObject;
     private Material heldObjectMaterial;
-    private Color orginalAlpha;
+    private Color currentColor;
     private Rigidbody heldObjectRB;
 
 
@@ -40,9 +40,15 @@ public class PickUp : MonoBehaviour
         }
 
         if(heldObject != null){
-
             MoveObject();
+            if(Input.GetMouseButtonDown(1)){
+                ThrowObject();
+            }
+        }
+    }
 
+    private void FixedUpdate() {
+        if(heldObject != null){
             if(Input.GetMouseButtonDown(1)){
                 ThrowObject();
             }
@@ -53,14 +59,6 @@ public class PickUp : MonoBehaviour
     {
         if(pickedObject.GetComponent<Rigidbody>())
         {  
-            /*
-            heldObjectMaterial = pickedObject.GetComponent<Renderer>().material;
-            orginalAlpha = heldObjectMaterial.color;
-            Color alteredAlpha = orginalAlpha;
-            alteredAlpha.a = 0.7f;
-            heldObjectMaterial.color = alteredAlpha;
-            */
-
             heldObjectRB = pickedObject.GetComponent<Rigidbody>();
             heldObjectRB.useGravity = false;
             heldObjectRB.drag = dragResistance;
@@ -74,8 +72,6 @@ public class PickUp : MonoBehaviour
 
     void DropObject()
     {
-        //heldObjectMaterial.color = orginalAlpha; 
-
         heldObjectRB.useGravity = true;
         heldObjectRB.drag = 0;
         heldObjectRB.constraints = RigidbodyConstraints.None;
@@ -86,8 +82,6 @@ public class PickUp : MonoBehaviour
 
     void ThrowObject()
     {
-        //heldObjectMaterial.color = orginalAlpha; 
-
         heldObjectRB.useGravity = true;
         heldObjectRB.drag = 0;
         heldObjectRB.constraints = RigidbodyConstraints.None;
