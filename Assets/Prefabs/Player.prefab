@@ -104,6 +104,7 @@ MonoBehaviour:
   dragResistance: 10
   throwForce: 10
   grabAction: {fileID: 0}
+  throwAction: {fileID: 0}
 --- !u!1 &1646151456437188218
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +284,7 @@ MonoBehaviour:
   dragResistance: 10
   throwForce: 10
   grabAction: {fileID: -3407226586021038709, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  throwAction: {fileID: -5020605622706961461, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &2326578247599240509
 MonoBehaviour:
   m_ObjectHideFlags: 0

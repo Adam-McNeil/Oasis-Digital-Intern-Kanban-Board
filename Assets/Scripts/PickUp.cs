@@ -14,6 +14,7 @@ public class PickUp : MonoBehaviour
     [SerializeField] private float throwForce = 10f;
 
     [SerializeField] private InputActionReference grabAction;
+    [SerializeField] private InputActionReference throwAction;
 
     private GameObject heldObject;
     private Material heldObjectMaterial;
@@ -24,6 +25,7 @@ public class PickUp : MonoBehaviour
     private void Update() {
         
     grabAction.action.performed += attemptGrab;
+    throwAction.action.performed += attemptThrow;
 
         if(heldObject != null){
             MoveObject();
@@ -33,6 +35,11 @@ public class PickUp : MonoBehaviour
         }
     }
 
+
+    private void attemptThrow(InputAction.CallbackContext obj)
+    {
+      ThrowObject();
+    }
     private void attemptGrab(InputAction.CallbackContext obj)
     {
           if(heldObject == null)
