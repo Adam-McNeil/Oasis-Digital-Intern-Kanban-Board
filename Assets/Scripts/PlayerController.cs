@@ -5,21 +5,27 @@ using Mirror;
 
 public class PlayerController : NetworkBehaviour
 {
+    public float speed = 7.5f;
+    public float jumpSpeed = 12f;
+    public float gravity = 9.81f;
+    public Camera playerCamera;
+    public float lookXLimit = 45.0f;
+    Vector3 moveDirection = Vector3.zero;
+    float rotationX = 0;
+
     private CharacterController characterController;
     private bool isGamePaused;
     [HideInInspector]
     public bool isEditing;
-    private Camera myCamera;
     private CameraFollow myCameraScript;
-    private float xRotation = 0;
-    private float yRotation = 0;
 
-    [Header("Adjustible Variables ")]
-    [SerializeField] private float speed;
-    [SerializeField] private float sensitivity;
+    [SerializeField] private float sensitivity = 30;
+
+    public CharacterController playerController;
 
     [Header("Children Refences")]
     [SerializeField] private Transform cameraOffset;
+    [SerializeField] private GameObject desktopCamera;
 
 
     private void Start()
@@ -29,8 +35,6 @@ public class PlayerController : NetworkBehaviour
         if (isLocalPlayer)
         {
             gameObject.tag = "Local Player";
-            myCamera = GameObject.Find("Camera").GetComponent<Camera>();
-            myCameraScript = myCamera.GetComponent<CameraFollow>();
         }
         else
         {
@@ -45,35 +49,20 @@ public class PlayerController : NetworkBehaviour
             Escape();
             if (!isGamePaused && !isEditing)
             {
-                DoMovement();
+                playerMovement();
                 RotateCamera();
                 myCameraScript.UpdateGoalPosition(cameraOffset.position);
             }
         }
     }
 
-#region Movement
-    void DoMovement()
-    {
-        Vector3 motion = (transform.right * Input.GetAxisRaw("Horizontal") + transform.forward * Input.GetAxisRaw("Vertical")).normalized * speed;
-        characterController.Move(motion);
-    }
-
     void RotateCamera()
     {
-        float xMouseChange = Input.GetAxis("Mouse X") * Time.deltaTime * sensitivity;
-        float yMouseChange = Input.GetAxis("Mouse Y") * Time.deltaTime * sensitivity;
-
-        yRotation += xMouseChange;
-        xRotation -= yMouseChange;
-
-        xRotation = Mathf.Clamp(xRotation, -90, 90);
-
-        transform.rotation = Quaternion.Euler(0, yRotation, 0);
-        myCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        rotationX += -Input.GetAxis("Mouse Y") * sensitivity;
+        rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * sensitivity, 0);
     }
-
-#endregion
 
 #region Pause
     private void Escape()
@@ -103,5 +92,31 @@ public class PlayerController : NetworkBehaviour
         isGamePaused = false;
     }
     #endregion
+  private void playerMovement()
+    {
 
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 right = transform.TransformDirection(Vector3.right);
+
+        float curSpeedX =  speed * Input.GetAxis("Vertical");
+        float curSpeedY =  speed * Input.GetAxis("Horizontal");
+        float movementDirectionY = moveDirection.y;
+        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+
+        if (Input.GetButton("Jump") && characterController.isGrounded)
+        {
+            moveDirection.y = jumpSpeed;
+        }
+        else
+        {
+            moveDirection.y = movementDirectionY;
+        }
+
+        if (!characterController.isGrounded)
+        {
+            moveDirection.y -= gravity * Time.deltaTime;
+        }
+
+        characterController.Move(moveDirection * Time.deltaTime);
+    }
 }
