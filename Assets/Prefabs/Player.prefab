@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdArea: {fileID: 4322677482666344449}
   pickRange: 5
-  pickUpForce: 150
+  pickUpForce: 300
   dragResistance: 10
   throwForce: 10
 --- !u!1 &4399136816981967447
