@@ -16,14 +16,24 @@ public class TicketController : NetworkBehaviour
     private void Start()
     {
         inputField.onValueChanged.AddListener(delegate { OnChangedInputField(); });
+        if (isClientOnly)
+        {
+            //Destroy(GetComponent<Rigidbody>());
+        }
     }
 
+    #region Movement
+
+
+
+    #endregion
+
     #region Delete
-       
+
     [Command(requiresAuthority = false)]
     public void DeleteTicketCmd()
     {
-        NetworkServer.Destroy(gameObject);
+        //NetworkServer.Destroy(gameObject);
     }
 
     #endregion
