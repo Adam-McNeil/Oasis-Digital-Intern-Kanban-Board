@@ -17,7 +17,6 @@ public class PlayerController : NetworkBehaviour
     private bool isGamePaused;
     [HideInInspector]
     public bool isEditing;
-    private CameraFollow myCameraScript;
 
     [SerializeField] private float sensitivity = 30;
 
@@ -39,6 +38,7 @@ public class PlayerController : NetworkBehaviour
         else
         {
             gameObject.tag = "Nonlocal Player";
+            Destroy(desktopCamera);
         }
     }
 
@@ -55,15 +55,7 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
-    void RotateCamera()
-    {
-        rotationX += -Input.GetAxis("Mouse Y") * sensitivity;
-        rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * sensitivity, 0);
-    }
-
-#region Pause
+    #region Pause
     private void Escape()
     {
         if (Input.GetKeyDown(KeyCode.Tab) && !isEditing)
@@ -91,7 +83,9 @@ public class PlayerController : NetworkBehaviour
         isGamePaused = false;
     }
     #endregion
-  private void playerMovement()
+
+    #region Movement
+    private void playerMovement()
     {
 
         Vector3 forward = transform.TransformDirection(Vector3.forward);
@@ -118,4 +112,14 @@ public class PlayerController : NetworkBehaviour
 
         characterController.Move(moveDirection * Time.deltaTime);
     }
+
+    void RotateCamera()
+    {
+        rotationX += -Input.GetAxis("Mouse Y") * sensitivity;
+        rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * sensitivity, 0);
+    }
+
+    #endregion
 }

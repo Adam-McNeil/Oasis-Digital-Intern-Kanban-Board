@@ -17,7 +17,7 @@ public class SpawnTickets : NetworkBehaviour
     {
         if(canInteract && Input.GetMouseButtonDown(0))
         {
-            DisplayCreatorScreen();
+            SpawnTicketCmd();
         }
     }
 

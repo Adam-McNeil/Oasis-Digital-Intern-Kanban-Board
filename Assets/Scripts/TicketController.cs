@@ -6,52 +6,16 @@ using TMPro;
 
 public class TicketController : NetworkBehaviour
 {
-    //static List<TicketInfo> ticketList = new List<TicketInfo>();
-    //private TicketInfo myTicketInfo;
-    private float speed = 1;
-    private float maxSpeed = 5;
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TextMeshProUGUI textObject;
-    private CameraFollow myCameraScript;
-    private GameObject myCamera;
 
-    private TicketTrigger ticketTriggerScript;
-    private Rigidbody body;
-
-    private float xInput;
-    private float zInput;
     [SyncVar(hook = nameof (ChangeText))]
     private string textSyncVar;
 
-    private bool shouldDoMovement = true;
 
     private void Start()
     {
-        myCamera = GameObject.Find("Camera");
-        myCameraScript = myCamera.GetComponent<CameraFollow>();
-        body = GetComponent<Rigidbody>();
-        ticketTriggerScript = GetComponentInChildren<TicketTrigger>();
         inputField.onValueChanged.AddListener(delegate { OnChangedInputField(); });
-        //myTicketInfo.networkIdentity = GetComponent<NetworkIdentity>();
-        //ticketList.Add(myTicketInfo);
-    }
-
-    private void Update()
-    {
-        xInput = Input.GetAxisRaw("Horizontal");
-        zInput = Input.GetAxisRaw("Vertical");
-    }
-
-    private void FixedUpdate()
-    {
-        if (shouldDoMovement && ticketTriggerScript.beingEdited)
-        {
-            Vector3 force = new Vector3(xInput, 0, zInput).normalized * speed;
-            if (force.magnitude > 0)
-            {
-                AddForceCmd(force);
-            }
-        }
     }
 
     #region Delete
@@ -62,24 +26,6 @@ public class TicketController : NetworkBehaviour
         NetworkServer.Destroy(gameObject);
     }
 
-    #endregion
-
-    #region Movement
-
-    [Command(requiresAuthority = false)]
-    private void AddForceCmd(Vector3 force)
-    {
-        body.AddForce(force, ForceMode.Impulse);
-        if (body.velocity.magnitude > maxSpeed)
-        {
-            body.velocity = body.velocity.normalized * maxSpeed;
-        }
-    }
-    
-    public void SetShouldDoMovement(bool value)
-    {
-        shouldDoMovement = value;
-    }
     #endregion
 
     #region SyncText
@@ -102,11 +48,3 @@ public class TicketController : NetworkBehaviour
 
 }
 
-/*
-struct TicketInfo
-{
-    public GameObject gameObject;
-    public NetworkIdentity networkIdentity;
-    public string text;
-}
-*/
