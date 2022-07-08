@@ -30,7 +30,6 @@ public class PickUp : MonoBehaviour
                     {
                         PickUpObject(hit.transform.gameObject);
                     }
-                    
                 }
             }
             else
