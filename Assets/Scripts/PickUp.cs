@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.XR.OpenVR;
+using UnityEngine.InputSystem;
 
 public class PickUp : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class PickUp : MonoBehaviour
     [SerializeField] private float dragResistance = 10f;
     [SerializeField] private float throwForce = 10f;
 
+    [SerializeField] private InputActionReference grabAction;
+
     private GameObject heldObject;
     private Material heldObjectMaterial;
     private Color currentColor;
@@ -18,26 +22,8 @@ public class PickUp : MonoBehaviour
 
 
     private void Update() {
-        if(Input.GetMouseButtonDown(0))
-        {
-            if(heldObject == null)
-            {
-                RaycastHit hit;
-
-                if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickRange))
-                {
-                    if(hit.transform.gameObject.tag == "Ticket")
-                    {
-                        PickUpObject(hit.transform.gameObject);
-                    }
-                    
-                }
-            }
-            else
-            {
-                DropObject();
-            }
-        }
+        
+    grabAction.action.performed += attemptGrab;
 
         if(heldObject != null){
             MoveObject();
@@ -45,6 +31,27 @@ public class PickUp : MonoBehaviour
                 ThrowObject();
             }
         }
+    }
+
+    private void attemptGrab(InputAction.CallbackContext obj)
+    {
+          if(heldObject == null)
+          {
+              RaycastHit hit;
+
+              if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickRange))
+              {
+                  if(hit.transform.gameObject.tag == "Ticket")
+                  {
+                      PickUpObject(hit.transform.gameObject);
+                  }
+                    
+              }
+          }
+          else
+          {
+              DropObject();
+          }
     }
 
     void PickUpObject(GameObject pickedObject)
