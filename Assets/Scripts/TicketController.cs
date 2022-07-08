@@ -51,8 +51,6 @@ public class TicketController : NetworkBehaviour
             {
                 AddForceCmd(force);
             }
-            myCameraScript.UpdateGoalPosition(transform.position + new Vector3(0, 10, 0));
-            myCamera.transform.rotation = Quaternion.Euler(90, 0, 0);
         }
     }
 

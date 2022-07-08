@@ -51,7 +51,6 @@ public class PlayerController : NetworkBehaviour
             {
                 playerMovement();
                 RotateCamera();
-                myCameraScript.UpdateGoalPosition(cameraOffset.position);
             }
         }
     }

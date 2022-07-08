@@ -15,7 +15,7 @@ public class SpawnTickets : NetworkBehaviour
     
     void Update() 
     {
-        if(canInteract && Input.GetKeyDown("space"))
+        if(canInteract && Input.GetMouseButtonDown(0))
         {
             DisplayCreatorScreen();
         }
