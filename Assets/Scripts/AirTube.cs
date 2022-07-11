@@ -9,6 +9,7 @@ public class AirTube : MonoBehaviour
     private GameObject movingObject;                                     //Objects that will be stored in the list to be moved  
     private Rigidbody movingObjectRB;
 
+    public bool isActive = true; 
     public Vector3 direction;                                            //Direction where the object is pushed 
     public float speed;                                                  //Speed for the movement of the object 
 
@@ -20,9 +21,11 @@ public class AirTube : MonoBehaviour
 
     private void Update()
     {
-        for(int i = 0; i <= objectsOnConveyor.Count -1; i++)
-        {
-            objectsOnConveyor[i].transform.position += direction * speed * Time.deltaTime;
+        if(isActive){
+            for(int i = 0; i <= objectsOnConveyor.Count -1; i++)
+            {
+                objectsOnConveyor[i].transform.position += direction * speed * Time.deltaTime;
+            }
         }
     }
 
@@ -37,16 +40,20 @@ public class AirTube : MonoBehaviour
     }
 
     private void OnTriggerStay(Collider other) {
-        movingObjectRB = other.gameObject.GetComponent<Rigidbody>();
-        movingObjectRB.useGravity = false;
-        movingObjectRB.constraints = RigidbodyConstraints.FreezeAll;
+        if(isActive){
+            movingObjectRB = other.gameObject.GetComponent<Rigidbody>();
+            movingObjectRB.useGravity = false;
+            movingObjectRB.constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
 
 
     private void OnTriggerExit(Collider other) 
     {
-        movingObjectRB.constraints = RigidbodyConstraints.None;
-        movingObjectRB.useGravity = true;
+        if(isActive){
+            movingObjectRB.constraints = RigidbodyConstraints.None;
+            movingObjectRB.useGravity = true; 
+        }
         objectsOnConveyor.Remove(other.gameObject);
     }
 }
