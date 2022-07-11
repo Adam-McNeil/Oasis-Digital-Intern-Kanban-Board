@@ -23,9 +23,26 @@ public class PickUp : MonoBehaviour
 
 
     private void Update() {
+
+        if(Input.GetMouseButtonDown(0)){
+            if(heldObject == null)
+            {
+                RaycastHit hit;
+
+                if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickRange))
+                {
+                    if(hit.transform.gameObject.tag == "Ticket")
+                    {
+                        PickUpObject(hit.transform.gameObject);
+                    }
         
-    grabAction.action.performed += attemptGrab;
-    throwAction.action.performed += attemptThrow;
+                }
+            }
+            else
+            {
+                DropObject();
+            }
+        }
 
         if(heldObject != null){
             MoveObject();
@@ -33,6 +50,9 @@ public class PickUp : MonoBehaviour
                 ThrowObject();
             }
         }
+        
+    //grabAction.action.performed += attemptGrab;
+    //throwAction.action.performed += attemptThrow;
     }
 
 
@@ -42,23 +62,23 @@ public class PickUp : MonoBehaviour
     }
     private void attemptGrab(InputAction.CallbackContext obj)
     {
-          if(heldObject == null)
-          {
-              RaycastHit hit;
+        if(heldObject == null)
+        {
+            RaycastHit hit;
 
-              if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickRange))
-              {
-                  if(hit.transform.gameObject.tag == "Ticket")
-                  {
-                      PickUpObject(hit.transform.gameObject);
-                  }
+            if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickRange))
+            {
+                if(hit.transform.gameObject.tag == "Ticket")
+                {
+                    PickUpObject(hit.transform.gameObject);
+                }
                     
-              }
-          }
-          else
-          {
-              DropObject();
-          }
+            }
+        }
+        else
+        {
+            DropObject();
+        }
     }
 
     void PickUpObject(GameObject pickedObject)
