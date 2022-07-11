@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5662094570335503297}
   - component: {fileID: 6331837713553595113}
   - component: {fileID: 856738664022294512}
-  - component: {fileID: 321801009843522957}
+  - component: {fileID: 6991586404838120465}
   m_Layer: 0
   m_Name: Desktop-Camera
   m_TagString: Untagged
@@ -86,7 +86,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629467838714742647}
   m_Enabled: 1
---- !u!114 &321801009843522957
+--- !u!114 &6991586404838120465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

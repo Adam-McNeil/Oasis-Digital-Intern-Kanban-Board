@@ -4,7 +4,7 @@ using UnityEngine;
 using Unity.XR.OpenVR;
 using UnityEngine.InputSystem;
 
-public class PickUpXR : MonoBehaviour
+public class PickUp : MonoBehaviour
 {
     [Header("PickUp Settings")]
     [SerializeField] private Transform holdArea;
@@ -24,15 +24,19 @@ public class PickUpXR : MonoBehaviour
 
     private void Update() {
         
-    grabAction.action.performed += attemptGrab;
-    throwAction.action.performed += attemptThrow;
-
+        grabAction.action.performed += attemptGrab;
+        throwAction.action.performed += attemptThrow;
+        if (Input.GetMouseButtonUp(0))
+        {
+            attemptGrab();
+        }
         if(heldObject != null){
             MoveObject();
             if(Input.GetMouseButtonDown(1)){
                 ThrowObject();
             }
         }
+
     }
 
 
@@ -40,25 +44,47 @@ public class PickUpXR : MonoBehaviour
     {
       ThrowObject();
     }
+
     private void attemptGrab(InputAction.CallbackContext obj)
     {
-          if(heldObject == null)
-          {
-              RaycastHit hit;
+        if (heldObject == null)
+        {
+            RaycastHit hit;
 
-              if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickRange))
-              {
-                  if(hit.transform.gameObject.tag == "Ticket")
-                  {
-                      PickUpObject(hit.transform.gameObject);
-                  }
-                    
-              }
-          }
-          else
-          {
-              DropObject();
-          }
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickRange))
+            {
+                if (hit.transform.gameObject.tag == "Ticket")
+                {
+                    PickUpObject(hit.transform.gameObject);
+                }
+
+            }
+        }
+        else
+        {
+            DropObject();
+        }
+    }
+
+    private void attemptGrab()
+    {
+        if (heldObject == null)
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickRange))
+            {
+                if (hit.transform.gameObject.tag == "Ticket")
+                {
+                    PickUpObject(hit.transform.gameObject);
+                }
+
+            }
+        }
+        else
+        {
+            DropObject();
+        }
     }
 
     void PickUpObject(GameObject pickedObject)
