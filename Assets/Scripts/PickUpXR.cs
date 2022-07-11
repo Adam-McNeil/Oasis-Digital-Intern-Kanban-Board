@@ -4,7 +4,7 @@ using UnityEngine;
 using Unity.XR.OpenVR;
 using UnityEngine.InputSystem;
 
-public class PickUp : MonoBehaviour
+public class PickUpXR : MonoBehaviour
 {
     [Header("PickUp Settings")]
     [SerializeField] private Transform holdArea;
