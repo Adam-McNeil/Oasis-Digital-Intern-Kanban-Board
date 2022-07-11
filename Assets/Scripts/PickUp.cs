@@ -28,7 +28,6 @@ public class PickUp : NetworkBehaviour
                 if (!isHoldingObject)
                 {
                     RaycastHit hit;
-                    Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.position + playerCamera.transform.forward * 5, new Color(0, 0, 0), 3f);
                     if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, pickRange))
                     {
                         GameObject hitObject = hit.transform.gameObject;
@@ -46,13 +45,13 @@ public class PickUp : NetworkBehaviour
 
                 }
             }
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1) && isHoldingObject)
             {
                 ThrowObjectCmd();
                 isHoldingObject = false;
             }
         }
-        if (heldObject != null)
+        if (heldObject != null && isServer)
         {
             MoveObject();
         }
@@ -61,13 +60,13 @@ public class PickUp : NetworkBehaviour
     [Command]
     void PickUpObjectCmd(uint ID)
     {
-        Debug.Log("pick up command was called");
         GameObject[] ticketArray = GameObject.FindGameObjectsWithTag("Ticket");
         foreach (GameObject ticket in ticketArray)
         {
             if (ticket.GetComponent<NetworkIdentity>().netId == ID)
             {
                 PickUpObject(ticket);
+                return;
             }
         }
     }
@@ -79,7 +78,6 @@ public class PickUp : NetworkBehaviour
         heldObjectRB.useGravity = false;
         heldObjectRB.drag = dragResistance;
         heldObjectRB.constraints = RigidbodyConstraints.FreezeRotation;
-
         //heldObjectRB.transform.parent = holdArea; 
         heldObject = pickedObject;
     }
@@ -88,8 +86,6 @@ public class PickUp : NetworkBehaviour
     [Command]
     void DropObjectCmd()
     {
-        Debug.Log("drop command was called");
-
         DropObject();
     }
 
@@ -98,30 +94,22 @@ public class PickUp : NetworkBehaviour
         heldObjectRB.useGravity = true;
         heldObjectRB.drag = 0;
         heldObjectRB.constraints = RigidbodyConstraints.None;
-
-        heldObject.transform.parent = null; 
+        //heldObject.transform.parent = null; 
         heldObject = null;
     }
 
     [Command]
     void ThrowObjectCmd()
     {
-        Debug.Log("throw command was called");
-
         ThrowObject();
     }
 
     void ThrowObject()
     {
-        if (heldObject == null)
-        {
-            return;
-        }
         heldObjectRB.useGravity = true;
         heldObjectRB.drag = 0;
         heldObjectRB.constraints = RigidbodyConstraints.None;
         heldObjectRB.velocity = (holdArea.transform.forward * throwForce);
-
         //heldObject.transform.parent = null; 
         heldObject = null;
 
@@ -129,7 +117,6 @@ public class PickUp : NetworkBehaviour
 
     void MoveObject()
     {
-        Debug.Log("move object was called");
         if(Vector3.Distance(heldObject.transform.position, holdArea.position) > 0.1f)
         {
             Vector3 moveDirection = (holdArea.position - heldObject.transform.position);
