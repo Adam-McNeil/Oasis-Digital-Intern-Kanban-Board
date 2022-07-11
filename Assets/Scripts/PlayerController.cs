@@ -34,11 +34,11 @@ public class PlayerController : NetworkBehaviour
         if (isLocalPlayer)
         {
             gameObject.tag = "Local Player";
+            //desktopCamera.gameObject.SetActive(true);
         }
         else
         {
             gameObject.tag = "Nonlocal Player";
-            Destroy(desktopCamera);
         }
     }
 
