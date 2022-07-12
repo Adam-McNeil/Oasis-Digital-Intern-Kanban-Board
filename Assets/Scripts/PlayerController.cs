@@ -21,7 +21,6 @@ public class PlayerController : NetworkBehaviour
     public bool isEditing;
 
     [SerializeField] private float sensitivity = 30;
-
     public CharacterController playerController;
 
     [Header("Children Refences")]
