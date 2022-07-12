@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class AirTube : MonoBehaviour
 {
-
     private List<GameObject> objectsOnConveyor = new List<GameObject>(); //Stores a list of gameobjects that are on the conveyor belt
     private GameObject movingObject;                                     //Objects that will be stored in the list to be moved  
     private Rigidbody movingObjectRB;
@@ -13,10 +13,9 @@ public class AirTube : MonoBehaviour
     public Vector3 direction;                                            //Direction where the object is pushed 
     public float speed;                                                  //Speed for the movement of the object 
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     private void Update()
@@ -40,7 +39,8 @@ public class AirTube : MonoBehaviour
     }
 
     private void OnTriggerStay(Collider other) {
-        if(isActive){
+        if(isActive && other.gameObject.CompareTag("Ticket"))
+        {
             movingObjectRB = other.gameObject.GetComponent<Rigidbody>();
             movingObjectRB.useGravity = false;
             movingObjectRB.constraints = RigidbodyConstraints.FreezeAll;
@@ -50,7 +50,7 @@ public class AirTube : MonoBehaviour
 
     private void OnTriggerExit(Collider other) 
     {
-        if(isActive){
+        if(isActive && other.gameObject.CompareTag("Ticket")){
             movingObjectRB.constraints = RigidbodyConstraints.None;
             movingObjectRB.useGravity = true; 
         }
