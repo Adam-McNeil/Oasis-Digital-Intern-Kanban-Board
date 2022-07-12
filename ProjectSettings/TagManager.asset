@@ -8,6 +8,7 @@ TagManager:
   - Local Player
   - Nonlocal Player
   - Ticket Trigger
+  - XrOrigin
   layers:
   - Default
   - TransparentFX

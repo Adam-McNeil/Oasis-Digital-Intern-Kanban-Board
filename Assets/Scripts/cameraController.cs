@@ -8,7 +8,7 @@ public class cameraController : NetworkBehaviour
   {
   [SerializeField] private PickUp pickUpScript;
   [SerializeField] private FollowCamera followCameraScript;
-    private GameObject activeCamera;
+  private GameObject activeCamera;
   public bool vrHeadsetAttached = false;
   public GameObject desktopCamera;
   public GameObject xrObject;
@@ -29,30 +29,22 @@ void Start()
                 var xrLoader = xrManager.activeLoader;
                 if (xrLoader != null)
                 {
-                    xrObject.SetActive(true);
-                    activeCamera = xrObject;
+                    XrReference.XrOrigin.SetActive(true);
+                    activeCamera = XrReference.XrCamera;
                     VrIsOn = true;
                     desktopCamera.SetActive(false);
-                    xrObject.transform.localPosition = new Vector3(0, 0, 0) + new Vector3(0, 0.4f, 0.55f);
+                    XrReference.XrOrigin.transform.localPosition = new Vector3(0, 0, 0) + new Vector3(0, 0.4f, 0.55f);
                     pickUpScript.SetActiveCamera(activeCamera);
                     return;
                 }
             }
         }
         VrIsOn = false;
-        xrObject.SetActive(false);
+        XrReference.XrOrigin.SetActive(false);
         desktopCamera.SetActive(true);
         pickUpScript.SetActiveCamera(activeCamera);
         }
 }
 
-  private void Update()
-    {
-      if (VrIsOn)
-      {
-        player.transform.rotation = xrObject.transform.rotation;
-        xrObject.transform.localRotation = new Quaternion(0, 0, 0, 0);
-      }
-    }
   }
 
