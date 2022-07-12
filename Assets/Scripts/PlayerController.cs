@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using TMPro;
 
 public class PlayerController : NetworkBehaviour
 {
+    static public GameObject localPlayerCamera;
     public float speed = 7.5f;
     public float jumpSpeed = 12f;
     public float gravity = 9.81f;
@@ -14,7 +16,7 @@ public class PlayerController : NetworkBehaviour
     float rotationX = 0;
 
     private CharacterController characterController;
-    private bool isGamePaused;
+    static public bool isGamePaused;
     [HideInInspector]
     public bool isEditing;
 
@@ -25,16 +27,22 @@ public class PlayerController : NetworkBehaviour
     [Header("Children Refences")]
     [SerializeField] private Transform cameraOffset;
     [SerializeField] private GameObject desktopCamera;
+    [SerializeField] private TextMeshProUGUI usernameText;
+
+    private TMP_InputField usernameInputField;
+    [SyncVar(hook = nameof(ChangeUsername))]
+    private string usernameSyncVar;
 
 
     private void Start()
     {
+
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
         if (isLocalPlayer)
         {
+            FindInputField();
             gameObject.tag = "Local Player";
-            //desktopCamera.gameObject.SetActive(true);
         }
         else
         {
@@ -119,6 +127,33 @@ public class PlayerController : NetworkBehaviour
         rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * sensitivity, 0);
+    }
+
+    #endregion
+
+    #region Username
+
+
+    private void FindInputField()
+    {
+        usernameInputField = GameObject.Find("Pause Menu").GetComponentInChildren<TMP_InputField>();
+        usernameInputField.onValueChanged.AddListener(delegate { OnChangedInputField(); });
+    }
+
+    private void OnChangedInputField()
+    {
+        ChangeUsernameCmd(usernameInputField.text);
+    }
+
+    [Command(requiresAuthority = false)]
+    private void ChangeUsernameCmd(string text)
+    {
+        usernameSyncVar = text;
+    }
+
+    private void ChangeUsername(string oldText, string newText)
+    {
+        usernameText.text = newText;
     }
 
     #endregion

@@ -5,54 +5,63 @@ using UnityEngine.XR.Management;
 using Mirror;
 
 public class cameraController : NetworkBehaviour
-  {
-  [SerializeField] private PickUp pickUpScript;
-  [SerializeField] private FollowCamera followCameraScript;
-    private GameObject activeCamera;
-  public bool vrHeadsetAttached = false;
-  public GameObject desktopCamera;
-  public GameObject xrObject;
-  public GameObject player;
-  bool VrIsOn;
-
-void Start()
 {
-    if (isLocalPlayer)
+    [SerializeField] private PickUp pickUpScript;
+    [SerializeField] private FollowCamera followCameraScript;
+    private PauseMenuController pauseMenuControllerScript;
+    private GameObject activeCamera;
+    public bool vrHeadsetAttached = false;
+    public GameObject desktopCamera;
+    public GameObject xrObject;
+    public GameObject player;
+    bool VrIsOn;
+
+    void Start()
     {
-        activeCamera = desktopCamera;
-        var xrSettings = XRGeneralSettings.Instance;
-        if (xrSettings != null)
+        if (isLocalPlayer)
         {
-            var xrManager = xrSettings.Manager;
-            if (xrManager != null)
+            pauseMenuControllerScript = GameObject.Find("Pause Menu").GetComponent<PauseMenuController>();
+            activeCamera = desktopCamera;
+            var xrSettings = XRGeneralSettings.Instance;
+            if (xrSettings != null)
             {
-                var xrLoader = xrManager.activeLoader;
-                if (xrLoader != null)
+                var xrManager = xrSettings.Manager;
+                if (xrManager != null)
                 {
-                    xrObject.SetActive(true);
-                    activeCamera = xrObject;
-                    VrIsOn = true;
-                    desktopCamera.SetActive(false);
-                    xrObject.transform.localPosition = new Vector3(0, 0, 0) + new Vector3(0, 0.4f, 0.55f);
-                    pickUpScript.SetActiveCamera(activeCamera);
-                    return;
+                    var xrLoader = xrManager.activeLoader;
+                    if (xrLoader != null)
+                    {
+                        xrObject.SetActive(true);
+                        activeCamera = xrObject;
+                        VrIsOn = true;
+                        desktopCamera.SetActive(false);
+                        xrObject.transform.localPosition = new Vector3(0, 0, 0) + new Vector3(0, 0.4f, 0.55f);
+                        UpdateOtherScriptsCamera();
+
+                            return;
+                    }
                 }
             }
+            VrIsOn = false;
+            xrObject.SetActive(false);
+            desktopCamera.SetActive(true);
+            UpdateOtherScriptsCamera();
         }
-        VrIsOn = false;
-        xrObject.SetActive(false);
-        desktopCamera.SetActive(true);
-        pickUpScript.SetActiveCamera(activeCamera);
-        }
-}
-
-  private void Update()
-    {
-      if (VrIsOn)
-      {
-        player.transform.rotation = xrObject.transform.rotation;
-        xrObject.transform.localRotation = new Quaternion(0, 0, 0, 0);
-      }
     }
-  }
+
+    private void UpdateOtherScriptsCamera()
+    {
+        pickUpScript.SetActiveCamera(activeCamera);
+        pauseMenuControllerScript.SetActiveCamera(activeCamera);
+    }
+
+    private void Update()
+    {
+        if (VrIsOn)
+        {
+            player.transform.rotation = xrObject.transform.rotation;
+            xrObject.transform.localRotation = new Quaternion(0, 0, 0, 0);
+        }
+    }
+}
 
