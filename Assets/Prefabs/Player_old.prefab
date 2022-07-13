@@ -1087,7 +1087,6 @@ MonoBehaviour:
   speed: 5
   jumpSpeed: 8
   gravity: 20
-  playerCamera: {fileID: 6331837713553595113}
   lookXLimit: 45
   isEditing: 0
   sensitivity: 1
