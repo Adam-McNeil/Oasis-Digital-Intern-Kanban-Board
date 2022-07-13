@@ -6493,6 +6493,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8265877186017425684, guid: 7a68ba1427ff8014881efa60846c55a8, type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 913427097193129968, guid: 598513ba6012f7145a5d1a1402ff45ce, type: 3}
+    - target: {fileID: 8265877186017425684, guid: 7a68ba1427ff8014881efa60846c55a8, type: 3}
       propertyPath: networkAddress
       value: localhost
       objectReference: {fileID: 0}

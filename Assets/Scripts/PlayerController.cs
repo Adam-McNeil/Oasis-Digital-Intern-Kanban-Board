@@ -10,10 +10,10 @@ public class PlayerController : NetworkBehaviour
     public float speed = 7.5f;
     public float jumpSpeed = 12f;
     public float gravity = 9.81f;
-    public Camera playerCamera;
     public float lookXLimit = 45.0f;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
+    float rotationY = 0;
 
     private CharacterController characterController;
     static public bool isGamePaused;
@@ -21,7 +21,6 @@ public class PlayerController : NetworkBehaviour
     public bool isEditing;
 
     [SerializeField] private float sensitivity = 30;
-
     public CharacterController playerController;
 
     [Header("Children Refences")]
@@ -123,10 +122,10 @@ public class PlayerController : NetworkBehaviour
 
     void RotateCamera()
     {
-        rotationX += -Input.GetAxis("Mouse Y") * sensitivity;
-        rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * sensitivity, 0);
+          rotationX += -Input.GetAxis("Mouse Y") * sensitivity;
+          rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+          desktopCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+          transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * sensitivity, 0);
     }
 
     #endregion
