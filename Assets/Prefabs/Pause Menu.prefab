@@ -1046,7 +1046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Exit
+      value: ExitServer
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1158,7 +1158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7043162679492469920, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_Name
-      value: Button
+      value: Exit Button
       objectReference: {fileID: 0}
     - target: {fileID: 7560435871025737216, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_AnchorMax.y

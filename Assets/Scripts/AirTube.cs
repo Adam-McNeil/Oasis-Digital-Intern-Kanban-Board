@@ -23,7 +23,10 @@ public class AirTube : MonoBehaviour
         if(isActive){
             for(int i = 0; i <= objectsOnConveyor.Count -1; i++)
             {
-                objectsOnConveyor[i].transform.position += direction * speed * Time.deltaTime;
+                if (objectsOnConveyor[i] != null)
+                {
+                    objectsOnConveyor[i].transform.position += direction * speed * Time.deltaTime;
+                }
             }
         }
     }

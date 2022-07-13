@@ -11,27 +11,31 @@ public class PauseMenuController : MonoBehaviour
     private GameObject activeCamera;
     private bool oldGamePaused = false;
     private bool isGamePaused;
+    private bool runUpdateLoop = false;
 
     private void Update()
     {
-        isGamePaused = PlayerController.isGamePaused;
-        if (isGamePaused != oldGamePaused)
+        if (runUpdateLoop)
         {
-            if (isGamePaused)
+            isGamePaused = PlayerController.isGamePaused;
+            if (isGamePaused != oldGamePaused)
             {
-                Transform localPlayerTransform = activeCamera.transform;
-                usernameInputField.enabled = true;
-                this.transform.position = localPlayerTransform.position + localPlayerTransform.forward * offset;
-                this.transform.LookAt(localPlayerTransform);
-                this.transform.Rotate(0, 180, 0);
+                if (isGamePaused)
+                {
+                    Transform localPlayerTransform = activeCamera.transform;
+                    usernameInputField.enabled = true;
+                    this.transform.position = localPlayerTransform.position + localPlayerTransform.forward * offset;
+                    this.transform.LookAt(localPlayerTransform);
+                    this.transform.Rotate(0, 180, 0);
+                }
+                else
+                {
+                    usernameInputField.enabled = false;
+                    this.transform.position = farAway;
+                }
             }
-            else
-            {
-                usernameInputField.enabled = false;
-                this.transform.position = farAway;
-            }
+            oldGamePaused = isGamePaused;
         }
-        oldGamePaused = isGamePaused;
     }
 
     public void SetActiveCamera(GameObject camera)
@@ -39,5 +43,6 @@ public class PauseMenuController : MonoBehaviour
         this.transform.position = farAway;
         activeCamera = camera;
         GetComponentInChildren<Canvas>().worldCamera = activeCamera.GetComponent<Camera>();
+        runUpdateLoop = true;
     }
 }
