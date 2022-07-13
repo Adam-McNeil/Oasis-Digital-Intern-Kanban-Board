@@ -134,12 +134,12 @@ public class PickUp : NetworkBehaviour
 
     void PickUpObject(GameObject pickedObject)
     {
-
+        pickedObject.GetComponent<Animator>().Play("Ticket_Shrink");
+        pickedObject.GetComponent<Animator>().SetBool("isInTube", false);
         heldObjectRB = pickedObject.GetComponent<Rigidbody>();
         heldObjectRB.useGravity = false;
         heldObjectRB.drag = dragResistance;
-        heldObjectRB.constraints = RigidbodyConstraints.FreezeRotation;
-        //heldObjectRB.transform.parent = holdArea; 
+        heldObjectRB.constraints = RigidbodyConstraints.FreezeRotation; 
         heldObject = pickedObject;
     }
 
@@ -154,7 +154,6 @@ public class PickUp : NetworkBehaviour
         heldObjectRB.useGravity = true;
         heldObjectRB.drag = 0;
         heldObjectRB.constraints = RigidbodyConstraints.None;
-        //heldObject.transform.parent = null; 
         heldObject = null;
     }
 

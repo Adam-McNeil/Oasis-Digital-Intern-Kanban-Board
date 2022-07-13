@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 1703072188935369161}
   - component: {fileID: 3727975197710361602}
   m_Layer: 0
-  m_Name: player
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -470,7 +470,7 @@ MonoBehaviour:
   gravity: 20
   lookXLimit: 90
   isEditing: 0
-  sensitivity: 1
+  sensitivity: 0.3
   playerController: {fileID: 3072774549813156713}
   cameraOffset: {fileID: 3347594488358850449, guid: 100e6b76f073c3e4a88b7868655be985, type: 3}
   desktopCamera: {fileID: 5789584485692076011}
