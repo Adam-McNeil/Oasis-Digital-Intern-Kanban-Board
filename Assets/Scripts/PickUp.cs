@@ -135,7 +135,6 @@ public class PickUp : NetworkBehaviour
     void PickUpObject(GameObject pickedObject)
     {
         pickedObject.GetComponent<Animator>().Play("Ticket_Shrink");
-        pickedObject.GetComponent<Animator>().SetBool("isInTube", false);
         heldObjectRB = pickedObject.GetComponent<Rigidbody>();
         heldObjectRB.useGravity = false;
         heldObjectRB.drag = dragResistance;
