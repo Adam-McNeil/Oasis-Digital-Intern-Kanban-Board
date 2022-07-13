@@ -6,6 +6,7 @@ using Mirror;
 public class animationController : NetworkBehaviour
   {
   [SerializeField] private Animator animator = null;
+  private Quaternion rotation;
   void Update()
     {
     if (isLocalPlayer)
@@ -45,6 +46,23 @@ public class animationController : NetworkBehaviour
       if (!Input.GetKey("a"))
         {
         animator.SetBool("isRunningLeft", false);
+        }
+      if (Input.GetKey("space"))
+        {
+        animator.SetBool("isJumping", true);
+        }
+      if (!Input.GetKey("space"))
+        {
+        animator.SetBool("isJumping", false);
+        }
+      if (Input.GetKeyDown("w") && Input.GetKeyDown("d"))
+        {
+          rotation = this.transform.rotation;
+          this.transform.Rotate(0, 45, 0);
+        }
+      if (Input.GetKeyUp("w") && Input.GetKeyUp("d"))
+        {
+          rotation = this.transform.rotation;
         }
       }
     }

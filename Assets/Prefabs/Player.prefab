@@ -468,11 +468,10 @@ MonoBehaviour:
   speed: 5
   jumpSpeed: 8
   gravity: 20
-  playerCamera: {fileID: 6331837713553595113, guid: 100e6b76f073c3e4a88b7868655be985, type: 3}
-  lookXLimit: 45
+  lookXLimit: 90
   isEditing: 0
   sensitivity: 1
-  playerController: {fileID: -3389771908347727855, guid: 100e6b76f073c3e4a88b7868655be985, type: 3}
+  playerController: {fileID: 3072774549813156713}
   cameraOffset: {fileID: 3347594488358850449, guid: 100e6b76f073c3e4a88b7868655be985, type: 3}
   desktopCamera: {fileID: 5789584485692076011}
   usernameText: {fileID: 6820752973661974973}
@@ -3550,14 +3549,13 @@ GameObject:
   - component: {fileID: 6976050774263886592}
   - component: {fileID: 4124503649153341114}
   - component: {fileID: 4506584654274367113}
-  - component: {fileID: 3448021132575378114}
   m_Layer: 0
   m_Name: Desktop-Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6976050774263886592
 Transform:
   m_ObjectHideFlags: 0
@@ -3625,23 +3623,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5789584485692076011}
   m_Enabled: 1
---- !u!114 &3448021132575378114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5789584485692076011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  visible: 0
-  m_AssetId: 598513ba6012f7145a5d1a1402ff45ce
-  hasSpawned: 0
 --- !u!1 &5905138146263083255
 GameObject:
   m_ObjectHideFlags: 0
