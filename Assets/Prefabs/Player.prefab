@@ -325,6 +325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4478958673038629653}
+  - component: {fileID: 2959948222525345508}
   m_Layer: 0
   m_Name: Hold Position
   m_TagString: Untagged
@@ -347,6 +348,18 @@ Transform:
   m_Father: {fileID: 569412566600252746}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2959948222525345508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813514429573255220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb525af9fdbc834188ed621ba6fc98b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &913427097193129968
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,16 +371,17 @@ GameObject:
   - component: {fileID: 569412566600252746}
   - component: {fileID: 5838592985748743984}
   - component: {fileID: 3072774549813156713}
-  - component: {fileID: 2053801713883944184}
+  - component: {fileID: 4803929843520519676}
   - component: {fileID: 5857914090545339323}
   - component: {fileID: 8859014538284825451}
-  - component: {fileID: 6544797673858433364}
-  - component: {fileID: 4362926016260420231}
-  - component: {fileID: 4803929843520519676}
   - component: {fileID: 1703072188935369161}
+  - component: {fileID: 6544797673858433364}
+  - component: {fileID: 2053801713883944184}
+  - component: {fileID: 4362926016260420231}
   - component: {fileID: 3727975197710361602}
+  - component: {fileID: 1462955022951662501}
   m_Layer: 0
-  m_Name: player
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -434,23 +448,20 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.8, z: 0}
---- !u!114 &2053801713883944184
-MonoBehaviour:
+--- !u!136 &4803929843520519676
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913427097193129968}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  visible: 0
-  m_AssetId: 598513ba6012f7145a5d1a1402ff45ce
-  hasSpawned: 0
+  m_Radius: 0.3
+  m_Height: 1.65
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!114 &5857914090545339323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,6 +509,21 @@ MonoBehaviour:
   slerpSpeed: 10
   grabAction: {fileID: -3407226586021038709, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   throwAction: {fileID: -5020605622706961461, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!114 &1703072188935369161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913427097193129968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb44cef35ddbba418e333323eb9342b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  animator: {fileID: 5838592985748743984}
 --- !u!114 &6544797673858433364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,11 +539,28 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   pickUpScript: {fileID: 8859014538284825451}
-  followCameraScript: {fileID: 0}
+  followCameraScript: {fileID: 2959948222525345508}
   vrHeadsetAttached: 0
   desktopCamera: {fileID: 5789584485692076011}
   xrObject: {fileID: 532413825083455144}
   player: {fileID: 913427097193129968}
+--- !u!114 &2053801713883944184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913427097193129968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 598513ba6012f7145a5d1a1402ff45ce
+  hasSpawned: 0
 --- !u!114 &4362926016260420231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,35 +595,6 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
---- !u!136 &4803929843520519676
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913427097193129968}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 1.65
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.8, z: 0}
---- !u!114 &1703072188935369161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913427097193129968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fb44cef35ddbba418e333323eb9342b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  animator: {fileID: 5838592985748743984}
 --- !u!114 &3727975197710361602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,6 +611,41 @@ MonoBehaviour:
   syncInterval: 0.1
   clientAuthority: 1
   animator: {fileID: 5838592985748743984}
+--- !u!114 &1462955022951662501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913427097193129968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734b48bea0b204338958ee3d885e11f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  sendInterval: 0.05
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 0
+  bufferTimeMultiplier: 1
+  bufferSizeLimit: 64
+  catchupThreshold: 4
+  catchupMultiplier: 0.1
+  onlySyncOnChange: 1
+  bufferResetMultiplier: 5
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  target: {fileID: 4478958673038629653}
 --- !u!1 &1004432296376399045
 GameObject:
   m_ObjectHideFlags: 0
@@ -3555,7 +3604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6976050774263886592
 Transform:
   m_ObjectHideFlags: 0
