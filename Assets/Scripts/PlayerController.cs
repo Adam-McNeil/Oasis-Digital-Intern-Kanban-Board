@@ -35,11 +35,11 @@ public class PlayerController : NetworkBehaviour
 
     private void Start()
     {
-
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
         if (isLocalPlayer)
         {
+            isGamePaused = false;
             FindInputField();
             gameObject.tag = "Local Player";
         }
