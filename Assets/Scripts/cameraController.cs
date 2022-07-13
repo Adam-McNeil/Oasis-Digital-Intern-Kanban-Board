@@ -9,6 +9,7 @@ public class cameraController : NetworkBehaviour
     [SerializeField] private PickUp pickUpScript;
     [SerializeField] private FollowCamera followCameraScript;
     private PauseMenuController pauseMenuControllerScript;
+    private EditMenuController editMenuControllerScript;
     private GameObject activeCamera;
     public bool vrHeadsetAttached = false;
     public GameObject desktopCamera;
@@ -21,6 +22,7 @@ public class cameraController : NetworkBehaviour
         if (isLocalPlayer)
         {
             pauseMenuControllerScript = GameObject.Find("Pause Menu").GetComponent<PauseMenuController>();
+            editMenuControllerScript = GameObject.Find("Edit Menu").GetComponent<EditMenuController>();
             activeCamera = desktopCamera;
             var xrSettings = XRGeneralSettings.Instance;
             if (xrSettings != null)
@@ -53,6 +55,8 @@ public class cameraController : NetworkBehaviour
     {
         pickUpScript.SetActiveCamera(activeCamera);
         pauseMenuControllerScript.SetActiveCamera(activeCamera);
+        editMenuControllerScript.SetActiveCamera(activeCamera);
+    
     }
 
     private void Update()

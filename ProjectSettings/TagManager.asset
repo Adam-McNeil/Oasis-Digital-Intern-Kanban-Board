@@ -8,6 +8,7 @@ TagManager:
   - Local Player
   - Nonlocal Player
   - Ticket Trigger
+  - EditTable
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - UI
   - playerFace
   - TicketHeader
-  - 
+  - Menu(UI)
   - 
   - 
   - 

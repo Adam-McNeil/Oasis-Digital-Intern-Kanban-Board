@@ -17,8 +17,7 @@ public class PlayerController : NetworkBehaviour
 
     private CharacterController characterController;
     static public bool isGamePaused;
-    [HideInInspector]
-    public bool isEditing;
+    [HideInInspector] static public bool isEditing;
 
     [SerializeField] private float sensitivity = 30;
 
@@ -55,6 +54,7 @@ public class PlayerController : NetworkBehaviour
         if (isLocalPlayer)
         {
             Escape();
+            EditMode();
             if (!isGamePaused && !isEditing)
             {
                 playerMovement();
@@ -132,6 +132,27 @@ public class PlayerController : NetworkBehaviour
     #endregion
 
     #region Username
+
+    private void EditMode(){
+        if (Input.GetMouseButtonDown(0) && !isEditing)
+        {
+            RaycastHit hit;
+            Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.position + playerCamera.transform.forward * 5, new Color(0, 0, 0), 3f);
+
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 6))
+            {
+                if (hit.transform.gameObject.CompareTag("EditTable"))
+                {
+                    isEditing = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    Debug.Log("Edit Mode enabled");
+                }
+            }
+        }else if(Input.GetKeyDown(KeyCode.Escape) && isEditing){
+            isEditing = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
 
 
     private void FindInputField()
