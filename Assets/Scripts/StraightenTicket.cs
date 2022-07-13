@@ -24,6 +24,7 @@ public class StraightenTicket : NetworkBehaviour
             this.gameObject.transform.rotation = spawnTransform.rotation;
             this.gameObject.transform.Rotate(-90, 0, 0);
             ticketRigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+            this.GetComponent<Animator>().Play("Ticket_Grow");
         }
     }
 }
