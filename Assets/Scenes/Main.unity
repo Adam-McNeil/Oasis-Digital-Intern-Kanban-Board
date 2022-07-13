@@ -6557,6 +6557,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Column
       objectReference: {fileID: 0}
+    - target: {fileID: 6894998610684536659, guid: 2e10ab550abfac840bf7770c8216c4f1, type: 3}
+      propertyPath: direction.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894998610684536659, guid: 2e10ab550abfac840bf7770c8216c4f1, type: 3}
+      propertyPath: direction.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e10ab550abfac840bf7770c8216c4f1, type: 3}
 --- !u!1001 &8494826629407798619
