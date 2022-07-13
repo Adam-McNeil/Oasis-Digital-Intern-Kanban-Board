@@ -11,7 +11,6 @@ public class PickUp : NetworkBehaviour
     [Header("PickUp Settings")]
     private GameObject playerCamera;
     [SerializeField] private GameObject holdArea;
-    [SerializeField] private float offset;
     [SerializeField] private float pickRange = 5f;
     [SerializeField] private float pickUpForce = 150f;
     [SerializeField] private float dragResistance = 10f;
@@ -27,6 +26,12 @@ public class PickUp : NetworkBehaviour
     private Rigidbody heldObjectRB;
     private bool isHoldingObject;
 
+    private float offset = 2.5f;
+    private float minOffset = 1;
+    private float maxOffset = 10;
+    private float offsetSensitivity = 500;
+
+
 
     private void Start()
     {
@@ -41,6 +46,7 @@ public class PickUp : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
+            UpdateOffset();
             grabAction.action.performed += attemptGrab;
             throwAction.action.performed += attemptThrow;
 
@@ -184,9 +190,21 @@ public class PickUp : NetworkBehaviour
         playerCamera = camera;
     }
 
-    [Command]
-    private void SetActiveCameraCmd()
+    private void UpdateOffset()
     {
-        playerCamera = GetComponentInChildren<Camera>().gameObject;
+        float mouseChange = Input.GetAxis("Mouse ScrollWheel");
+        if (mouseChange != 0)
+        {
+            offset += mouseChange * Time.deltaTime * offsetSensitivity;
+            offset = Mathf.Clamp(offset, minOffset, maxOffset);
+            UpdateOffsetCmd(offset);
+        }
     }
+
+    [Command]
+    private void UpdateOffsetCmd(float newOffset)
+    {
+        offset = newOffset;
+    }
+
 }
