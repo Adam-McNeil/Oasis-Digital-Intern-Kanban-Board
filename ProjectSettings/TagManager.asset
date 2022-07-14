@@ -9,6 +9,9 @@ TagManager:
   - Nonlocal Player
   - Ticket Trigger
   - Straighten Ticket
+  - floor
+  - hammer
+  - playerCamera
   layers:
   - Default
   - TransparentFX

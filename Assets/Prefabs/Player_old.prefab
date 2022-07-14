@@ -1109,7 +1109,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   holdArea: {fileID: 6283862017507580828}
-  offset: 4
   pickRange: 5
   pickUpForce: 500
   dragResistance: 10

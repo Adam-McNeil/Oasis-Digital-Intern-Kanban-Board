@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 1462955022951662501}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Local Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -501,7 +501,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   holdArea: {fileID: 813514429573255220}
-  offset: 4
   pickRange: 5
   pickUpForce: 500
   dragResistance: 10
@@ -3600,7 +3599,7 @@ GameObject:
   - component: {fileID: 4506584654274367113}
   m_Layer: 0
   m_Name: Desktop-Camera
-  m_TagString: Untagged
+  m_TagString: playerCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
