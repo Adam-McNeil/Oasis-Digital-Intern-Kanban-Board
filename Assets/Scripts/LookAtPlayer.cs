@@ -6,9 +6,6 @@ public class LookAtPlayer : MonoBehaviour
 {
     [SerializeField]
     private Camera player;
-    Camera[] allCameras;
-
-    
     
     // Start is called before the first frame update
     void Start()
@@ -26,7 +23,5 @@ public class LookAtPlayer : MonoBehaviour
             dir.y = 0;
             transform.rotation = Quaternion.LookRotation(-dir);
         }
-
-        allCameras = FindObjectsOfType<Camera>();
     }
 }

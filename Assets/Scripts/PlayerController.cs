@@ -16,6 +16,7 @@ public class PlayerController : NetworkBehaviour
     float rotationX = 0;
 
     private CharacterController characterController;
+    
     static public bool isGamePaused;
     [HideInInspector] static public bool isEditing;
 
@@ -148,7 +149,7 @@ public class PlayerController : NetworkBehaviour
                     Debug.Log("Edit Mode enabled");
                 }
             }
-        }else if(Input.GetKeyDown(KeyCode.Escape) && isEditing){
+        }else if(Input.GetKeyDown(KeyCode.Tab) && isEditing){
             isEditing = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
