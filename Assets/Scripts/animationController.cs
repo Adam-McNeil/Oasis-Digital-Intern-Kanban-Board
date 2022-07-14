@@ -9,15 +9,16 @@ public class animationController : NetworkBehaviour
   [SerializeField] private Animator animator = null;
   private string currentState;
   private Quaternion rotation;
-  private bool isRunning;
+  private bool isWalking;
+  private bool isJumping
 
   //Player animation Consts
-   const string PLAYER_IDLE = "idle";
-   const string PLAYER_RUN_FORWARD = "running";
+   const string PLAYER_IDLE = "Idle";
+   const string PLAYER_RUN_FORWARD = "Walking";
    const string PLAYER_RUN_BACKWARDS = "backwards";
    const string PLAYER_STRAFE_LEFT = "left";
    const string PLAYER_STRAFE_RIGHT = "right";
-   const string PLAYER_JUMP = "jump";
+   const string PLAYER_JUMP = "Jumping";
    const string PLAYER_FORWARD_RIGHT = "forward_right";
    const string PLAYER_FORWARD_LEFT = "forward_left";
    const string PLAYER_BACKWARDS_LEFT = "backwards_left";
