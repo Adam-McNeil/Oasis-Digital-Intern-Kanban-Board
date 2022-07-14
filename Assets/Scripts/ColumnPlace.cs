@@ -13,6 +13,8 @@ public class ColumnPlace : MonoBehaviour
     [SerializeField] private GameObject playerCopyRotation;
     GameObject blueprint;
 
+    [SerializeField] private LayerMask raycastLayerMask;
+
 
   private void Start()
     {
@@ -25,11 +27,12 @@ public class ColumnPlace : MonoBehaviour
     {
       blueprint.SetActive(true);
       RaycastHit hit;
-      if (Physics.Raycast(playerCopyRotation.transform.position, playerCopyRotation.transform.forward, out hit, placeRange))
+            Debug.DrawRay(playerCopyRotation.transform.position, playerCopyRotation.transform.forward*10, new Color(0, 0, 0), 3f);
+      if (Physics.Raycast(playerCopyRotation.transform.position, playerCopyRotation.transform.forward, out hit, placeRange, raycastLayerMask))
       {
         if (hit.transform.gameObject.tag == "floor")
         {
-          blueprint.transform.position = hit.transform.position;
+          blueprint.transform.position = hit.point;
           blueprint.transform.rotation = Quaternion.Euler(0, playerCopyRotation.transform.rotation.y, 0);
         }
       }
