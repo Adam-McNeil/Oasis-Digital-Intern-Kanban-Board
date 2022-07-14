@@ -480,7 +480,7 @@ MonoBehaviour:
   jumpSpeed: 8
   gravity: 20
   lookXLimit: 90
-  sensitivity: 0.3
+  sensitivity: 1
   playerController: {fileID: 3072774549813156713}
   cameraOffset: {fileID: 3347594488358850449, guid: 100e6b76f073c3e4a88b7868655be985, type: 3}
   desktopCamera: {fileID: 5789584485692076011}
