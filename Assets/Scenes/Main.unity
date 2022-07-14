@@ -1937,6 +1937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5016a7c1f825e6f498eca8f212752623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   placeRange: 300
   prefab: {fileID: 6489141119030006176, guid: 2e10ab550abfac840bf7770c8216c4f1, type: 3}
   prefabBluePrint: {fileID: 3357957177430265022, guid: 808a1b126d4023b4c9f24b71c33bc304, type: 3}
@@ -1944,6 +1946,7 @@ MonoBehaviour:
   raycastLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  rotationSpeed: 1
 --- !u!4 &305440224
 Transform:
   m_ObjectHideFlags: 0
@@ -5787,6 +5790,14 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.37555504
       objectReference: {fileID: 0}
+    - target: {fileID: 596230367384916346, guid: 2e10ab550abfac840bf7770c8216c4f1, type: 3}
+      propertyPath: sceneId
+      value: 948970175
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067375725525647213, guid: 2e10ab550abfac840bf7770c8216c4f1, type: 3}
+      propertyPath: m_Name
+      value: Delete_button
+      objectReference: {fileID: 0}
     - target: {fileID: 6487282001281459070, guid: 2e10ab550abfac840bf7770c8216c4f1, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5877,7 +5888,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718017035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.96, y: 0.8084161, z: -1.0808573}
+  m_LocalPosition: {x: -18.51, y: 0.8084161, z: -1.0808573}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
