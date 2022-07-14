@@ -32,6 +32,8 @@ public class PlayerController : NetworkBehaviour
     [SyncVar(hook = nameof(ChangeUsername))]
     private string usernameSyncVar;
 
+    [SerializeField] private LayerMask buttonPressLayerMask;
+
 
     private void Start()
     {
@@ -59,6 +61,7 @@ public class PlayerController : NetworkBehaviour
             {
                 playerMovement();
                 RotateCamera();
+                CheckButtonPresses();
             }
         }
     }
@@ -157,7 +160,6 @@ public class PlayerController : NetworkBehaviour
 
     #endregion
 
-
     #region EditMode
 
     private void EditMode(){
@@ -177,6 +179,34 @@ public class PlayerController : NetworkBehaviour
         }else if(Input.GetKeyDown(KeyCode.Tab) && isEditing){
             isEditing = false;
             Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+    #endregion
+
+    #region PressButtons
+
+    private void CheckButtonPresses()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(desktopCamera.transform.position, desktopCamera.transform.forward, out hit, 6, buttonPressLayerMask))
+            {
+                Debug.Log("hit something:" + hit.transform);
+                if (hit.transform.gameObject.CompareTag("Spawn Button"))
+                {
+                    Debug.Log("Pressed Button");
+                    hit.transform.gameObject.GetComponent<SpawnTickets>().SpawnTicketCmd(); 
+                }
+
+                if (hit.transform.gameObject.CompareTag("Activation Button"))
+                {
+                    Debug.Log("Pressed activation button");
+                    hit.transform.gameObject.GetComponent<ActivateAirTube>().TurnOnAirTubeCmd();
+                }
+            }
         }
     }
 

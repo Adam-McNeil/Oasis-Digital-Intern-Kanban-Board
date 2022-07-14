@@ -8,11 +8,11 @@ TagManager:
   - Local Player
   - Nonlocal Player
   - Ticket Trigger
-<<<<<<< HEAD
-  - Straighten Ticket
-=======
   - EditTable
->>>>>>> edit_table
+  - Straighten Ticket
+  - Button
+  - Spawn Button
+  - Activation Button
   layers:
   - Default
   - TransparentFX
