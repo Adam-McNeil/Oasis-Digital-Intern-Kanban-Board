@@ -1514,18 +1514,14 @@ GameObject:
   m_Component:
   - component: {fileID: 5985364783563898465}
   - component: {fileID: -1798769549224270634}
-  - component: {fileID: 6515299793431345188}
-  - component: {fileID: -5178904465122102145}
   - component: {fileID: -7925109538257104476}
-  - component: {fileID: -5659321793641155189}
   - component: {fileID: 1161672210825221509}
   - component: {fileID: 6941003340591795701}
-  - component: {fileID: -7326389819066309062}
   - component: {fileID: 7036921446384320639}
   - component: {fileID: 976888106592672703}
   - component: {fileID: 717104630083309726}
   m_Layer: 0
-  m_Name: Custom Character
+  m_Name: CustomCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1565,45 +1561,6 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 5173a1271a8694365b2f1ccb0aae5455
   hasSpawned: 0
---- !u!114 &6515299793431345188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5853247323314976327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd47ef607730cc84eaa40b34e693dbfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  speed: 7.5
-  jumpSpeed: 12
-  gravity: 9.81
-  lookXLimit: 45
-  isEditing: 0
-  sensitivity: 30
-  playerController: {fileID: 1161672210825221509}
-  cameraOffset: {fileID: 5985364783563898465}
-  desktopCamera: {fileID: 0}
-  usernameText: {fileID: 0}
---- !u!114 &-5178904465122102145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5853247323314976327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fb44cef35ddbba418e333323eb9342b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  animator: {fileID: 0}
 --- !u!95 &-7925109538257104476
 Animator:
   serializedVersion: 4
@@ -1624,26 +1581,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-5659321793641155189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5853247323314976327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650af624dd667444c988c3103df57c50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  pickUpScript: {fileID: 0}
-  followCameraScript: {fileID: 0}
-  vrHeadsetAttached: 0
-  desktopCamera: {fileID: 0}
-  xrObject: {fileID: 0}
-  player: {fileID: 5853247323314976327}
 --- !u!143 &1161672210825221509
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1676,28 +1613,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-7326389819066309062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5853247323314976327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b77f24494cd36e43bf6e037c0c9e593, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  holdArea: {fileID: 0}
-  pickRange: 5
-  pickUpForce: 450
-  dragResistance: 10
-  throwForce: 10
-  slerpSpeed: 10
-  grabAction: {fileID: -3407226586021038709, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  throwAction: {fileID: -5020605622706961461, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &7036921446384320639
 MonoBehaviour:
   m_ObjectHideFlags: 0

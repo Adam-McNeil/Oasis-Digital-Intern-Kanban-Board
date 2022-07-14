@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
+using TMPro;
 
-public class animationController : NetworkBehaviour
+public class AnimatorScript : NetworkBehaviour
   {
   [SerializeField] private Animator animator = null;
   private string currentState;
   private Quaternion rotation;
-  private bool isRunning;
+  private bool isJumping;
+  private bool isWalking;
 
   //Player animation Consts
    const string PLAYER_IDLE = "idle";
@@ -42,12 +45,12 @@ public class animationController : NetworkBehaviour
           }
           if (Input.GetKey("w"))
           {
-            isRunning = true;
+            isWalking = true;
             changeAnimationState(PLAYER_WALK_FORWARD);
             return;
           } else
           {
-            isRunning = false;
+            isWalking = false;
           }
           if (Input.GetKey("s"))
           {
