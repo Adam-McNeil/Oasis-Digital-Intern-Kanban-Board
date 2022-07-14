@@ -161,7 +161,7 @@ public class PlayerController : NetworkBehaviour
     #region EditMode
 
     private void EditMode(){
-        if (Input.GetMouseButtonDown(0) && !isEditing)
+        if (Input.GetKeyDown(KeyCode.E) && !isEditing)
         {
             RaycastHit hit;
 
@@ -174,7 +174,7 @@ public class PlayerController : NetworkBehaviour
                     Debug.Log("Edit Mode enabled");
                 }
             }
-        }else if(Input.GetKeyDown(KeyCode.Tab) && isEditing){
+        }else if(Input.GetKeyDown(KeyCode.E) && isEditing){
             isEditing = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
