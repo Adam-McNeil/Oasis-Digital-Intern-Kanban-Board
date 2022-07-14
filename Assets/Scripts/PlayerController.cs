@@ -174,7 +174,7 @@ public class PlayerController : NetworkBehaviour
                     Debug.Log("Edit Mode enabled");
                 }
             }
-        }else if(Input.GetKeyDown(KeyCode.E) && isEditing){
+        }else if(Input.GetKeyDown(KeyCode.Escape) && isEditing){
             isEditing = false;
             Cursor.lockState = CursorLockMode.Locked;
         }

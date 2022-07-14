@@ -1088,7 +1088,6 @@ MonoBehaviour:
   jumpSpeed: 8
   gravity: 20
   lookXLimit: 45
-  isEditing: 0
   sensitivity: 1
   playerController: {fileID: -3389771908347727855}
   cameraOffset: {fileID: 0}
@@ -1109,7 +1108,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   holdArea: {fileID: 6283862017507580828}
-  offset: 4
   pickRange: 5
   pickUpForce: 500
   dragResistance: 10
