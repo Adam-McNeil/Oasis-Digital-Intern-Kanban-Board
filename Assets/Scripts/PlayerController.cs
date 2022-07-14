@@ -16,9 +16,9 @@ public class PlayerController : NetworkBehaviour
     float rotationY = 0;
 
     private CharacterController characterController;
+    
     static public bool isGamePaused;
-    [HideInInspector]
-    public bool isEditing;
+    [HideInInspector] static public bool isEditing;
 
     [SerializeField] private float sensitivity = 30;
     public CharacterController playerController;
@@ -54,6 +54,7 @@ public class PlayerController : NetworkBehaviour
         if (isLocalPlayer)
         {
             Escape();
+            EditMode();
             if (!isGamePaused && !isEditing)
             {
                 playerMovement();
@@ -132,7 +133,6 @@ public class PlayerController : NetworkBehaviour
 
     #region Username
 
-
     private void FindInputField()
     {
         usernameInputField = GameObject.Find("Pause Menu").GetComponentInChildren<TMP_InputField>();
@@ -156,4 +156,35 @@ public class PlayerController : NetworkBehaviour
     }
 
     #endregion
+
+
+    #region EditMode
+
+    private void EditMode(){
+        if (Input.GetMouseButtonDown(0) && !isEditing)
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(desktopCamera.transform.position, desktopCamera.transform.forward, out hit, 6))
+            {
+                if (hit.transform.gameObject.CompareTag("EditTable"))
+                {
+                    isEditing = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    Debug.Log("Edit Mode enabled");
+                }
+            }
+        }else if(Input.GetKeyDown(KeyCode.Tab) && isEditing){
+            isEditing = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+    #endregion
+
+
+
+
+
+
 }

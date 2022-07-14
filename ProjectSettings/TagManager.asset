@@ -8,7 +8,11 @@ TagManager:
   - Local Player
   - Nonlocal Player
   - Ticket Trigger
+<<<<<<< HEAD
   - Straighten Ticket
+=======
+  - EditTable
+>>>>>>> edit_table
   layers:
   - Default
   - TransparentFX
@@ -18,7 +22,7 @@ TagManager:
   - UI
   - playerFace
   - TicketHeader
-  - 
+  - Menu(UI)
   - 
   - 
   - 

@@ -207,7 +207,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -480,7 +480,6 @@ MonoBehaviour:
   jumpSpeed: 8
   gravity: 20
   lookXLimit: 90
-  isEditing: 0
   sensitivity: 0.3
   playerController: {fileID: 3072774549813156713}
   cameraOffset: {fileID: 3347594488358850449, guid: 100e6b76f073c3e4a88b7868655be985, type: 3}
@@ -501,7 +500,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   holdArea: {fileID: 813514429573255220}
-  offset: 4
   pickRange: 5
   pickUpForce: 500
   dragResistance: 10
