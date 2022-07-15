@@ -12,16 +12,14 @@ public class PlayerController : NetworkBehaviour
     public float gravity = 9.81f;
     public float lookXLimit = 45.0f;
     Vector3 moveDirection = Vector3.zero;
-    float rotationX = 0;
-    float rotationY = 0;
+    public float rotationX = 0;
+    public float rotationY = 0;
+    [SerializeField] private float sensitivity = 30;
 
     private CharacterController characterController;
-    static public bool isGamePaused;
-    [HideInInspector]
-    public bool isEditing;
 
-    [SerializeField] private float sensitivity = 30;
-    public CharacterController playerController;
+    static public bool isGamePaused;
+    public bool isEditing;
 
     [Header("Children Refences")]
     [SerializeField] private Transform cameraOffset;
@@ -32,16 +30,27 @@ public class PlayerController : NetworkBehaviour
     [SyncVar(hook = nameof(ChangeUsername))]
     private string usernameSyncVar;
 
+    [SerializeField] private GameObject blueprint;
+    [SerializeField] private GameObject column;
+    [SerializeField] private LayerMask raycastLayerMask;
+    private float rotationSpeed = 25;
+    private GameObject myBlueprint;
+    private bool isBuilding = false;
+    private Vector3 farAway;
+
+
 
     private void Start()
     {
+        farAway = new Vector3(10000, 10000, 0);
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
         if (isLocalPlayer)
         {
             isGamePaused = false;
-            FindInputField();
             gameObject.tag = "Local Player";
+            FindInputField();
+            SpawnBlueprintCmd(farAway, blueprint.transform.rotation);
         }
         else
         {
@@ -58,6 +67,7 @@ public class PlayerController : NetworkBehaviour
             {
                 playerMovement();
                 RotateCamera();
+                PlaceColumnCheck();
             }
         }
     }
@@ -153,6 +163,82 @@ public class PlayerController : NetworkBehaviour
     private void ChangeUsername(string oldText, string newText)
     {
         usernameText.text = newText;
+    }
+
+    #endregion
+
+    #region PlaceColumns
+
+    private void PlaceColumnCheck()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            isBuilding = !isBuilding;
+        }
+        PlaceColumn();
+    }
+
+    private void PlaceColumn()
+    {
+        if (myBlueprint == null)
+        {
+            FindMyBlueprint();
+        }
+        else
+        {
+            if (isBuilding)
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(desktopCamera.transform.position, desktopCamera.transform.forward, out hit, 100, raycastLayerMask))
+                {
+                    myBlueprint.transform.position = hit.point;
+                }
+                if (Input.GetKey("q"))
+                {
+                    myBlueprint.transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+                }
+                if (Input.GetKey("e"))
+                {
+                    myBlueprint.transform.Rotate(Vector3.down * rotationSpeed * Time.deltaTime);
+                }
+                if (Input.GetKeyDown("f"))
+                {
+                    SpawnColumnCmd(myBlueprint.transform.position + new Vector3(0.75f, 0.75f, 0), myBlueprint.transform.rotation);
+                }
+            }
+            else
+            {
+                myBlueprint.transform.position = farAway;
+            }
+        }
+    }
+
+    [Command(requiresAuthority = false)]
+    private void SpawnColumnCmd(Vector3 spawnLocation, Quaternion spawnRotation)
+    {
+        GameObject SpawnedObject = Instantiate(column, spawnLocation, spawnRotation);
+        NetworkServer.Spawn(SpawnedObject);
+    }
+
+    [Command(requiresAuthority = false)]
+    private void SpawnBlueprintCmd(Vector3 spawnLocation, Quaternion spawnRotation)
+    {
+        GameObject spawnBlueprint = Instantiate(blueprint, spawnLocation, spawnRotation);
+        NetworkServer.Spawn(spawnBlueprint);
+        spawnBlueprint.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
+    }
+
+    private void FindMyBlueprint()
+    {
+        GameObject[] blueprintArray = GameObject.FindGameObjectsWithTag("Column Blueprint");
+        foreach (GameObject blueprint in blueprintArray)
+        {
+            if (blueprint.GetComponent<NetworkIdentity>().hasAuthority)
+            {
+                myBlueprint = blueprint;
+                return;
+            }
+        }
     }
 
     #endregion

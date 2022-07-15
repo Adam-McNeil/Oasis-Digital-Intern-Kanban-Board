@@ -1088,12 +1088,20 @@ MonoBehaviour:
   jumpSpeed: 8
   gravity: 20
   lookXLimit: 45
-  isEditing: 0
+  rotationX: 0
+  rotationY: 0
   sensitivity: 1
   playerController: {fileID: -3389771908347727855}
+  isEditing: 0
   cameraOffset: {fileID: 0}
   desktopCamera: {fileID: 629467838714742647}
   usernameText: {fileID: 2646662870243049435}
+  blueprint: {fileID: 0}
+  column: {fileID: 0}
+  raycastLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  rotationSpeed: 0
 --- !u!114 &-4052786535703857757
 MonoBehaviour:
   m_ObjectHideFlags: 0

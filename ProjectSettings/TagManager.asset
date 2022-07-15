@@ -12,6 +12,7 @@ TagManager:
   - floor
   - hammer
   - playerCamera
+  - Column Blueprint
   layers:
   - Default
   - TransparentFX

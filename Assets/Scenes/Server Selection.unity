@@ -265,6 +265,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1461963206, guid: 7a68ba1427ff8014881efa60846c55a8, type: 3}
+      propertyPath: portInputField
+      value: 
+      objectReference: {fileID: 2021690196}
+    - target: {fileID: 1461963206, guid: 7a68ba1427ff8014881efa60846c55a8, type: 3}
+      propertyPath: serverInputField
+      value: 
+      objectReference: {fileID: 1933943489}
     - target: {fileID: 7955447327297237314, guid: 7a68ba1427ff8014881efa60846c55a8, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -309,30 +317,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8265877186017425684, guid: 7a68ba1427ff8014881efa60846c55a8, type: 3}
-      propertyPath: onlineScene
-      value: Assets/Scenes/Main.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 8265877186017425684, guid: 7a68ba1427ff8014881efa60846c55a8, type: 3}
-      propertyPath: offlineScene
-      value: Assets/Scenes/Server Selection.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 8265877186017425684, guid: 7a68ba1427ff8014881efa60846c55a8, type: 3}
-      propertyPath: playerPrefab
-      value: 
-      objectReference: {fileID: 913427097193129968, guid: 598513ba6012f7145a5d1a1402ff45ce, type: 3}
-    - target: {fileID: 8265877186017425684, guid: 7a68ba1427ff8014881efa60846c55a8, type: 3}
-      propertyPath: networkAddress
-      value: localhost
-      objectReference: {fileID: 0}
-    - target: {fileID: 8265877186017425684, guid: 7a68ba1427ff8014881efa60846c55a8, type: 3}
-      propertyPath: spawnPrefabs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8265877186017425684, guid: 7a68ba1427ff8014881efa60846c55a8, type: 3}
-      propertyPath: spawnPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 6489141119030006176, guid: 2e10ab550abfac840bf7770c8216c4f1, type: 3}
     - target: {fileID: 9221662472831734376, guid: 7a68ba1427ff8014881efa60846c55a8, type: 3}
       propertyPath: m_Name
       value: Network Manager
@@ -1863,11 +1847,10 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9221662472831734376, guid: 7a68ba1427ff8014881efa60846c55a8, type: 3}
   m_PrefabInstance: {fileID: 80281069}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1461963206
+--- !u!114 &1461963206 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1461963206, guid: 7a68ba1427ff8014881efa60846c55a8, type: 3}
+  m_PrefabInstance: {fileID: 80281069}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461963202}
   m_Enabled: 1
@@ -1875,8 +1858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c79db00f052c35e4e8f99f500bdfdb5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverInputField: {fileID: 1933943489}
-  portInputField: {fileID: 2021690196}
 --- !u!1 &1614300373
 GameObject:
   m_ObjectHideFlags: 0

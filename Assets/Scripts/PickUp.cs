@@ -148,8 +148,14 @@ public class PickUp : NetworkBehaviour
 
     void PickUpObject(GameObject pickedObject)
     {
-        if (pickedObject.tag == "Ticket")
-          pickedObject.GetComponent<Animator>().Play("Ticket_Shrink");
+        if (pickedObject.CompareTag("hammer"))
+        {
+            pickedObject.GetComponent<GoToHoldingPlayer>().SetPlayerHoldingHammerCmd(netId);
+        }
+        if (pickedObject.CompareTag("Ticket"))
+        {
+            pickedObject.GetComponent<Animator>().Play("Ticket_Shrink");
+        }
         heldObjectRB = pickedObject.GetComponent<Rigidbody>();
         heldObjectRB.useGravity = false;
         heldObjectRB.drag = dragResistance;
