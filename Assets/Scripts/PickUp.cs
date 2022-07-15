@@ -84,7 +84,7 @@ public class PickUp : NetworkBehaviour
 
             if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, pickRange))
             {
-                if (hit.transform.gameObject.tag == "Ticket")
+                if (hit.transform.gameObject.tag == "Ticket" || hit.transform.gameObject.tag == "hammer")
                 {
                     isHoldingObject = true;
                     PickUpObjectCmd(hit.transform.gameObject.GetComponent<NetworkIdentity>().netId);
@@ -108,7 +108,7 @@ public class PickUp : NetworkBehaviour
 
             if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, pickRange))
             {
-                if (hit.transform.gameObject.tag == "Ticket")
+                if (hit.transform.gameObject.tag == "Ticket" || hit.transform.gameObject.tag == "hammer")
                 {
                     isHoldingObject = true;
                     PickUpObjectCmd(hit.transform.gameObject.GetComponent<NetworkIdentity>().netId);
@@ -135,12 +135,23 @@ public class PickUp : NetworkBehaviour
                 return;
             }
         }
-
+        GameObject[] hammerArray = GameObject.FindGameObjectsWithTag("hammer");
+        foreach (GameObject hammer in hammerArray)
+        {
+          if (hammer.GetComponent<NetworkIdentity>().netId == ID)
+          {
+            PickUpObject(hammer);
+            return;
+          }
+        }
     }
 
     void PickUpObject(GameObject pickedObject)
     {
-        pickedObject.GetComponent<Animator>().Play("Ticket_Shrink");
+        if (pickedObject.CompareTag("Ticket"))
+        {
+            pickedObject.GetComponent<Animator>().Play("Ticket_Shrink");
+        }
         heldObjectRB = pickedObject.GetComponent<Rigidbody>();
         heldObjectRB.useGravity = false;
         heldObjectRB.drag = dragResistance;

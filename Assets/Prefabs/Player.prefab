@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 1462955022951662501}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Local Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -480,11 +480,17 @@ MonoBehaviour:
   jumpSpeed: 8
   gravity: 20
   lookXLimit: 90
-  sensitivity: 1
-  playerController: {fileID: 3072774549813156713}
+  rotationX: 0
+  rotationY: 0
+  sensitivity: 0.3
   cameraOffset: {fileID: 3347594488358850449, guid: 100e6b76f073c3e4a88b7868655be985, type: 3}
   desktopCamera: {fileID: 5789584485692076011}
   usernameText: {fileID: 6820752973661974973}
+  blueprint: {fileID: 3357957177430265022, guid: 808a1b126d4023b4c9f24b71c33bc304, type: 3}
+  column: {fileID: 6489141119030006176, guid: 2e10ab550abfac840bf7770c8216c4f1, type: 3}
+  raycastLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &8859014538284825451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3611,7 +3617,7 @@ GameObject:
   - component: {fileID: 4506584654274367113}
   m_Layer: 0
   m_Name: Desktop-Camera
-  m_TagString: Untagged
+  m_TagString: playerCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3663,7 +3669,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 567
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
