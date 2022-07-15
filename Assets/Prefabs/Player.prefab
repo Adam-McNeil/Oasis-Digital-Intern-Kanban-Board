@@ -511,11 +511,13 @@ MonoBehaviour:
   holdArea: {fileID: 813514429573255220}
   pickRange: 5
   pickUpForce: 500
+  alphaPickUp: 0.9
   dragResistance: 10
   throwForce: 10
   slerpSpeed: 10
   grabAction: {fileID: -3407226586021038709, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   throwAction: {fileID: -5020605622706961461, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  tempMaterial: {fileID: 2100000, guid: 78ddf8536282fe44a936710e687e7f0b, type: 2}
 --- !u!114 &1703072188935369161
 MonoBehaviour:
   m_ObjectHideFlags: 0
