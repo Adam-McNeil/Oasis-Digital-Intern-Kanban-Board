@@ -491,6 +491,9 @@ MonoBehaviour:
   raycastLayerMask:
     serializedVersion: 2
     m_Bits: 512
+  buttonPressLayerMask:
+    serializedVersion: 2
+    m_Bits: 1011
 --- !u!114 &8859014538284825451
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -39,6 +39,8 @@ public class PlayerController : NetworkBehaviour
     private bool isBuilding = false;
     private Vector3 farAway;
 
+    [Header("Button Presses")]
+    [SerializeField] private LayerMask buttonPressLayerMask;
 
 
     private void Start()
@@ -69,6 +71,7 @@ public class PlayerController : NetworkBehaviour
             {
                 playerMovement();
                 RotateCamera();
+                CheckButtonPresses();
                 PlaceColumnCheck();
             }
         }
@@ -168,7 +171,6 @@ public class PlayerController : NetworkBehaviour
 
     #endregion
 
-
     #region EditMode
 
     private void EditMode(){
@@ -193,11 +195,33 @@ public class PlayerController : NetworkBehaviour
 
     #endregion
 
+    #region PressButtons
 
+    private void CheckButtonPresses()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
 
+            if (Physics.Raycast(desktopCamera.transform.position, desktopCamera.transform.forward, out hit, 6, buttonPressLayerMask))
+            {
+                Debug.Log("hit something:" + hit.transform);
+                if (hit.transform.gameObject.CompareTag("Spawn Button"))
+                {
+                    Debug.Log("Pressed Button");
+                    hit.transform.gameObject.GetComponent<SpawnTickets>().SpawnTicketCmd(); 
+                }
 
+                if (hit.transform.gameObject.CompareTag("Activation Button"))
+                {
+                    Debug.Log("Pressed activation button");
+                    hit.transform.gameObject.GetComponent<ActivateAirTube>().TurnOnAirTubeCmd();
+                }
+            }
+        }
+    }
 
-
+    #endregion
 
     #region PlaceColumns
 
@@ -207,6 +231,7 @@ public class PlayerController : NetworkBehaviour
         {
             isBuilding = !isBuilding;
         }
+        Debug.Log(isBuilding);
         PlaceColumn();
     }
 
@@ -223,6 +248,7 @@ public class PlayerController : NetworkBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(desktopCamera.transform.position, desktopCamera.transform.forward, out hit, 100, raycastLayerMask))
                 {
+                    Debug.Log("Hit the floor");
                     myBlueprint.transform.position = hit.point;
                 }
                 if (Input.GetKey("q"))
@@ -268,6 +294,7 @@ public class PlayerController : NetworkBehaviour
             if (blueprint.GetComponent<NetworkIdentity>().hasAuthority)
             {
                 myBlueprint = blueprint;
+                Debug.Log("Found my Blueprint");
                 return;
             }
         }

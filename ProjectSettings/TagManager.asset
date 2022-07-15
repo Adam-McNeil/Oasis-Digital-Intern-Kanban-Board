@@ -8,10 +8,11 @@ TagManager:
   - Local Player
   - Nonlocal Player
   - Ticket Trigger
-  - Straighten Ticket
   - EditTable
-  - playerCamera
-  - Column Blueprint
+  - Straighten Ticket
+  - Button
+  - Spawn Button
+  - Activation Button
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - playerFace
   - TicketHeader
   - Menu(UI)
-  - Floor
+  - 
   - 
   - 
   - 

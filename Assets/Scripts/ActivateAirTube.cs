@@ -1,29 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class ActivateAirTube : MonoBehaviour
+public class ActivateAirTube : NetworkBehaviour
 {
 
     public GameObject airPad;
-    private AirTube airTubeScript;
-    private bool canInteract;
+    public AirTube airTubeScript;
     private float timer;
-    // Start is called before the first frame update
+
     void Start()
     {
-        canInteract = false;
         airTubeScript = airPad.GetComponent<AirTube>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(canInteract && Input.GetMouseButtonDown(0) && !airTubeScript.isActive)
-        {
-            airTubeScript.isActive = true;
-        }
-
         if(airTubeScript.isActive){
             timer += Time.deltaTime;
 
@@ -33,15 +26,10 @@ public class ActivateAirTube : MonoBehaviour
             }
         }
     }
-    
-    private void OnTriggerEnter(Collider other) 
-    {
-        canInteract = true;
-    }
 
-    private void OnTriggerExit(Collider other) 
+    [Command(requiresAuthority = false)]
+    public void TurnOnAirTubeCmd()
     {
-        canInteract = false;
+        airTubeScript.isActive = true;
     }
-
 }

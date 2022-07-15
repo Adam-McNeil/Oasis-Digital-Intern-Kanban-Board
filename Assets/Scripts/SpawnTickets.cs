@@ -6,7 +6,7 @@ using Mirror;
 public class SpawnTickets : NetworkBehaviour
 {
     public GameObject ticketGameObject; //Ticket Prefab that will be spawned
-    public Vector3 spawnPosition;       //Postion where to spawn the prefab 
+    public Transform spawnPosition;       //Postion where to spawn the prefab 
 
     private bool canInteract = false;   //Makes sure the user is close enough to spawn the prefab.
     
@@ -17,14 +17,14 @@ public class SpawnTickets : NetworkBehaviour
     {
         if(canInteract && Input.GetMouseButtonDown(0))
         {
-            SpawnTicketCmd();
+            //SpawnTicketCmd();
         }
     }
 
     [Command(requiresAuthority = false)]
-    private void SpawnTicketCmd()
+    public void SpawnTicketCmd()
     {
-        GameObject spawnedTicket = Instantiate(ticketGameObject, spawnPosition, ticketGameObject.transform.rotation);
+        GameObject spawnedTicket = Instantiate(ticketGameObject, spawnPosition.position, ticketGameObject.transform.rotation);
         NetworkServer.Spawn(spawnedTicket);
     }
 
