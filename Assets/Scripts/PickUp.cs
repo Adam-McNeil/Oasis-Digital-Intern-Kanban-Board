@@ -13,15 +13,19 @@ public class PickUp : NetworkBehaviour
     [SerializeField] private GameObject holdArea;
     [SerializeField] private float pickRange = 5f;
     [SerializeField] private float pickUpForce = 150f;
+    [Range(0f, 1f)]
+    [SerializeField] private float alphaPickUp = .8f;
     [SerializeField] private float dragResistance = 10f;
     [SerializeField] private float throwForce = 10f;
     [SerializeField] private float slerpSpeed = 10f;
 
     [SerializeField] private InputActionReference grabAction;
     [SerializeField] private InputActionReference throwAction;
+    [SerializeField] private Material tempMaterial;
 
     private GameObject heldObject;
     private Material heldObjectMaterial;
+    private Material orginalObjectMaterial;
     private Color currentColor;
     private Rigidbody heldObjectRB;
     private bool isHoldingObject;
@@ -113,7 +117,6 @@ public class PickUp : NetworkBehaviour
                     isHoldingObject = true;
                     PickUpObjectCmd(hit.transform.gameObject.GetComponent<NetworkIdentity>().netId);
                 }
-
             }
         }
         else
@@ -140,12 +143,20 @@ public class PickUp : NetworkBehaviour
 
     void PickUpObject(GameObject pickedObject)
     {
+        orginalObjectMaterial = pickedObject.GetComponent<Renderer>().material;
+        currentColor = orginalObjectMaterial.color;
+        Color alteredAlpha = currentColor;
+        alteredAlpha.a = alphaPickUp;
+        tempMaterial.color = alteredAlpha;
+
         pickedObject.GetComponent<Animator>().Play("Ticket_Shrink");
         heldObjectRB = pickedObject.GetComponent<Rigidbody>();
         heldObjectRB.useGravity = false;
         heldObjectRB.drag = dragResistance;
         heldObjectRB.constraints = RigidbodyConstraints.FreezeRotation; 
         heldObject = pickedObject;
+
+        heldObject.GetComponent<Renderer>().material = tempMaterial;
     }
 
     [Command]
@@ -156,6 +167,8 @@ public class PickUp : NetworkBehaviour
 
     void DropObject()
     {
+        heldObject.GetComponent<Renderer>().material = orginalObjectMaterial;
+
         heldObjectRB.useGravity = true;
         heldObjectRB.drag = 0;
         heldObjectRB.constraints = RigidbodyConstraints.None;
@@ -170,6 +183,8 @@ public class PickUp : NetworkBehaviour
 
     void ThrowObject()
     {
+        heldObject.GetComponent<Renderer>().material = orginalObjectMaterial;
+
         heldObjectRB.useGravity = true;
         heldObjectRB.drag = 0;
         heldObjectRB.constraints = RigidbodyConstraints.None;
