@@ -80,12 +80,12 @@ public class animationController : NetworkBehaviour
           }
           if (Input.GetKey("w"))
           {
-            isRunning = true;
+            isWalking = true;
             changeAnimationState(PLAYER_RUN_FORWARD);
             return;
           } else
           {
-            isRunning = false;
+            isWalking = false;
           }
           if (Input.GetKey("s"))
           {

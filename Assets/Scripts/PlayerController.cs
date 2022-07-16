@@ -4,7 +4,7 @@ using UnityEngine;
 using Mirror;
 using TMPro;
 
-public class PlayerController : NetworkBehaviour
+public class PlayerControl : NetworkBehaviour
 {
     static public GameObject localPlayerCamera;
     public float speed = 7.5f;
@@ -29,67 +29,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI usernameText;
 
     private TMP_InputField usernameInputField;
-    [SyncVar(hook = nameof(ChangeUsername))]
     private string usernameSyncVar;
-
-
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        characterController = GetComponent<CharacterController>();
-        if (isLocalPlayer)
-        {
-            isGamePaused = false;
-            FindInputField();
-            gameObject.tag = "Local Player";
-        }
-        else
-        {
-            gameObject.tag = "Nonlocal Player";
-        }
-    }
-
-    private void Update()
-    {
-        if (isLocalPlayer)
-        {
-            Escape();
-            if (!isGamePaused && !isEditing)
-            {
-                playerMovement();
-                RotateCamera();
-            }
-        }
-    }
-
-    #region Pause
-    private void Escape()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab) && !isEditing)
-        {
-            if (isGamePaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }            
-        }
-    }
-
-    public void Pause()
-    {
-        Cursor.lockState = CursorLockMode.None;
-        isGamePaused = true;
-    }
-
-    public void Resume()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        isGamePaused = false;
-    }
-    #endregion
 
     #region Movement
     private void playerMovement()
@@ -120,7 +60,7 @@ public class PlayerController : NetworkBehaviour
         characterController.Move(moveDirection * Time.deltaTime);
     }
 
-    void RotateCamera()
+    void RotationCamera()
     {
           rotationX += -Input.GetAxis("Mouse Y") * sensitivity;
           rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
@@ -130,30 +70,4 @@ public class PlayerController : NetworkBehaviour
 
     #endregion
 
-    #region Username
-
-
-    private void FindInputField()
-    {
-        usernameInputField = GameObject.Find("Pause Menu").GetComponentInChildren<TMP_InputField>();
-        usernameInputField.onValueChanged.AddListener(delegate { OnChangedInputField(); });
-    }
-
-    private void OnChangedInputField()
-    {
-        ChangeUsernameCmd(usernameInputField.text);
-    }
-
-    [Command(requiresAuthority = false)]
-    private void ChangeUsernameCmd(string text)
-    {
-        usernameSyncVar = text;
-    }
-
-    private void ChangeUsername(string oldText, string newText)
-    {
-        usernameText.text = newText;
-    }
-
-    #endregion
 }

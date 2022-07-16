@@ -17,15 +17,14 @@ public class AnimatorScript : NetworkBehaviour
    const string PLAYER_WALK_FORWARD = "walking";
    const string PLAYER_JUMP = "jump";
    bool isGrounded;
-  //
 
-    Vector3 currentPos;
-   Vector3 begginingFrameLocation;
+  Vector3 currentPos;
+  Vector3 beginningFrameLocation;
 
   private void Start()
     {
       currentPos = this.transform.position;
-      begginingFrameLocation = transform.position;
+      beginningFrameLocation = transform.position;
     }
 
   void Update()
