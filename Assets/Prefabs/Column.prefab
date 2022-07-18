@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 5434975603297090874}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: Column Title
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -905,6 +905,7 @@ GameObject:
   - component: {fileID: -1386663630124110203}
   - component: {fileID: 596230367384916346}
   - component: {fileID: 5903770806893499111}
+  - component: {fileID: 1703104930848669172}
   m_Layer: 0
   m_Name: Column
   m_TagString: Untagged
@@ -1003,6 +1004,21 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+--- !u!114 &1703104930848669172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6489141119030006176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00bce492372bf849ba99c4a54a4ee5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  titleInputField: {fileID: 4026252141488239193}
 --- !u!1 &6543466140767605135
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,9 +1159,9 @@ GameObject:
   - component: {fileID: 5364615088428451815}
   - component: {fileID: 1415794739231911507}
   - component: {fileID: 4026252141488239193}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Name Input Field
-  m_TagString: Untagged
+  m_TagString: Column Title
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1276,10 +1292,34 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1703104930848669172}
+        m_TargetAssemblyTypeName: EditColumn, Assembly-CSharp
+        m_MethodName: SetIsEditingColumn
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1703104930848669172}
+        m_TargetAssemblyTypeName: EditColumn, Assembly-CSharp
+        m_MethodName: SetIsEditingColumn
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTextSelection:
     m_PersistentCalls:
       m_Calls: []
