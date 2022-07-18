@@ -42,6 +42,8 @@ public class PlayerController : NetworkBehaviour
     [Header("Button Presses")]
     [SerializeField] private LayerMask buttonPressLayerMask;
 
+    static public bool isEditingColumn;
+
 
     private void Start()
     {
@@ -69,10 +71,13 @@ public class PlayerController : NetworkBehaviour
             EditMode();
             if (!isGamePaused && !isEditing)
             {
-                playerMovement();
                 RotateCamera();
-                CheckButtonPresses();
-                PlaceColumnCheck();
+                if (!isEditingColumn)
+                {
+                    playerMovement();
+                    CheckButtonPresses();
+                    PlaceColumnCheck();
+                }
             }
         }
     }
@@ -218,6 +223,11 @@ public class PlayerController : NetworkBehaviour
                 {
                     Debug.Log("Pressed activation button");
                     hit.transform.gameObject.GetComponent<ActivateAirTube>().TurnOnAirTubeCmd();
+                }
+
+                if (hit.transform.gameObject.CompareTag("Column Title"))
+                {
+                    hit.transform.gameObject.GetComponentInParent<EditColumn>().SelectInputField();
                 }
             }
         }
