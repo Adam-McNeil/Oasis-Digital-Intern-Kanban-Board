@@ -32,7 +32,6 @@ public class EditMenuController : MonoBehaviour
             this.transform.position = localPlayerTransform.position + localPlayerTransform.forward * offset;
             this.transform.LookAt(localPlayerTransform);
             this.transform.Rotate(0, 180, 0);
-
         }else{
             this.transform.position = farAway;
         }

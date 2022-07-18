@@ -13,11 +13,6 @@ public class AirTube : MonoBehaviour
     public Vector3 direction;                                            //Direction where the object is pushed 
     public float speed;                                                  //Speed for the movement of the object 
 
-    void Start()
-    {
-
-    }
-
     private void Update()
     {
         if(isActive){
@@ -49,7 +44,6 @@ public class AirTube : MonoBehaviour
             movingObjectRB.constraints = RigidbodyConstraints.FreezeAll;
         }
     }
-
 
     private void OnTriggerExit(Collider other) 
     {

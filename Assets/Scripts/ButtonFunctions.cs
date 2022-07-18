@@ -30,7 +30,6 @@ public class ButtonFunctions : MonoBehaviour
     public Material blue;
     public Material green;
     public Material yellow;
-    
 
     public void SubmitEditChanges()
     {
