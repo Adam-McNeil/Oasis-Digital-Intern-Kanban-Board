@@ -1753,7 +1753,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1299388574720283736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1801,6 +1801,7 @@ MonoBehaviour:
   detailInputField: {fileID: 7741932412683636503}
   assignedDropDown: {fileID: 2830128503478656090}
   colorDropDown: {fileID: 5618635565739031029}
+  activeEditTable: {fileID: 0}
   targetedTicket: {fileID: 0}
 --- !u!1 &3887746810065310931
 GameObject:
@@ -3004,9 +3005,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 950778335728922422}
-        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
-        m_MethodName: SubmitEditChanges
+      - m_Target: {fileID: 1256797079}
+        m_TargetAssemblyTypeName: EditMenuController, Assembly-CSharp
+        m_MethodName: OnButtonSumbit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

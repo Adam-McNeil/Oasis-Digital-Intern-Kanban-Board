@@ -182,6 +182,8 @@ public class PlayerController : NetworkBehaviour
             {
                 if (hit.transform.gameObject.CompareTag("EditTable"))
                 {
+                    Debug.Log("Edit table hit");
+                    hit.transform.gameObject.GetComponent<EditTable>().OnStartEdit();
                     isEditing = true;
                     Cursor.lockState = CursorLockMode.None;
                     Debug.Log("Edit Mode enabled");

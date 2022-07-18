@@ -19,7 +19,7 @@ public class EditMenuController : MonoBehaviour
     private EditTable editTableScript;
     private bool editModeEnabled = false;
 
-    private GameObject activeEditTable;
+    public GameObject activeEditTable;
     public GameObject targetedTicket;
     private GameObject activeCamera;
 
@@ -44,6 +44,11 @@ public class EditMenuController : MonoBehaviour
         this.transform.position = farAway;
         activeCamera = camera;
         GetComponentInChildren<Canvas>().worldCamera = activeCamera.GetComponent<Camera>();
+    }
+
+    public void OnButtonSumbit()
+    {
+        activeEditTable.GetComponent<EditTable>().SubmitEditChanges();
     }
 }
 

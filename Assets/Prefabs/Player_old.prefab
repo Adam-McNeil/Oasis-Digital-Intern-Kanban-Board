@@ -1088,11 +1088,20 @@ MonoBehaviour:
   jumpSpeed: 8
   gravity: 20
   lookXLimit: 45
+  rotationX: 0
+  rotationY: 0
   sensitivity: 1
-  playerController: {fileID: -3389771908347727855}
   cameraOffset: {fileID: 0}
   desktopCamera: {fileID: 629467838714742647}
   usernameText: {fileID: 2646662870243049435}
+  blueprint: {fileID: 0}
+  column: {fileID: 0}
+  raycastLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  buttonPressLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &-4052786535703857757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1110,11 +1119,13 @@ MonoBehaviour:
   holdArea: {fileID: 6283862017507580828}
   pickRange: 5
   pickUpForce: 500
+  alphaPickUp: 0.8
   dragResistance: 10
   throwForce: 10
   slerpSpeed: 10
   grabAction: {fileID: -3407226586021038709, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   throwAction: {fileID: -5020605622706961461, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  tempMaterial: {fileID: 0}
 --- !u!114 &1772065156856799915
 MonoBehaviour:
   m_ObjectHideFlags: 0

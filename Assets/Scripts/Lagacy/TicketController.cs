@@ -15,7 +15,6 @@ public class TicketController : NetworkBehaviour
 
     private void Start()
     {
-        inputField.onValueChanged.AddListener(delegate { OnChangedInputField(); });
         if (isClientOnly)
         {
             //Destroy(GetComponent<Rigidbody>());
