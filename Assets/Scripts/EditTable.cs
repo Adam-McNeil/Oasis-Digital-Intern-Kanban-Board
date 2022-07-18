@@ -7,7 +7,7 @@ public class EditTable : MonoBehaviour
 {
 
     public GameObject ticket = null;
-    private EditMenuController editMenuControllerScript;
+    private EditMenuController editMCS;
     private TicketData ticketDataScript;
     private string ticketHeader;
     private string ticketDetail;
@@ -19,7 +19,7 @@ public class EditTable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        editMCS = GameObject.Find("Edit Menu").GetComponent<EditMenuController>();
     }
 
     // Update is called once per frame
@@ -31,21 +31,27 @@ public class EditTable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.CompareTag("Ticket") && !objectInTable){
+
             ticket = other.gameObject;
             ticketDataScript = ticket.GetComponent<TicketData>();
             ticketHeader = ticketDataScript.headerData;
             ticketDetail = ticketDataScript.descriptionData;
             ticketAssignedTo = ticketDataScript.assignedToData;
             ticketMateral = ticketDataScript.materialData;
-            
 
-            editMenuControllerScript = GameObject.Find("Edit Menu").GetComponent<EditMenuController>();
-            editMenuControllerScript.targetedTicket = ticket;
-            editMenuControllerScript.headerInputField.text = ticketHeader;
-            editMenuControllerScript.detailInputField.text = ticketDetail;
-            editMenuControllerScript.assignedDropDown.value = ticketAssignedTo;
-            editMenuControllerScript.colorDropDown.value = ticketMateral;
+            editMCS.currentTicketText.text = "Found";
+            editMCS.currentTicketText.color = Color.green;
+            
+            editMCS.targetedTicket = ticket;
+            editMCS.headerInputField.text = ticketHeader;
+            editMCS.detailInputField.text = ticketDetail;
+            editMCS.assignedDropDown.value = ticketAssignedTo;
+            editMCS.colorDropDown.value = ticketMateral;
             objectInTable = true;
+
+        }else if(objectInTable == false){
+            editMCS.currentTicketText.text = "Not Found";
+            editMCS.currentTicketText.color = Color.red;
         }
     }
     
@@ -56,7 +62,16 @@ public class EditTable : MonoBehaviour
         ticketDetail = null;
         ticketAssignedTo = 0;
         ticketMateral = 0;
+
+        editMCS.targetedTicket = ticket;
+        editMCS.headerInputField.text = ticketHeader;
+        editMCS.detailInputField.text = ticketDetail;
+        editMCS.assignedDropDown.value = ticketAssignedTo;
+        editMCS.colorDropDown.value = ticketMateral;
+
         objectInTable = false;
+        editMCS.currentTicketText.text = "Not Found";
+        editMCS.currentTicketText.color = Color.red;
     }
 
 }
