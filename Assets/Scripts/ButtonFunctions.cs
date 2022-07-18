@@ -7,7 +7,6 @@ public class ButtonFunctions : MonoBehaviour
 {
     public void Exit()
     {
-
         Debug.Log("Game Exited");
         Application.Quit();
     }
@@ -22,6 +21,8 @@ public class ButtonFunctions : MonoBehaviour
     private TicketData ticketDataScript;
     private EditTable editTableScript;
     private EditMenuController eMCS;
+    private PlayerController playerControllerScript;
+    
 
     [Header("Material for EditMenu")]
     public Material gray;
@@ -34,6 +35,7 @@ public class ButtonFunctions : MonoBehaviour
     public void SubmitEditChanges()
     {
         eMCS = GameObject.Find("Edit Menu").GetComponent<EditMenuController>();
+        
         GameObject ticket = eMCS.targetedTicket;
         ticketDataScript = ticket.GetComponent<TicketData>();
 
@@ -55,6 +57,9 @@ public class ButtonFunctions : MonoBehaviour
         }else if(colorPicked == "Yellow"){
             ticket.GetComponent<Renderer>().material = yellow;
         }
+
+        PlayerController.isEditing = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
     }
 }

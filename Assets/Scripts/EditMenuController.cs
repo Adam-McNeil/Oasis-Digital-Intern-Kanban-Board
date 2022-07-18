@@ -27,6 +27,7 @@ public class EditMenuController : MonoBehaviour
     {
         editModeEnabled = PlayerController.isEditing;
         
+        
         if(editModeEnabled){
             Cursor.lockState = CursorLockMode.None;
             Transform localPlayerTransform = activeCamera.transform;

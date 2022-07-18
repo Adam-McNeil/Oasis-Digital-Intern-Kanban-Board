@@ -142,7 +142,6 @@ public class PlayerController : NetworkBehaviour
           desktopCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
           transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * sensitivity, 0);
     }
-
     #endregion
 
     #region Username
@@ -184,7 +183,6 @@ public class PlayerController : NetworkBehaviour
                 {
                     isEditing = true;
                     Cursor.lockState = CursorLockMode.None;
-                    Debug.Log("Edit Mode enabled");
                 }
             }
         }else if(Input.GetKeyDown(KeyCode.Escape) && isEditing){
@@ -205,16 +203,13 @@ public class PlayerController : NetworkBehaviour
 
             if (Physics.Raycast(desktopCamera.transform.position, desktopCamera.transform.forward, out hit, 6, buttonPressLayerMask))
             {
-                Debug.Log("hit something:" + hit.transform);
                 if (hit.transform.gameObject.CompareTag("Spawn Button"))
                 {
-                    Debug.Log("Pressed Button");
                     hit.transform.gameObject.GetComponent<SpawnTickets>().SpawnTicketCmd(); 
                 }
 
                 if (hit.transform.gameObject.CompareTag("Activation Button"))
                 {
-                    Debug.Log("Pressed activation button");
                     hit.transform.gameObject.GetComponent<ActivateAirTube>().TurnOnAirTubeCmd();
                 }
             }
@@ -231,7 +226,7 @@ public class PlayerController : NetworkBehaviour
         {
             isBuilding = !isBuilding;
         }
-        Debug.Log(isBuilding);
+        //Debug.Log(isBuilding);
         PlaceColumn();
     }
 
@@ -248,7 +243,7 @@ public class PlayerController : NetworkBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(desktopCamera.transform.position, desktopCamera.transform.forward, out hit, 100, raycastLayerMask))
                 {
-                    Debug.Log("Hit the floor");
+                    //Debug.Log("Hit the floor");
                     myBlueprint.transform.position = hit.point;
                 }
                 if (Input.GetKey("q"))
@@ -294,7 +289,7 @@ public class PlayerController : NetworkBehaviour
             if (blueprint.GetComponent<NetworkIdentity>().hasAuthority)
             {
                 myBlueprint = blueprint;
-                Debug.Log("Found my Blueprint");
+                //Debug.Log("Found my Blueprint");
                 return;
             }
         }
