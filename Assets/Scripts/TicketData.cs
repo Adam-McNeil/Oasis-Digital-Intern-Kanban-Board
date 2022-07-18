@@ -95,7 +95,26 @@ public class TicketData : NetworkBehaviour
         json = JsonUtility.ToJson(ticketSaveData);
         Debug.Log(json);
         Debug.Log(Application.dataPath);
-        File.AppendAllText(Application.dataPath + "/saveFile.json", json + "\n");
+        File.AppendAllText(Application.dataPath + "/saveFile.json", 'T' + json + "\n");
+    }
+
+    public void Load(string jsonString)
+    {
+        TicketSaveData loadedTicketSaveData = JsonUtility.FromJson<TicketSaveData>(jsonString);
+
+        this.transform.position = loadedTicketSaveData.position;
+        this.transform.rotation = loadedTicketSaveData.rotation;
+        this.transform.localScale = loadedTicketSaveData.scale;
+        this.GetComponent<Rigidbody>().constraints = loadedTicketSaveData.constraints;
+
+        headerData = loadedTicketSaveData.headerText;
+        ticketHeaderText.text = headerData;
+
+        descriptionData = loadedTicketSaveData.descriptionText;
+        assignedToData = loadedTicketSaveData.assignedToNumber;
+
+        materialData = loadedTicketSaveData.materialNumber;
+        GetComponent<Renderer>().material = materials[materialData];
     }
 
     private void Load()
@@ -113,10 +132,9 @@ public class TicketData : NetworkBehaviour
 
         materialData = ticketSaveData.materialNumber;
         GetComponent<Renderer>().material = materials[materialData];
-
     }
 
-    private class TicketSaveData
+    struct TicketSaveData
     {
         public Vector3 position;
         public Quaternion rotation;
@@ -126,8 +144,6 @@ public class TicketData : NetworkBehaviour
         public string descriptionText;
         public int assignedToNumber;
         public int materialNumber;
-
-
 
         public void print()
         {

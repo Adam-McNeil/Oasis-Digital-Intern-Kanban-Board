@@ -15,6 +15,7 @@ TagManager:
   - Activation Button
   - playerCamera
   - Column Blueprint
+  - Column Title
   layers:
   - Default
   - TransparentFX
