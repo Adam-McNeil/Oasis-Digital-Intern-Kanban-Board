@@ -22,7 +22,7 @@ public class cameraController : NetworkBehaviour
         if (isLocalPlayer)
         {
 
-            pauseMenuControllerScript = GameObject.Find("Pause Menu").GetComponent<PauseMenuController>();
+            pauseMenuControllerScript = GameObject.Find("Settings/Pause Menu").GetComponent<PauseMenuController>();
             editMenuControllerScript = GameObject.Find("Edit Menu").GetComponent<EditMenuController>();
             activeCamera = desktopCamera;
             var xrSettings = XRGeneralSettings.Instance;

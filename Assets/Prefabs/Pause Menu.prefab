@@ -522,11 +522,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb83e267ba5f3fd4a98b66c00ce81556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gray: {fileID: 0}
-  red: {fileID: 0}
-  blue: {fileID: 0}
-  green: {fileID: 0}
-  yellow: {fileID: 0}
 --- !u!1 &4184315198887531340
 GameObject:
   m_ObjectHideFlags: 0
