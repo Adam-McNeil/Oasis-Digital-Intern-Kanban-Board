@@ -12,6 +12,7 @@ public class PickUp : NetworkBehaviour
     private GameObject playerCamera;
     [SerializeField] private GameObject holdArea;
     [SerializeField] private float pickRange = 5f;
+    [SerializeField] private float dropRange = 3.5f;
     [SerializeField] private float pickUpForce = 150f;
     [Range(0f, 1f)]
     [SerializeField] private float alphaPickUp = .8f;
@@ -210,6 +211,22 @@ public class PickUp : NetworkBehaviour
         Vector3 goalPosition = holdArea.transform.position + holdArea.transform.forward * offset;
         Vector3 changeInPosition = Vector3.Slerp(heldObject.transform.position, goalPosition, slerpSpeed * Time.deltaTime) - heldObject.transform.position;
         heldObjectRB.AddForce(changeInPosition * pickUpForce);
+
+        if(goalPosition.x - heldObject.transform.position.x > dropRange || goalPosition.x - heldObject.transform.position.x < -dropRange)
+        {
+	        DropObject();
+	        isHoldingObject = false;
+        }
+	    else if(goalPosition.z - heldObject.transform.position.z > dropRange || goalPosition.z - heldObject.transform.position.z < -dropRange)
+        {
+	        DropObject();
+	        isHoldingObject = false;
+        }
+	    else if(goalPosition.y - heldObject.transform.position.y > dropRange || goalPosition.y - heldObject.transform.position.y < -dropRange)
+        {
+	        DropObject();
+	        isHoldingObject = false;
+        }
     }
 
     public void SetActiveCamera(GameObject camera)

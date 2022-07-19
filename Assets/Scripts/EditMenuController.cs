@@ -27,14 +27,17 @@ public class EditMenuController : MonoBehaviour
     {
         editModeEnabled = PlayerController.isEditing;
         
-        if(editModeEnabled){
+        if(editModeEnabled)
+        {
             Cursor.lockState = CursorLockMode.None;
             Transform localPlayerTransform = activeCamera.transform;
             this.transform.position = localPlayerTransform.position + localPlayerTransform.forward * offset;
             this.transform.LookAt(localPlayerTransform);
             this.transform.Rotate(0, 180, 0);
 
-        }else{
+        }
+        else
+        {
             this.transform.position = farAway;
         }
     }

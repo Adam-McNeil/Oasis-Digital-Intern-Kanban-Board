@@ -54,6 +54,8 @@ public class EditTable : NetworkBehaviour
         {
             ticketDataScript = ticket.GetComponent<TicketData>();
             ticketDataScript.SubmitEditChangesCmd(eMCS.headerInputField.text, eMCS.detailInputField.text, eMCS.assignedDropDown.value, eMCS.colorDropDown.value);
+            PlayerController.isEditing = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         //ticketDataScript.ticketHeaderObject.GetComponent<TextMeshPro>().text = eMCS.headerInputField.text;
