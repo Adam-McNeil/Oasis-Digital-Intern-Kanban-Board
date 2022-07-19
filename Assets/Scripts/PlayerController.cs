@@ -21,6 +21,8 @@ public class PlayerController : NetworkBehaviour
     static public bool isGamePaused;
     [HideInInspector] static public bool isEditing;
 
+    private DescriptionMenuController myDescriptionMenu;
+
     [Header("Children Refences")]
     [SerializeField] private Transform cameraOffset;
     [SerializeField] private GameObject desktopCamera;
@@ -56,6 +58,7 @@ public class PlayerController : NetworkBehaviour
             gameObject.tag = "Local Player";
             FindInputField();
             SpawnBlueprintCmd(farAway, blueprint.transform.rotation);
+            FindMyTicketDescriptionMenu();
         }
         else
         {
@@ -77,6 +80,7 @@ public class PlayerController : NetworkBehaviour
                     playerMovement();
                     CheckButtonPresses();
                     PlaceColumnCheck();
+                    CheckTicketHits();
                 }
             }
         }
@@ -212,16 +216,13 @@ public class PlayerController : NetworkBehaviour
 
             if (Physics.Raycast(desktopCamera.transform.position, desktopCamera.transform.forward, out hit, 6, buttonPressLayerMask))
             {
-                Debug.Log("hit something:" + hit.transform);
                 if (hit.transform.gameObject.CompareTag("Spawn Button"))
                 {
-                    Debug.Log("Pressed Button");
                     hit.transform.gameObject.GetComponent<SpawnTickets>().SpawnTicketCmd(); 
                 }
 
                 if (hit.transform.gameObject.CompareTag("Activation Button"))
                 {
-                    Debug.Log("Pressed activation button");
                     hit.transform.gameObject.GetComponent<ActivateAirTube>().TurnOnAirTubeCmd();
                 }
 
@@ -310,6 +311,34 @@ public class PlayerController : NetworkBehaviour
                 return;
             }
         }
+    }
+
+    #endregion
+
+    #region TicketDescription
+
+    private void CheckTicketHits()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(desktopCamera.transform.position, desktopCamera.transform.forward, out hit, 100, buttonPressLayerMask))
+            {
+                if (hit.transform.gameObject.CompareTag("Ticket"))
+                {
+                    myDescriptionMenu.DisplayTicket(hit.transform.gameObject, desktopCamera.transform);
+                    return;
+                }
+            }
+            myDescriptionMenu.MoveFarAway();
+        }
+    }
+
+    private void FindMyTicketDescriptionMenu()
+    {
+        myDescriptionMenu = GameObject.FindGameObjectWithTag("Description Menu").GetComponent<DescriptionMenuController>();
+        Debug.Log("Found my Description Menu");
     }
 
     #endregion
