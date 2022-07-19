@@ -18,6 +18,12 @@ public class ButtonFunctions : MonoBehaviour
         networkMangaer.StopClient();
         networkMangaer.StopHost();
     }
+
+    public void SaveSetting(){
+        PlayerPrefs.SetFloat("Sensitivity",SliderToText.senValue);
+        PlayerPrefs.SetInt("Volume",SliderToText.volValue);  
+        PlayerPrefs.Save();
+    }
     
    
 }

@@ -14,7 +14,7 @@ public class PlayerController : NetworkBehaviour
     Vector3 moveDirection = Vector3.zero;
     public float rotationX = 0;
     public float rotationY = 0;
-    [SerializeField] private float sensitivity = 30;
+    [SerializeField]private float sensitivity = 30;
 
     private CharacterController characterController;
 
@@ -65,6 +65,10 @@ public class PlayerController : NetworkBehaviour
 
     private void Update()
     {
+        if(PlayerPrefs.HasKey("Sensitivity")){
+            sensitivity= PlayerPrefs.GetFloat("Sensitivity");
+        }
+
         if (isLocalPlayer)
         {
             Escape();
@@ -243,7 +247,7 @@ public class PlayerController : NetworkBehaviour
         {
             isBuilding = !isBuilding;
         }
-        Debug.Log(isBuilding);
+        //Debug.Log(isBuilding);
         PlaceColumn();
     }
 
@@ -260,7 +264,7 @@ public class PlayerController : NetworkBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(desktopCamera.transform.position, desktopCamera.transform.forward, out hit, 100, raycastLayerMask))
                 {
-                    Debug.Log("Hit the floor");
+                    //Debug.Log("Hit the floor");
                     myBlueprint.transform.position = hit.point;
                 }
                 if (Input.GetKey("q"))
@@ -306,7 +310,7 @@ public class PlayerController : NetworkBehaviour
             if (blueprint.GetComponent<NetworkIdentity>().hasAuthority)
             {
                 myBlueprint = blueprint;
-                Debug.Log("Found my Blueprint");
+                //Debug.Log("Found my Blueprint");
                 return;
             }
         }
