@@ -154,7 +154,7 @@ public class PlayerController : NetworkBehaviour
 
     private void FindInputField()
     {
-        usernameInputField = GameObject.Find("Pause Menu").GetComponentInChildren<TMP_InputField>();
+        usernameInputField = GameObject.Find("Settings/Pause Menu").GetComponentInChildren<TMP_InputField>();
         usernameInputField.onValueChanged.AddListener(delegate { OnChangedInputField(); });
     }
 
