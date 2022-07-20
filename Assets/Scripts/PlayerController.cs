@@ -45,11 +45,13 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private LayerMask buttonPressLayerMask;
 
     static public bool isEditingColumn;
+    private AudioSource footStepsSource;
 
     private int gridSize = 5;
 
     private void Start()
     {
+        footStepsSource = this.gameObject.GetComponent<AudioSource>();
         farAway = new Vector3(10000, 10000, 0);
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
@@ -123,7 +125,6 @@ public class PlayerController : NetworkBehaviour
     #region Movement
     private void playerMovement()
     {
-
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
@@ -147,7 +148,21 @@ public class PlayerController : NetworkBehaviour
         }
 
         characterController.Move(moveDirection * Time.deltaTime);
+       
+        if(characterController.isGrounded && (curSpeedX < 0 || curSpeedX > 0 || curSpeedY < 0 || curSpeedY > 0))
+        {
+            if(!footStepsSource.isPlaying){
+                footStepsSource.Play(0);
+            }
+        }
+        else
+        {
+            footStepsSource.Stop();
+        }
+
+
     }
+
 
     void RotateCamera()
     {
@@ -224,6 +239,7 @@ public class PlayerController : NetworkBehaviour
                 if (hit.transform.gameObject.CompareTag("Spawn Button"))
                 {
                     hit.transform.gameObject.GetComponent<SpawnTickets>().SpawnTicketCmd(); 
+                    hit.transform.gameObject.GetComponent<Animator>().Play("buttonPress");
                 }
 
                 if (hit.transform.gameObject.CompareTag("Activation Button"))
