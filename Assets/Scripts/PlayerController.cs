@@ -36,7 +36,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private GameObject blueprint;
     [SerializeField] private GameObject column;
     [SerializeField] private LayerMask raycastLayerMask;
-    private float rotationSpeed = 25;
+    private float rotationSnap = 22.5f;
     private GameObject myBlueprint;
     private bool isBuilding = false;
     private Vector3 farAway;
@@ -46,6 +46,7 @@ public class PlayerController : NetworkBehaviour
 
     static public bool isEditingColumn;
 
+    private int gridSize = 5;
 
     private void Start()
     {
@@ -242,6 +243,9 @@ public class PlayerController : NetworkBehaviour
 
     #region PlaceColumns
 
+    private Vector3 blueprintOffset = new Vector3(0.75f, 0.75f, 0);
+    private BlueprintColliderCounter blueprintColliderCounter;
+
     private void PlaceColumnCheck()
     {
         if (Input.GetKeyDown(KeyCode.B))
@@ -266,19 +270,19 @@ public class PlayerController : NetworkBehaviour
                 if (Physics.Raycast(desktopCamera.transform.position, desktopCamera.transform.forward, out hit, 100, raycastLayerMask))
                 {
                     //Debug.Log("Hit the floor");
-                    myBlueprint.transform.position = hit.point;
+                    myBlueprint.transform.position = SnapVector(hit.point) + blueprintOffset;
                 }
-                if (Input.GetKey("q"))
+                if (Input.GetKeyDown("q"))
                 {
-                    myBlueprint.transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+                    myBlueprint.transform.Rotate(Vector3.up * rotationSnap);
                 }
-                if (Input.GetKey("e"))
+                if (Input.GetKeyDown("e"))
                 {
-                    myBlueprint.transform.Rotate(Vector3.down * rotationSpeed * Time.deltaTime);
+                    myBlueprint.transform.Rotate(Vector3.down * rotationSnap);
                 }
-                if (Input.GetKeyDown("f"))
+                if (blueprintColliderCounter.colliderCounter == 0 && Input.GetKeyDown("f"))
                 {
-                    SpawnColumnCmd(myBlueprint.transform.position + new Vector3(0.75f, 0.75f, 0), myBlueprint.transform.rotation);
+                    SpawnColumnCmd(myBlueprint.transform.position, myBlueprint.transform.rotation);
                 }
             }
             else
@@ -286,6 +290,14 @@ public class PlayerController : NetworkBehaviour
                 myBlueprint.transform.position = farAway;
             }
         }
+    }
+
+    private Vector3 SnapVector(Vector3 vector)
+    {
+        return new Vector3(
+            Mathf.Round(vector.x / gridSize) * gridSize,
+            Mathf.Round(vector.y / gridSize) * gridSize,
+            Mathf.Round(vector.z / gridSize) * gridSize);
     }
 
     [Command(requiresAuthority = false)]
@@ -303,6 +315,8 @@ public class PlayerController : NetworkBehaviour
         spawnBlueprint.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
     }
 
+
+
     private void FindMyBlueprint()
     {
         GameObject[] blueprintArray = GameObject.FindGameObjectsWithTag("Column Blueprint");
@@ -311,6 +325,7 @@ public class PlayerController : NetworkBehaviour
             if (blueprint.GetComponent<NetworkIdentity>().hasAuthority)
             {
                 myBlueprint = blueprint;
+                blueprintColliderCounter = myBlueprint.GetComponent<BlueprintColliderCounter>();
                 //Debug.Log("Found my Blueprint");
                 return;
             }
