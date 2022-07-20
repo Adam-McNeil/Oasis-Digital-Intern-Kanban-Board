@@ -147,22 +147,25 @@ public class PlayerController : NetworkBehaviour
         }
 
 
+        characterController.Move(moveDirection * Time.deltaTime);
        
 
         if(characterController.isGrounded && (curSpeedX < 0 || curSpeedX > 0 || curSpeedY < 0 || curSpeedY > 0))
         {
             if(!footStepsSource.isPlaying){
                 footStepsSource.Play(0);
+            }else if(isEditing){
+                footStepsSource.Stop();
             }
         }
         else
         {
             footStepsSource.Stop();
         }
-        
 
-        characterController.Move(moveDirection * Time.deltaTime);
+
     }
+
 
     void RotateCamera()
     {
