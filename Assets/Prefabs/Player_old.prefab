@@ -1102,7 +1102,6 @@ MonoBehaviour:
   buttonPressLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  footsteps: {fileID: 0}
 --- !u!114 &-4052786535703857757
 MonoBehaviour:
   m_ObjectHideFlags: 0

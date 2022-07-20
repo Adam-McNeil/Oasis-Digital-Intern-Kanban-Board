@@ -9,8 +9,14 @@ public class SpawnTickets : NetworkBehaviour
     public Transform spawnPosition;       //Postion where to spawn the prefab 
 
     private bool canInteract = false;   //Makes sure the user is close enough to spawn the prefab.
+
+    private AudioSource buttonAudio;
     
     public GameObject ticketCreator;
+
+    private void Start() {
+        buttonAudio = this.GetComponent<AudioSource>();
+    }
 
     
     void Update() 
@@ -52,6 +58,10 @@ public class SpawnTickets : NetworkBehaviour
     public void CreateTicketObject() {
         SpawnTicketCmd();
         ExitCreatorScreen();
+    }
+
+    public void PlayClick(){
+        buttonAudio.Play();
     }
 
     private void OnTriggerEnter(Collider other) 

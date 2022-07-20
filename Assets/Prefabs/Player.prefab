@@ -495,7 +495,6 @@ MonoBehaviour:
   buttonPressLayerMask:
     serializedVersion: 2
     m_Bits: 1011
-  footsteps: {fileID: 8300000, guid: 52a43f18252c2ba4aac98fb86f2322b4, type: 3}
 --- !u!114 &8859014538284825451
 MonoBehaviour:
   m_ObjectHideFlags: 0

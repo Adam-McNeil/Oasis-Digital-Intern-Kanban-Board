@@ -146,16 +146,12 @@ public class PlayerController : NetworkBehaviour
             moveDirection.y -= gravity * Time.deltaTime;
         }
 
-
         characterController.Move(moveDirection * Time.deltaTime);
        
-
         if(characterController.isGrounded && (curSpeedX < 0 || curSpeedX > 0 || curSpeedY < 0 || curSpeedY > 0))
         {
             if(!footStepsSource.isPlaying){
                 footStepsSource.Play(0);
-            }else if(isEditing){
-                footStepsSource.Stop();
             }
         }
         else
@@ -242,6 +238,7 @@ public class PlayerController : NetworkBehaviour
                 if (hit.transform.gameObject.CompareTag("Spawn Button"))
                 {
                     hit.transform.gameObject.GetComponent<SpawnTickets>().SpawnTicketCmd(); 
+                    hit.transform.gameObject.GetComponent<Animator>().Play("buttonPress");
                 }
 
                 if (hit.transform.gameObject.CompareTag("Activation Button"))
