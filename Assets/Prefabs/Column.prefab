@@ -908,7 +908,7 @@ GameObject:
   - component: {fileID: 1703104930848669172}
   m_Layer: 0
   m_Name: Column
-  m_TagString: Untagged
+  m_TagString: Column
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1019,6 +1019,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   titleInputField: {fileID: 4026252141488239193}
+  title: 
 --- !u!1 &6543466140767605135
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class EditColumn : NetworkBehaviour
 {
     [SerializeField] private TMP_InputField titleInputField;
     [SyncVar(hook = nameof(ChangeInputField))]
-    private string title;
+    public string title;
 
     private void Start()
     {
