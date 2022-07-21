@@ -15,6 +15,7 @@ public class PlayerController : NetworkBehaviour
     public float rotationX = 0;
     public float rotationY = 0;
     [SerializeField]private float sensitivity = 30;
+    private bool landed = true;
 
     private CharacterController characterController;
 
@@ -45,13 +46,16 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private LayerMask buttonPressLayerMask;
 
     static public bool isEditingColumn;
-    private AudioSource footStepsSource;
+
+    public AudioSource footStepsAudioSource;
+    public AudioSource gruntsAudioSource;
+    public AudioSource impactAudioSource;
 
     private int gridSize = 5;
 
     private void Start()
     {
-        footStepsSource = this.gameObject.GetComponent<AudioSource>();
+        footStepsAudioSource = this.gameObject.GetComponent<AudioSource>();
         farAway = new Vector3(10000, 10000, 0);
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
@@ -125,6 +129,7 @@ public class PlayerController : NetworkBehaviour
     #region Movement
     private void playerMovement()
     {
+        
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
@@ -135,10 +140,13 @@ public class PlayerController : NetworkBehaviour
 
         if (Input.GetButton("Jump") && characterController.isGrounded)
         {
+            gruntsAudioSource.Play();
+            landed = false;
             moveDirection.y = jumpSpeed;
         }
         else
         {
+            
             moveDirection.y = movementDirectionY;
         }
 
@@ -151,13 +159,13 @@ public class PlayerController : NetworkBehaviour
        
         if(characterController.isGrounded && (curSpeedX < 0 || curSpeedX > 0 || curSpeedY < 0 || curSpeedY > 0))
         {
-            if(!footStepsSource.isPlaying){
-                footStepsSource.Play(0);
+            if(!footStepsAudioSource.isPlaying){
+                footStepsAudioSource.Play();
             }
         }
         else
         {
-            footStepsSource.Stop();
+            footStepsAudioSource.Stop();
         }
 
 
@@ -207,7 +215,7 @@ public class PlayerController : NetworkBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(desktopCamera.transform.position, desktopCamera.transform.forward, out hit, 6))
+            if(Physics.Raycast(desktopCamera.transform.position, desktopCamera.transform.forward, out hit, 6))
             {
                 if (hit.transform.gameObject.CompareTag("EditTable"))
                 {
