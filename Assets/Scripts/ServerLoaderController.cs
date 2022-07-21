@@ -9,7 +9,7 @@ public class ServerLoaderController : NetworkBehaviour
 {
     [SerializeField] private GameObject ticketPrefab;
     [SerializeField] private GameObject columnPrefab;
-    public static string serverJSONString;
+    public static string serverJSONString = null;
     TicketSaveData ticketSaveData = new TicketSaveData();
     ColumnSaveData columnSaveData = new ColumnSaveData();
 
@@ -20,8 +20,14 @@ public class ServerLoaderController : NetworkBehaviour
 
     private void Start()
     {
+        if (serverJSONString == null)
+        {
+            Debug.Log("severJSONstring was null");
+            return;
+        }
         if (serverJSONString == "")
         {
+            Debug.Log("severJSONstring was \"\"");
             return;
         }
         serverJSONTextToList = serverJSONString.Split("\\n").ToList();
