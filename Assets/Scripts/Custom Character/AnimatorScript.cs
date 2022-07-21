@@ -23,8 +23,8 @@ public class AnimatorScript : NetworkBehaviour
 
   private void Start()
     {
-      currentPos = this.transform.position;
-      beginningFrameLocation = transform.position;
+      // currentPos = this.transform.position;
+      // beginningFrameLocation = transform.position;
     }
 
   void Update()
