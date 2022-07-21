@@ -180,12 +180,15 @@ public class PickUp : NetworkBehaviour
 
     void DropObject()
     {
-        heldObject.GetComponent<Renderer>().material = orginalObjectMaterial;
+        //heldObject.GetComponent<Renderer>().material = orginalObjectMaterial;
+        if (heldObject != null)
+        {
+            heldObjectRB.useGravity = true;
+            heldObjectRB.drag = 0;
+            heldObjectRB.constraints = RigidbodyConstraints.None;
+            heldObject = null;
 
-        heldObjectRB.useGravity = true;
-        heldObjectRB.drag = 0;
-        heldObjectRB.constraints = RigidbodyConstraints.None;
-        heldObject = null;
+        }
     }
 
     [Command]
@@ -196,14 +199,15 @@ public class PickUp : NetworkBehaviour
 
     void ThrowObject()
     {
-        heldObject.GetComponent<Renderer>().material = orginalObjectMaterial;
-
-        heldObjectRB.useGravity = true;
-        heldObjectRB.drag = 0;
-        heldObjectRB.constraints = RigidbodyConstraints.None;
-        heldObjectRB.velocity = (holdArea.transform.forward * throwForce);
-        //heldObject.transform.parent = null; 
-        heldObject = null;
+        //heldObject.GetComponent<Renderer>().material = orginalObjectMaterial;
+        if (heldObject != null)
+        {
+            heldObjectRB.useGravity = true;
+            heldObjectRB.drag = 0;
+            heldObjectRB.constraints = RigidbodyConstraints.None;
+            heldObjectRB.velocity = (holdArea.transform.forward * throwForce);
+            heldObject = null;
+        }
     }
 
     void MoveObject()
