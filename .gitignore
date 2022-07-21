@@ -58,3 +58,8 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# This may be different if it is changed in Android Resolver settings
+Assets/GeneratedLocalRepo/
+
+Assets/StreamingAssets/google-services-desktop.json
+Assets/Plugin/Android/Firebase/

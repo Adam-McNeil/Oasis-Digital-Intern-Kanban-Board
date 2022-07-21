@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "754025170464",
+    "firebase_url": "https://unity-server-json-server-default-rtdb.firebaseio.com",
+    "project_id": "unity-server-json-server",
+    "storage_bucket": "unity-server-json-server.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754025170464:android:261dda19102b44efffde45",
+        "android_client_info": {
+          "package_name": "com.Oasis.Kanban"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754025170464-2jf1qpmrpb1dh3b50sf7e9duac10e51v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqRGyxl2a34_bzLrQ7NzSLUpfc5eZTUuA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754025170464-2jf1qpmrpb1dh3b50sf7e9duac10e51v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

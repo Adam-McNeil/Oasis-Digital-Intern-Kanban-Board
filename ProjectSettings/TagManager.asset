@@ -4,19 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Column
   - Ticket
-  - Local Player
-  - Nonlocal Player
-  - Ticket Trigger
-  - EditTable
-  - Straighten Ticket
-  - Button
-  - Spawn Button
-  - Activation Button
-  - playerCamera
-  - Column Blueprint
   - Column Title
+  - Straighten Ticket
+  - Activation Button
+  - Spawn Button
+  - EditTable
   - Description Menu
+  - Column Blueprint
+  - Local Player
+  - playerCamera
+  - Nonlocal Player
   layers:
   - Default
   - TransparentFX
@@ -24,9 +23,9 @@ TagManager:
   - 
   - Water
   - UI
-  - playerFace
-  - TicketHeader
-  - Menu(UI)
+  - 
+  - 
+  - 
   - 
   - 
   - 

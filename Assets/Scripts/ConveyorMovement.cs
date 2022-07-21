@@ -22,10 +22,6 @@ public class ConveyorMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.gameObject.CompareTag("Ticket Trigger"))
-        {
-            return;
-        }
         objectsOnConveyor.Add(other.gameObject);
     }
 
