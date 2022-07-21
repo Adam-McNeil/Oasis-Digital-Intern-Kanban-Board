@@ -16,6 +16,7 @@ TagManager:
   - Local Player
   - playerCamera
   - Nonlocal Player
+  - Destory Ticket
   layers:
   - Default
   - TransparentFX
