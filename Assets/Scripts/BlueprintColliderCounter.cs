@@ -32,7 +32,7 @@ public class BlueprintColliderCounter : NetworkBehaviour
         }
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     private void ChangeBlueprintMaterialCmd(int index)
     {
         //Debug.Log("called cahnge material command");

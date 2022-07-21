@@ -362,7 +362,7 @@ public class PlayerController : NetworkBehaviour
             {
                 if (hit.transform.gameObject.CompareTag("Ticket"))
                 {
-                    myDescriptionMenu.DisplayTicket(hit.transform.gameObject, desktopCamera.transform);
+                    myDescriptionMenu.DisplayTicket(hit.transform.gameObject);
                     return;
                 }
             }
