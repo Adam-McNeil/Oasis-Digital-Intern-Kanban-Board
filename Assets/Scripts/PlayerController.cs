@@ -266,6 +266,7 @@ public class PlayerController : NetworkBehaviour
 
     private Vector3 blueprintOffset = new Vector3(0.75f, 0.75f, 0);
     private BlueprintColliderCounter blueprintColliderCounter;
+    static public Vector3 animationOffset = new Vector3(0, 20, 0);
 
     private void PlaceColumnCheck()
     {
@@ -303,7 +304,7 @@ public class PlayerController : NetworkBehaviour
                 }
                 if (blueprintColliderCounter.colliderCounter == 0 && Input.GetKeyDown("f"))
                 {
-                    SpawnColumnCmd(myBlueprint.transform.position, myBlueprint.transform.rotation);
+                    SpawnColumnCmd(myBlueprint.transform.position - animationOffset, myBlueprint.transform.rotation);
                 }
             }
             else
@@ -325,6 +326,7 @@ public class PlayerController : NetworkBehaviour
     private void SpawnColumnCmd(Vector3 spawnLocation, Quaternion spawnRotation)
     {
         GameObject SpawnedObject = Instantiate(column, spawnLocation, spawnRotation);
+        SpawnedObject.GetComponent<ColumnAnimation>().wasSpawned = true;
         NetworkServer.Spawn(SpawnedObject);
     }
 
