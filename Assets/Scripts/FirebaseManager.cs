@@ -427,6 +427,19 @@ public class FirebaseManager : MonoBehaviour
           var DBTaskSetNewUser = DBreference.Child("servers").Child(FirebaseCarryOver.serverNameText).Child("users").SetValueAsync(DBTask.Result.Value + "," + DBTaskUser.Result.Value);
            CheckUsers((string) DBTask.Result.Value);
         }
+        DBTask = DBreference.Child("servers").Child(FirebaseCarryOver.serverNameText).Child("users").GetValueAsync();
+
+        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
+
+        if (DBTask.Exception != null)
+        {
+            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
+        }
+        else
+        {
+            //Database username is now updated
+        }
+        CheckUsers((string) DBTask.Result.Value);
       }
     }
 
