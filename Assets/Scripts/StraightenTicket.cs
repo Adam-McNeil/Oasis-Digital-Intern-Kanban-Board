@@ -24,6 +24,8 @@ public class StraightenTicket : NetworkBehaviour
             this.gameObject.transform.position = spawnTransform.position;
             this.gameObject.transform.rotation = spawnTransform.rotation;
             this.gameObject.transform.Rotate(-90, 0, 0);
+            ticketRigidbody.velocity = Vector3.zero;
+            ticketRigidbody.angularVelocity = Vector3.zero;
 
         }
     }
