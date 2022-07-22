@@ -43,7 +43,6 @@ public class ColumnAnimation : NetworkBehaviour
             yield return new WaitForSeconds(0.05f);
             this.transform.position = Vector3.MoveTowards(this.transform.position, endPosition, maxMoveDistatnce * Time.deltaTime);
         }
-        Destroy(dustCloud);
         wasSpawned = false;
     }
 

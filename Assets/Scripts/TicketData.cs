@@ -66,23 +66,7 @@ public class TicketData : NetworkBehaviour
         materialData = newMaterial;
     }
 
-    string json;
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Save();
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ticketSaveData = JsonUtility.FromJson<TicketSaveData>(json);
-            Load();
-            ticketSaveData.print();
-        }
-    }
-
-    private void Save()
+    public string Save()
     {
         ticketSaveData.position = this.transform.position;                          
         ticketSaveData.rotation = this.transform.rotation;
@@ -92,10 +76,8 @@ public class TicketData : NetworkBehaviour
         ticketSaveData.descriptionText = descriptionData;
         ticketSaveData.assignedToNumber = assignedToData;
         ticketSaveData.materialNumber = materialData;
-        json = JsonUtility.ToJson(ticketSaveData);
-        Debug.Log(json);
-        Debug.Log(Application.dataPath);
-        File.AppendAllText(Application.dataPath + "/saveFile.json", 'T' + json + "\n");
+        string json = JsonUtility.ToJson(ticketSaveData);
+        return json;
     }
 
     public void Load(string jsonString)
@@ -114,23 +96,6 @@ public class TicketData : NetworkBehaviour
         assignedToData = loadedTicketSaveData.assignedToNumber;
 
         materialData = loadedTicketSaveData.materialNumber;
-        GetComponent<Renderer>().material = materials[materialData];
-    }
-
-    private void Load()
-    {
-        this.transform.position = ticketSaveData.position;
-        this.transform.rotation = ticketSaveData.rotation;
-        this.transform.localScale = ticketSaveData.scale;
-        this.GetComponent<Rigidbody>().constraints = ticketSaveData.constraints;
-
-        headerData = ticketSaveData.headerText;
-        ticketHeaderText.text = headerData;
-
-        descriptionData = ticketSaveData.descriptionText;
-        assignedToData = ticketSaveData.assignedToNumber;
-
-        materialData = ticketSaveData.materialNumber;
         GetComponent<Renderer>().material = materials[materialData];
     }
 

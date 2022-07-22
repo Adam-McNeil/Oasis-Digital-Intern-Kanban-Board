@@ -55,37 +55,15 @@ public class EditColumn : NetworkBehaviour
     #region SaveData
 
     private ColumnSaveData columnSaveData = new ColumnSaveData();
-    string json;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Save();
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            columnSaveData = JsonUtility.FromJson<ColumnSaveData>(json);
-            Load();
-            columnSaveData.print();
-        }
-    }
 
-    private void Save()
+    public string Save()
     {
         columnSaveData.position = this.transform.position;
         columnSaveData.rotation = this.transform.rotation;
         columnSaveData.title = title;
-        json = JsonUtility.ToJson(columnSaveData);
-        Debug.Log(json);
-        File.AppendAllText(Application.dataPath + "/saveFile.json", 'C' + json + "\n");
-    }
-
-    private void Load()
-    {
-        this.transform.position = columnSaveData.position;
-        this.transform.rotation = columnSaveData.rotation;
-        ChangeInputField("", columnSaveData.title);
+        string json = JsonUtility.ToJson(columnSaveData);
+        return json;
     }
 
     public void Load(string jsonString)
