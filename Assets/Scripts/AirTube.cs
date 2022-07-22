@@ -5,53 +5,37 @@ using Mirror;
 
 public class AirTube : MonoBehaviour
 {
-    private List<GameObject> objectsOnConveyor = new List<GameObject>(); //Stores a list of gameobjects that are on the conveyor belt
-    private GameObject movingObject;                                     //Objects that will be stored in the list to be moved  
-    private Rigidbody movingObjectRB;
-
+    private List<Rigidbody> objectsOnConveyor = new List<Rigidbody>(); //Stores a list of gameobjects that are on the conveyor belt
+   
     public bool isActive = true; 
     public Vector3 direction;                                            //Direction where the object is pushed 
     public float speed;                                                  //Speed for the movement of the object 
-
-    void Start()
-    {
-
-    }
 
     private void Update()
     {
         if(isActive){
             for(int i = 0; i <= objectsOnConveyor.Count -1; i++)
             {
-                if (objectsOnConveyor[i] != null)
-                {
-                    objectsOnConveyor[i].transform.position += transform.up * speed * Time.deltaTime;
-                }
+                objectsOnConveyor[i].GetComponent<Rigidbody>().AddForce(transform.up * speed * Time.deltaTime, ForceMode.Impulse);
             }
         }
     }
 
     private void OnTriggerEnter(Collider other) 
     {
-        objectsOnConveyor.Add(other.gameObject);
-    }
-
-    private void OnTriggerStay(Collider other) {
-        if(isActive && other.gameObject.CompareTag("Ticket"))
+        Rigidbody otherRB = other.GetComponent<Rigidbody>();
+        if (otherRB != null)
         {
-            movingObjectRB = other.gameObject.GetComponent<Rigidbody>();
-            movingObjectRB.useGravity = false;
-            movingObjectRB.constraints = RigidbodyConstraints.FreezeAll;
+            objectsOnConveyor.Add(otherRB);
         }
     }
-
 
     private void OnTriggerExit(Collider other) 
     {
-        if(isActive && other.gameObject.CompareTag("Ticket")){
-            movingObjectRB.constraints = RigidbodyConstraints.None;
-            movingObjectRB.useGravity = true; 
+        Rigidbody otherRB = other.GetComponent<Rigidbody>();
+        if (otherRB != null)
+        {
+            objectsOnConveyor.Remove(otherRB);
         }
-        objectsOnConveyor.Remove(other.gameObject);
     }
 }
