@@ -10,8 +10,6 @@ public class ServerLoaderController : NetworkBehaviour
     [SerializeField] private GameObject ticketPrefab;
     [SerializeField] private GameObject columnPrefab;
     public static string serverJSONString = null;
-    TicketSaveData ticketSaveData = new TicketSaveData();
-    ColumnSaveData columnSaveData = new ColumnSaveData();
 
     private char key;
     List<string> serverJSONTextToList = new List<string>();
@@ -118,22 +116,14 @@ public class ServerLoaderController : NetworkBehaviour
             foreach (GameObject ticket in tickets)
             {
                 TicketData ticketData = ticket.GetComponent<TicketData>();
-                ticketSaveData.position = ticket.transform.position;
-                ticketSaveData.rotation = ticket.transform.rotation;
-                ticketSaveData.scale = ticket.transform.localScale;
-                ticketSaveData.constraints = ticket.GetComponent<Rigidbody>().constraints;
-                ticketSaveData.headerText = ticketData.headerData;
-                ticketSaveData.descriptionText = ticketData.descriptionData;
-                ticketSaveData.assignedToNumber = ticketData.assignedToData;
-                ticketSaveData.materialNumber = ticketData.materialData;
-                stringOutput += "T" + JsonUtility.ToJson(ticketSaveData) + "\\n";
+                string jsonString = ticketData.Save();
+                stringOutput += "T" + jsonString + "\\n";
             }
             foreach (GameObject column in columns)
             {
-                columnSaveData.position = column.transform.position;
-                columnSaveData.rotation = column.transform.rotation;
-                columnSaveData.title = column.GetComponent<EditColumn>().title;
-                stringOutput += "C" + JsonUtility.ToJson(columnSaveData) + "\\n";
+                EditColumn editColumn = column.GetComponent<EditColumn>();
+                string jsonString = editColumn.Save();
+                stringOutput += "C" + jsonString + "\\n";
             }
             GameObject FBM = GameObject.Find("FirebaseManager");
             FBM.GetComponent<FirebaseManager>().saveJSONCall();
