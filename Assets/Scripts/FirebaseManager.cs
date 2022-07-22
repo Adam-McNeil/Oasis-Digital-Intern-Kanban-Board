@@ -386,6 +386,7 @@ public class FirebaseManager : MonoBehaviour
     {
       if (User != null)
       {
+        //get the username of the user currently logged in
         var DBTaskUser = DBreference.Child("users").Child(User.UserId).Child("username").GetValueAsync();
 
         yield return new WaitUntil(predicate: () => DBTaskUser.IsCompleted);
@@ -398,6 +399,8 @@ public class FirebaseManager : MonoBehaviour
         {
             //Database username is now updated
         }
+
+        //get the users that have logged into the server
         var DBTask = DBreference.Child("servers").Child(FirebaseCarryOver.serverNameText).Child("users").GetValueAsync();
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -410,15 +413,24 @@ public class FirebaseManager : MonoBehaviour
         {
             //Database username is now updated
         }
-        checkUsers((string) DBTask.Result.Value);
+
+        if (DBTask.Result.Value == null)
+        {
+          DBreference.Child("servers").Child(FirebaseCarryOver.serverNameText).Child("users").SetValueAsync(DBTaskUser.Result.Value);
+          CheckUsers((string) DBTask.Result.Value);
+        }
+
+        //see if the current user has logged into that server
+        CheckUsers((string) DBTask.Result.Value);
         if (!userList.Contains(DBTaskUser.Result.Value))
         {
           var DBTaskSetNewUser = DBreference.Child("servers").Child(FirebaseCarryOver.serverNameText).Child("users").SetValueAsync(DBTask.Result.Value + "," + DBTaskUser.Result.Value);
+           CheckUsers((string) DBTask.Result.Value);
         }
       }
     }
 
-    private void checkUsers(string namesList)
+    private void CheckUsers(string namesList)
     {
       userList = new List<string>();
       userList = namesList.Split(',').ToList();
