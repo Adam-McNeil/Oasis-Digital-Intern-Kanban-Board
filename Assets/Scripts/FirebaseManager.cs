@@ -5,6 +5,7 @@ using Firebase.Auth;
 using Firebase.Database;
 using TMPro;
 using System.Linq;
+using System.Collections.Generic;
 
 public class FirebaseManager : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class FirebaseManager : MonoBehaviour
 
     [Header("serverData")]
     [SerializeField] TMP_InputField serverInput;
+    public List<string> userList;
 
     void Awake()
     {
@@ -315,57 +317,6 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
-    private IEnumerator UpdateXp(int _xp)
-    {
-        //Set the currently logged in user xp
-        var DBTask = DBreference.Child("users").Child(User.UserId).Child("xp").SetValueAsync(_xp);
-
-        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
-
-        if (DBTask.Exception != null)
-        {
-            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
-        }
-        else
-        {
-            //Xp is now updated
-        }
-    }
-
-    private IEnumerator UpdateKills(int _kills)
-    {
-        //Set the currently logged in user kills
-        var DBTask = DBreference.Child("users").Child(User.UserId).Child("kills").SetValueAsync(_kills);
-
-        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
-
-        if (DBTask.Exception != null)
-        {
-            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
-        }
-        else
-        {
-            //Kills are now updated
-        }
-    }
-
-    private IEnumerator UpdateDeaths(int _deaths)
-    {
-        //Set the currently logged in user deaths
-        var DBTask = DBreference.Child("users").Child(User.UserId).Child("deaths").SetValueAsync(_deaths);
-
-        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
-
-        if (DBTask.Exception != null)
-        {
-            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
-        }
-        else
-        {
-            //Deaths are now updated
-        }
-    }
-
     private IEnumerator LoadUserData()
     {
         //Get the currently logged in user data
@@ -424,5 +375,56 @@ public class FirebaseManager : MonoBehaviour
         {
             //Database username is now updated
         }
+    }
+  
+    public void addUserToServerCall()
+    {
+      StartCoroutine(addUserToServer());
+    }
+    
+    private IEnumerator addUserToServer()
+    {
+      if (User != null)
+      {
+        var DBTaskUser = DBreference.Child("users").Child(User.UserId).Child("username").GetValueAsync();
+
+        yield return new WaitUntil(predicate: () => DBTaskUser.IsCompleted);
+
+        if (DBTaskUser.Exception != null)
+        {
+            Debug.LogWarning(message: $"Failed to register task with {DBTaskUser.Exception}");
+        }
+        else
+        {
+            //Database username is now updated
+        }
+        var DBTask = DBreference.Child("servers").Child(FirebaseCarryOver.serverNameText).Child("users").GetValueAsync();
+
+        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
+
+        if (DBTask.Exception != null)
+        {
+            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
+        }
+        else
+        {
+            //Database username is now updated
+        }
+        checkUsers((string) DBTask.Result.Value);
+        if (!userList.Contains(DBTaskUser.Result.Value))
+        {
+          var DBTaskSetNewUser = DBreference.Child("servers").Child(FirebaseCarryOver.serverNameText).Child("users").SetValueAsync(DBTask.Result.Value + "," + DBTaskUser.Result.Value);
+        }
+      }
+    }
+
+    private void checkUsers(string namesList)
+    {
+      userList = new List<string>();
+      userList = namesList.Split(',').ToList();
+      foreach (string x in userList)
+      {
+        Debug.Log(x);
+      }
     }
 }

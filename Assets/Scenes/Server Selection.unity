@@ -2306,10 +2306,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
@@ -2317,7 +2321,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 80281070}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1475876600}
+    - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
@@ -2325,11 +2337,23 @@ PrefabInstance:
       value: StartClient
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: addUserToServerCall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Mirror.NetworkManager, Mirror
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: FirebaseManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3323754334516285864, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
@@ -2916,7 +2940,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -2933,7 +2957,7 @@ PrefabInstance:
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1461963202}
+      objectReference: {fileID: 1475876600}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -2947,15 +2971,23 @@ PrefabInstance:
       value: StartHost
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: addUserToServerCall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Mirror.NetworkManager, Mirror
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Mirror.NetworkManager, Mirror
+      value: FirebaseManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3323754334516285864, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
