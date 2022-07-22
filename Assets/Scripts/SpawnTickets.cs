@@ -31,6 +31,7 @@ public class SpawnTickets : NetworkBehaviour
     public void SpawnTicketCmd()
     {
         GameObject spawnedTicket = Instantiate(ticketGameObject, spawnPosition.position, ticketGameObject.transform.rotation);
+        spawnedTicket.GetComponent<Animator>().Play("Ticket_Shrink");
         NetworkServer.Spawn(spawnedTicket);
     }
 

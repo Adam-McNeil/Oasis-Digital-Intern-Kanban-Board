@@ -23,7 +23,7 @@ public class StraightenTicket : NetworkBehaviour
             Transform spawnTransform = other.GetComponentInChildren<Transform>();
             this.gameObject.transform.position = spawnTransform.position;
             this.gameObject.transform.rotation = spawnTransform.rotation;
-            this.gameObject.transform.Rotate(-90, 0, 0);
+            // this.gameObject.transform.Rotate(-90, 0, 0);
 
         }
     }
