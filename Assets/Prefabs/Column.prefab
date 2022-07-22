@@ -1041,6 +1041,7 @@ MonoBehaviour:
   hammer2: {fileID: 8300000, guid: 3cad18142765eab4f88707fb519acc20, type: 3}
   saw: {fileID: 8300000, guid: 60539994ac1e7a245bb08daa8ca1223c, type: 3}
   DustCloud: {fileID: 7207187320956741729, guid: 0dee54644bbaa4c4399d85ab823eca96, type: 3}
+  wasSpawned: 0
 --- !u!82 &7517307871901978199
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1160,14 +1161,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6543466140767605135}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0.125, z: 0}
   m_LocalScale: {x: 0.125, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5208205809674271172}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &7225955142662557938
 GameObject:
   m_ObjectHideFlags: 0
