@@ -4383,7 +4383,7 @@ Transform:
   m_GameObject: {fileID: 1000550313}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 10, y: 10, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 834936678}
@@ -5758,6 +5758,10 @@ PrefabInstance:
       propertyPath: yellow
       value: 
       objectReference: {fileID: 2100000, guid: ab73141c50446654b9c00f042b66ad82, type: 2}
+    - target: {fileID: 2830128503478656090, guid: 2da5f8efd24750d468f231433e4f36b7, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3256803941735098761, guid: 2da5f8efd24750d468f231433e4f36b7, type: 3}
       propertyPath: m_Name
       value: Edit Menu
@@ -5852,6 +5856,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2da5f8efd24750d468f231433e4f36b7, type: 3}
+--- !u!1 &1776440088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6212889569581044729, guid: 2da5f8efd24750d468f231433e4f36b7, type: 3}
+  m_PrefabInstance: {fileID: 1776440087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1776440089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776440088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a620a3eee021df542a591121634cdb28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  users: []
 --- !u!1 &1785198064
 GameObject:
   m_ObjectHideFlags: 0
