@@ -20,14 +20,11 @@ public class StraightenTicket : NetworkBehaviour
         if (other.gameObject.CompareTag("Straighten Ticket"))
         {
             Debug.Log("entered trigger");
-            ticketRigidbody.constraints = RigidbodyConstraints.None;
             Transform spawnTransform = other.GetComponentInChildren<Transform>();
             this.gameObject.transform.position = spawnTransform.position;
-            Debug.Log(this.gameObject.transform.rotation.x);
             this.gameObject.transform.rotation = spawnTransform.rotation;
-            Debug.Log(this.gameObject.transform.rotation.x);
-            // this.gameObject.transform.Rotate(-90, 0, -90);
-            Debug.Log(this.gameObject.transform.rotation.x);
+            this.gameObject.transform.Rotate(-90, 0, 0);
+
         }
     }
 

@@ -243,7 +243,7 @@ public class PlayerController : NetworkBehaviour
             {
                 if (hit.transform.gameObject.CompareTag("Spawn Button"))
                 {
-                    hit.transform.gameObject.GetComponent<SpawnTickets>().SpawnTicketCmd(); 
+                    hit.transform.gameObject.GetComponent<SpawnTickets>().CreateTicket(); 
                     hit.transform.gameObject.GetComponent<Animator>().Play("buttonPress");
                 }
 

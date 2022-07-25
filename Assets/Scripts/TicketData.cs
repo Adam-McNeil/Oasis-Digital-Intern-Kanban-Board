@@ -7,7 +7,6 @@ using System.IO;
 
 public class TicketData : NetworkBehaviour
 {
-    public GameObject ticketHeaderObject;
     [SyncVar(hook = nameof(ChangeHeaderData))]
     public string headerData = "Header";
     [SyncVar(hook = nameof(ChangeDescriptionData))]
@@ -18,20 +17,24 @@ public class TicketData : NetworkBehaviour
     public int materialData = 0;
 
     [SerializeField] private List<Material> materials = new List<Material>();
-    [SerializeField] private TextMeshPro ticketHeaderText;
+    [SerializeField] private List<TextMeshPro> ticketHeaderTextBoxes = new List<TextMeshPro>();
 
     TicketSaveData ticketSaveData = new TicketSaveData();
 
     void Start()
     {
-        ticketHeaderText.text = headerData;
+        foreach (TextMeshPro ticketHeaderText in ticketHeaderTextBoxes) {
+            ticketHeaderText.text = headerData;
+        }
         
     }
 
     private void ChangeHeaderData(string oldValue, string newValue)
     {
         headerData = newValue;
-        ticketHeaderText.text = headerData;
+        foreach (TextMeshPro ticketHeaderText in ticketHeaderTextBoxes) {
+            ticketHeaderText.text = headerData;
+        }
         Debug.Log("headerData = newValue;");
     }
 
@@ -90,7 +93,9 @@ public class TicketData : NetworkBehaviour
         this.GetComponent<Rigidbody>().constraints = loadedTicketSaveData.constraints;
 
         headerData = loadedTicketSaveData.headerText;
-        ticketHeaderText.text = headerData;
+        foreach (TextMeshPro ticketHeaderText in ticketHeaderTextBoxes) {
+            ticketHeaderText.text = headerData;
+        }
 
         descriptionData = loadedTicketSaveData.descriptionText;
         assignedToData = loadedTicketSaveData.assignedToNumber;
