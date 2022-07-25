@@ -15,13 +15,14 @@ public class cameraController : NetworkBehaviour
     public GameObject desktopCamera;
     public GameObject xrObject;
     public GameObject player;
+    public GameObject playerModel;
     bool VrIsOn;
 
     void Start()
     {
         if (isLocalPlayer)
         {
-
+            playerModel.GetComponent<SkinnedMeshRenderer>().enabled = false;
             pauseMenuControllerScript = GameObject.Find("Settings/Pause Menu").GetComponent<PauseMenuController>();
             editMenuControllerScript = GameObject.Find("Edit Menu").GetComponent<EditMenuController>();
             activeCamera = desktopCamera;
@@ -50,6 +51,7 @@ public class cameraController : NetworkBehaviour
             desktopCamera.SetActive(true);
             UpdateOtherScriptsCamera();
         }
+
     }
 
     private void UpdateOtherScriptsCamera()
