@@ -1150,6 +1150,7 @@ MonoBehaviour:
   desktopCamera: {fileID: 629467838714742647}
   xrObject: {fileID: 8794717642632416462}
   player: {fileID: 4399136816981967447}
+  playerModel: {fileID: 0}
 --- !u!114 &1302165173632574762
 MonoBehaviour:
   m_ObjectHideFlags: 0

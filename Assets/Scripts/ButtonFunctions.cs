@@ -14,6 +14,8 @@ public class ButtonFunctions : MonoBehaviour
 
     public void ExitServer()
     {
+        Destroy(GameObject.Find("FirebaseManager"));
+        Destroy(GameObject.Find("Firebase-Carry-Over"));
         Mirror.NetworkManager networkMangaer = GameObject.Find("Network Manager").GetComponent<Mirror.NetworkManager>();
         networkMangaer.StopClient();
         networkMangaer.StopHost();

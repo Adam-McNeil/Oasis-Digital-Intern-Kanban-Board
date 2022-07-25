@@ -8,15 +8,23 @@ public class getCurrentUsers : MonoBehaviour
 
     public List<string> users = new List<string>();
     public List<string> usersOld = new List<string>();
+    private FirebaseManager firebaseManager;
 
-  private void Update()
+    private void Start()
     {
-      users = GameObject.Find("FirebaseManager").GetComponent<FirebaseManager>().userList;
-      if (users != usersOld)
-      {
-        this.GetComponent<TMP_Dropdown>().ClearOptions();
-        this.GetComponent<TMP_Dropdown>().AddOptions(users);
-        usersOld = users;
-      }
+        firebaseManager = GameObject.Find("FirebaseManager").GetComponent<FirebaseManager>();
+        
     }
-  }
+
+    private void Update()
+    {
+        users = firebaseManager.userList;
+        if (users != usersOld)
+        {
+            this.GetComponent<TMP_Dropdown>().ClearOptions();
+            this.GetComponent<TMP_Dropdown>().AddOptions(users);
+            usersOld = users;
+        }
+    }
+}
+

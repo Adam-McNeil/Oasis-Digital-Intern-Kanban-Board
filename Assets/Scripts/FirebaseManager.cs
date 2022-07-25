@@ -384,63 +384,63 @@ public class FirebaseManager : MonoBehaviour
     
     private IEnumerator addUserToServer()
     {
-      if (User != null)
-      {
         //get the username of the user currently logged in
-        var DBTaskUser = DBreference.Child("users").Child(User.UserId).Child("username").GetValueAsync();
-
-        yield return new WaitUntil(predicate: () => DBTaskUser.IsCompleted);
-
-        if (DBTaskUser.Exception != null)
+        if (User != null)
         {
-            Debug.LogWarning(message: $"Failed to register task with {DBTaskUser.Exception}");
-        }
-        else
-        {
-            //Database username is now updated
-        }
+            var DBTaskUser = DBreference.Child("users").Child(User.UserId).Child("username").GetValueAsync();
 
-        //get the users that have logged into the server
-        var DBTask = DBreference.Child("servers").Child(FirebaseCarryOver.serverNameText).Child("users").GetValueAsync();
+            yield return new WaitUntil(predicate: () => DBTaskUser.IsCompleted);
 
-        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
+            if (DBTaskUser.Exception != null)
+            {
+                Debug.LogWarning(message: $"Failed to register task with {DBTaskUser.Exception}");
+            }
+            else
+            {
+                //Database username is now updated
+            }
 
-        if (DBTask.Exception != null)
-        {
-            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
-        }
-        else
-        {
-            //Database username is now updated
-        }
+            //get the users that have logged into the server
+            var DBTask = DBreference.Child("servers").Child(FirebaseCarryOver.serverNameText).Child("users").GetValueAsync();
 
-        if (DBTask.Result.Value == null)
-        {
-          DBreference.Child("servers").Child(FirebaseCarryOver.serverNameText).Child("users").SetValueAsync(DBTaskUser.Result.Value);
-          CheckUsers((string) DBTask.Result.Value);
-        }
+            yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
-        //see if the current user has logged into that server
-        CheckUsers((string) DBTask.Result.Value);
-        if (!userList.Contains(DBTaskUser.Result.Value))
-        {
-          var DBTaskSetNewUser = DBreference.Child("servers").Child(FirebaseCarryOver.serverNameText).Child("users").SetValueAsync(DBTask.Result.Value + "," + DBTaskUser.Result.Value);
-           CheckUsers((string) DBTask.Result.Value);
-        }
-        DBTask = DBreference.Child("servers").Child(FirebaseCarryOver.serverNameText).Child("users").GetValueAsync();
+            if (DBTask.Exception != null)
+            {
+                Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
+            }
+            else
+            {
+                //Database username is now updated
+            }
 
-        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
+            if (DBTask.Result.Value == null)
+            {
+                DBreference.Child("servers").Child(FirebaseCarryOver.serverNameText).Child("users").SetValueAsync(DBTaskUser.Result.Value);
+                CheckUsers((string)DBTask.Result.Value);
+            }
 
-        if (DBTask.Exception != null)
-        {
-            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
+            //see if the current user has logged into that server
+            CheckUsers((string)DBTask.Result.Value);
+            if (!userList.Contains(DBTaskUser.Result.Value))
+            {
+                var DBTaskSetNewUser = DBreference.Child("servers").Child(FirebaseCarryOver.serverNameText).Child("users").SetValueAsync(DBTask.Result.Value + "," + DBTaskUser.Result.Value);
+                CheckUsers((string)DBTask.Result.Value);
+            }
+            DBTask = DBreference.Child("servers").Child(FirebaseCarryOver.serverNameText).Child("users").GetValueAsync();
+
+            yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
+
+            if (DBTask.Exception != null)
+            {
+                Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
+            }
+            else
+            {
+                //Database username is now updated
+            }
+            CheckUsers((string)DBTask.Result.Value);
         }
-        else
-        {
-            //Database username is now updated
-        }
-        CheckUsers((string) DBTask.Result.Value);
-      }
     }
 
     private void CheckUsers(string namesList)
