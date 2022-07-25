@@ -25,9 +25,9 @@ public class PickUp : NetworkBehaviour
     [SerializeField] private Material tempMaterial;
 
     private GameObject heldObject;
-    private Material heldObjectMaterial;
-    private Material orginalObjectMaterial;
-    private Color currentColor;
+    private List<OutlineNetworkController> outlineNetworkControllers = new List<OutlineNetworkController>();
+    private OutlineNetworkController outlinedGameObject;
+    private OutlineNetworkController lastOutlinedGameObject;
     private Rigidbody heldObjectRB;
     private bool isHoldingObject;
 
@@ -60,7 +60,9 @@ public class PickUp : NetworkBehaviour
             if (Input.GetMouseButtonDown(1) && isHoldingObject)
             {
                 ThrowObjectCmd();
-                isHoldingObject = false;
+                if (isClientOnly)
+                    ThrowObjectLocal();
+                
             }
         }
         if (heldObject != null && isServer)
@@ -82,75 +84,134 @@ public class PickUp : NetworkBehaviour
     {
 
         RaycastHit hit;
-        Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.position + playerCamera.transform.forward * 5, new Color(0, 0, 0), 3f);
+        GameObject hitObject = null;
+        bool ticketHit = false;
 
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, pickRange))
         {
-            GameObject hitObject = hit.transform.gameObject;
+            hitObject = hit.transform.gameObject;
             if (hitObject.CompareTag("Ticket"))
             {
-                hit.transform.gameObject.GetComponent<TicketHighlight>().UpdateHighlightCmd(true);
-                if (Input.GetMouseButtonDown(0))
+                outlinedGameObject = hitObject.GetComponent<OutlineNetworkController>();
+                if (!outlineNetworkControllers.Contains(outlinedGameObject))
                 {
-                    if (!isHoldingObject)
+                    outlineNetworkControllers.Add(outlinedGameObject);
+                    if (outlineNetworkControllers.Count > 1)
                     {
-                        isHoldingObject = true;
-                        PickUpObjectCmd(hit.transform.gameObject.GetComponent<NetworkIdentity>().netId);
+                        outlineNetworkControllers[0].UpdateOutlineLocal(false);
+                        outlineNetworkControllers.RemoveAt(0);
                     }
-                    else
-                    {
-                        DropObjectCmd();
-                        isHoldingObject = false;
-                    }
+                    outlinedGameObject.UpdateOutlineLocal(true);
                 }
+                ticketHit = true;
+            }
+            else
+            {
+                RemoveAllOutlines();
             }
         }
+        else
+        {
+            RemoveAllOutlines();
+        }
 
-
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!isHoldingObject && ticketHit)
+            {
+                PickUpObjectCmd(hitObject.GetComponent<NetworkIdentity>().netId);
+                if (isClientOnly)
+                    PickUpObjectLocal(hitObject);
+            }
+            else
+            {
+                DropObjectCmd();
+                if (isClientOnly)
+                    DropObjectLocal();
+            }
+        }
     }
 
     private void attemptGrab()
     {
 
         RaycastHit hit;
-        Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.position + playerCamera.transform.forward * 5, new Color(0, 0, 0), 3f);
+        GameObject hitObject = null;
+        bool ticketHit = false;
 
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, pickRange))
         {
-            GameObject hitObject = hit.transform.gameObject;
+            hitObject = hit.transform.gameObject;
             if (hitObject.CompareTag("Ticket"))
             {
-                hit.transform.gameObject.GetComponent<TicketHighlight>().UpdateHighlightCmd(true);
-                if (Input.GetMouseButtonDown(0))
+                outlinedGameObject = hitObject.GetComponent<OutlineNetworkController>();
+                if (!outlineNetworkControllers.Contains(outlinedGameObject))
                 {
-                    if (!isHoldingObject)
+                    outlineNetworkControllers.Add(outlinedGameObject);
+                    if (outlineNetworkControllers.Count > 1)
                     {
-                        isHoldingObject = true;
-                        PickUpObjectCmd(hit.transform.gameObject.GetComponent<NetworkIdentity>().netId);
+                        outlineNetworkControllers[0].UpdateOutlineLocal(false);
+                        outlineNetworkControllers.RemoveAt(0);
                     }
-                    else
-                    {
-                        DropObjectCmd();
-                        isHoldingObject = false;
-                    }
+                    outlinedGameObject.UpdateOutlineLocal(true);
                 }
+                ticketHit = true;
+            }
+            else
+            {
+                RemoveAllOutlines();
             }
         }
+        else
+        {
+            RemoveAllOutlines();
+        }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!isHoldingObject && ticketHit)
+            {
+                PickUpObjectCmd(hitObject.GetComponent<NetworkIdentity>().netId);
+                if (isClientOnly)
+                    PickUpObjectLocal(hitObject);
+            }
+            else
+            {
+                DropObjectCmd();
+                if (isClientOnly)
+                    DropObjectLocal();
+            }
+        }
     }
 
+    private void RemoveAllOutlines()
+    {
+        foreach (OutlineNetworkController outlineNetworkController in outlineNetworkControllers)
+        {
+            outlineNetworkControllers[0].UpdateOutlineLocal(false);
+        }
+        outlineNetworkControllers.Clear();
+    }
+
+    #region PickUp
     [Command]
     void PickUpObjectCmd(uint ID)
     {
-        GameObject[] ticketArray = GameObject.FindGameObjectsWithTag("Ticket");
-        foreach (GameObject ticket in ticketArray)
+        foreach (NetworkIdentity ticket in TicketData.networkIdentities)
         {
-            if (ticket.GetComponent<NetworkIdentity>().netId == ID)
+            if (ticket.netId == ID)
             {
-                PickUpObject(ticket);
+                PickUpObject(ticket.gameObject);
                 return;
             }
         }
+    }
+
+    void PickUpObjectLocal(GameObject pickedUpGameObject)
+    {
+        pickedUpGameObject.GetComponent<OutlineNetworkController>().UpdateOutlineLocal(true, true);
+        heldObject = pickedUpGameObject;
+        isHoldingObject = true;
     }
 
     void PickUpObject(GameObject pickedObject)
@@ -164,12 +225,27 @@ public class PickUp : NetworkBehaviour
         heldObjectRB.drag = dragResistance;
         heldObjectRB.constraints = RigidbodyConstraints.FreezeRotation; 
         heldObject = pickedObject;
-    }
+        isHoldingObject = true;
+        pickedObject.GetComponent<OutlineNetworkController>().UpdateOutlineCmd(true, true);
 
+    }
+    #endregion
+
+    #region Drop
     [Command]
     void DropObjectCmd()
     {
         DropObject();
+    }
+
+    void DropObjectLocal()
+    {
+        if (heldObject != null)
+        {
+            heldObject.GetComponent<OutlineNetworkController>().UpdateOutlineCmd(false, true);
+            heldObject = null;
+            isHoldingObject = false;
+        }
     }
 
     void DropObject()
@@ -179,15 +255,29 @@ public class PickUp : NetworkBehaviour
             heldObjectRB.useGravity = true;
             heldObjectRB.drag = 0;
             heldObjectRB.constraints = RigidbodyConstraints.None;
+            heldObject.GetComponent<OutlineNetworkController>().UpdateOutlineCmd(false, true);
             heldObject = null;
+            isHoldingObject = false;
 
         }
     }
+    #endregion
 
+    #region Throw
     [Command]
     void ThrowObjectCmd()
     {
         ThrowObject();
+    }
+
+    private void ThrowObjectLocal()
+    {
+        if (heldObject != null)
+        {
+            heldObject.GetComponent<OutlineNetworkController>().UpdateOutlineCmd(false, true);
+            heldObject = null;
+            isHoldingObject = false;
+        }
     }
 
     void ThrowObject()
@@ -198,9 +288,13 @@ public class PickUp : NetworkBehaviour
             heldObjectRB.drag = 0;
             heldObjectRB.constraints = RigidbodyConstraints.None;
             heldObjectRB.velocity = (holdArea.transform.forward * throwForce);
+            heldObject.GetComponent<OutlineNetworkController>().UpdateOutlineCmd(false, true);
             heldObject = null;
+            isHoldingObject = false;
+
         }
     }
+    #endregion
 
     void MoveObject()
     {
@@ -225,6 +319,7 @@ public class PickUp : NetworkBehaviour
         }
     }
 
+    #region Offset
     private void UpdateOffset()
     {
         float mouseChange = Input.GetAxis("Mouse ScrollWheel");
@@ -241,6 +336,7 @@ public class PickUp : NetworkBehaviour
     {
         offset = newOffset;
     }
+    #endregion
 
     public void SetActiveCamera(GameObject camera)
     {

@@ -7,6 +7,8 @@ using System.IO;
 
 public class TicketData : NetworkBehaviour
 {
+    static public List<NetworkIdentity> networkIdentities = new List<NetworkIdentity>();
+
     public GameObject ticketHeaderObject;
     [SyncVar(hook = nameof(ChangeHeaderData))]
     public string headerData = "Header";
@@ -25,7 +27,12 @@ public class TicketData : NetworkBehaviour
     void Start()
     {
         ticketHeaderText.text = headerData;
-        
+        networkIdentities.Add(this.gameObject.GetComponent<NetworkIdentity>());
+    }
+
+    private void OnDestroy()
+    {
+        networkIdentities.Remove(this.gameObject.GetComponent<NetworkIdentity>());
     }
 
     private void ChangeHeaderData(string oldValue, string newValue)

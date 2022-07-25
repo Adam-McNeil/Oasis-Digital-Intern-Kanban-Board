@@ -188,7 +188,8 @@ GameObject:
   - component: {fileID: 5085379674327386050}
   - component: {fileID: 879536040644998552}
   - component: {fileID: 3728580411011306191}
-  - component: {fileID: 798150393608162271}
+  - component: {fileID: 5754066944806569787}
+  - component: {fileID: -6764791687717872068}
   - component: {fileID: -5694179464323564809}
   - component: {fileID: -6303293747527003523}
   - component: {fileID: 6604909370618025992}
@@ -450,7 +451,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
---- !u!114 &798150393608162271
+--- !u!114 &5754066944806569787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6435467276571581426}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 3
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &-6764791687717872068
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -459,11 +478,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6435467276571581426}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd6cce671284d1343a625cab682fa658, type: 3}
+  m_Script: {fileID: 11500000, guid: b321cf32e6c0e214582a8d63880f57c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  outlineScript: {fileID: 5754066944806569787}
 --- !u!114 &-5694179464323564809
 MonoBehaviour:
   m_ObjectHideFlags: 0

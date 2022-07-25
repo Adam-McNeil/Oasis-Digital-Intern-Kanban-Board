@@ -67,6 +67,7 @@ GameObject:
   - component: {fileID: 3875783426037439500}
   - component: {fileID: 6899472461144126552}
   - component: {fileID: 3093973633000531810}
+  - component: {fileID: 4276773127273473637}
   m_Layer: 8
   m_Name: Settings_Pause Menu
   m_TagString: Untagged
@@ -189,6 +190,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb83e267ba5f3fd4a98b66c00ce81556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4276773127273473637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789161918930608605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a5070c23d6e4647b59515a034aa31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  senSlider: {fileID: 1247121686729682660}
+  volSlider: {fileID: 1452555613068677955}
+  senInputField: {fileID: 5075242930351053436}
+  volInputField: {fileID: 285059671285614346}
 --- !u!1 &827809838812090403
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,7 +833,7 @@ GameObject:
   - component: {fileID: 6185104895587401136}
   - component: {fileID: 5075242930351053436}
   m_Layer: 8
-  m_Name: InputField (TMP)
+  m_Name: InputField (Sen)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2826,7 +2843,7 @@ GameObject:
   - component: {fileID: 1102086641225844610}
   - component: {fileID: 285059671285614346}
   m_Layer: 8
-  m_Name: InputField (TMP)
+  m_Name: InputField (Vol)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3331,7 +3348,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -3340,22 +3357,22 @@ PrefabInstance:
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3093973633000531810}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: SaveSetting
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: 
+      value: ButtonFunctions, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: 
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1979639617468268984, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_Color.a
