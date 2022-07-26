@@ -19,6 +19,7 @@ public class DescriptionMenuController : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI assignedToText;
 
     private void Start()
     {
@@ -39,6 +40,11 @@ public class DescriptionMenuController : MonoBehaviour
         TicketData ticketData = ticket.GetComponent<TicketData>();
         titleText.text = ticketData.headerData;
         descriptionText.text = ticketData.descriptionData;
+        if (ticketData.assignedToData >= getCurrentUsers.users.Count)
+        {
+            ticketData.assignedToData = 0;
+        }
+        assignedToText.text = getCurrentUsers.users[ticketData.assignedToData];
 
         this.transform.position = ticket.transform.position;
         this.transform.rotation = ticket.transform.rotation;

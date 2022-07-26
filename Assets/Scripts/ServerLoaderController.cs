@@ -29,34 +29,23 @@ public class ServerLoaderController : NetworkBehaviour
             return;
         }
         serverJSONTextToList = serverJSONString.Split("\\n").ToList();
-        Debug.Log("---------------------------------------------");
-        foreach (string x in serverJSONTextToList)
-        {
-            Debug.Log(x);
-        }
         foreach (string jsonString in serverJSONTextToList)
         {
             if (jsonString == "")
             {
                 continue;
             }
-            Debug.Log("____________________________________________________");
             key = jsonString[0];
-            Debug.Log(key);
             string jsonStringCopy = jsonString.Remove(0, 1);
             switch (key)
             {
                 case 'T':
-                    Debug.Log("Making Ticket");
-                    Debug.Log(jsonStringCopy);
                     GameObject spawnedTicket = Instantiate(ticketPrefab);
                     spawnedTicket.GetComponent<TicketData>().Load(jsonStringCopy);
                     NetworkServer.Spawn(spawnedTicket);
                     break;
 
                 case 'C':
-                    Debug.Log("Making Column");
-                    Debug.Log(jsonStringCopy);
                     GameObject spawnedColumn = Instantiate(columnPrefab);
                     spawnedColumn.GetComponent<EditColumn>().Load(jsonStringCopy);
                     NetworkServer.Spawn(spawnedColumn);

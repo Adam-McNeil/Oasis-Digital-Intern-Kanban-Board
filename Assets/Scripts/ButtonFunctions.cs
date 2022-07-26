@@ -26,6 +26,11 @@ public class ButtonFunctions : MonoBehaviour
         PlayerPrefs.SetInt("Volume",SliderToText.volValue);  
         PlayerPrefs.Save();
     }
-    
-   
+
+    public void RefreshButton()
+    {
+        GameObject.Find("FirebaseManager").GetComponent<FirebaseManager>().addUserToServerCall();
+    }
+
+
 }

@@ -6,25 +6,28 @@ using TMPro;
 public class getCurrentUsers : MonoBehaviour
 {
 
-    public List<string> users = new List<string>();
-    public List<string> usersOld = new List<string>();
+    static public List<string> users = new List<string>();
+    static public List<string> usersOld = new List<string>();
     private FirebaseManager firebaseManager;
+    private TMP_Dropdown dropDown;
 
     private void Start()
     {
         firebaseManager = GameObject.Find("FirebaseManager").GetComponent<FirebaseManager>();
-        
+        dropDown = this.GetComponent<TMP_Dropdown>();
     }
 
-    private void Update()
+    public void UpdateDropDown()
     {
-        users = firebaseManager.userList;
-        if (users != usersOld)
+        dropDown.ClearOptions();
+        users.Clear();
+        users.Add("Nobody");
+        foreach (string user in firebaseManager.userList)
         {
-            this.GetComponent<TMP_Dropdown>().ClearOptions();
-            this.GetComponent<TMP_Dropdown>().AddOptions(users);
-            usersOld = users;
+            users.Add(user);
         }
+        Debug.Log("Update Drop Down was called and user was this long: " + users.Count); 
+        dropDown.AddOptions(users);
     }
 }
 
