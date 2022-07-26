@@ -58,7 +58,6 @@ public class PlayerController : NetworkBehaviour
         farAway = new Vector3(10000, 10000, 0);
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
-        GameObject.Find("FirebaseManager").GetComponent<FirebaseManager>().addUserToServerCall();
         if (isLocalPlayer)
         {
             Destroy(usernameText);

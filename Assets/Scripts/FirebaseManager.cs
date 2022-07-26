@@ -190,7 +190,7 @@ public class FirebaseManager : MonoBehaviour
             confirmLoginText.text = "Logged In";
             StartCoroutine(LoadUserData());
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(0.5f);
 
             usernameField.text = User.DisplayName;
             UIManager.instance.UserDataScreen(); // Change to user data UI
@@ -385,6 +385,7 @@ public class FirebaseManager : MonoBehaviour
     private IEnumerator addUserToServer()
     {
         //get the username of the user currently logged in
+        Debug.Log(User != null);
         if (User != null)
         {
             var DBTaskUser = DBreference.Child("users").Child(User.UserId).Child("username").GetValueAsync();
@@ -440,6 +441,7 @@ public class FirebaseManager : MonoBehaviour
                 //Database username is now updated
             }
             CheckUsers((string)DBTask.Result.Value);
+            GameObject.Find("DropdownAssigned").GetComponent<getCurrentUsers>().UpdateDropDown();
         }
     }
 
@@ -449,7 +451,7 @@ public class FirebaseManager : MonoBehaviour
       userList = namesList.Split(',').ToList();
       foreach (string x in userList)
       {
-        Debug.Log(x);
+        //Debug.Log(x);
       }
     }
 }
