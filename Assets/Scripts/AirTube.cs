@@ -12,6 +12,7 @@ public class AirTube : MonoBehaviour
     public float speed;                                                  //Speed for the movement of the object 
     private AudioSource audioSource;
     [SerializeField] private AudioClip moveSound;
+    [SerializeField] private ParticleSystem movementParticle;
 
     public void Start() {
         if (isActive) audioSource = GetComponent<AudioSource>();
@@ -23,6 +24,7 @@ public class AirTube : MonoBehaviour
             for(int i = 0; i <= objectsOnConveyor.Count -1; i++)
             {
                 objectsOnConveyor[i].GetComponent<Rigidbody>().AddForce(transform.up * speed * Time.deltaTime, ForceMode.Impulse);
+                Destroy(Instantiate(movementParticle, objectsOnConveyor[i].transform.position, movementParticle.transform.rotation), 1);
             }
         }
     }
