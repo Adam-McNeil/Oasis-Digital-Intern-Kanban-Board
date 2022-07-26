@@ -27,11 +27,22 @@ public class SpawnTickets : NetworkBehaviour
         }
     }
 
-    [Command(requiresAuthority = false)]
-    public void SpawnTicketCmd()
+    public void SpawnTicketCmd(bool newTicket = false)
     {
         GameObject spawnedTicket = Instantiate(ticketGameObject, spawnPosition.position, ticketGameObject.transform.rotation);
+        if (newTicket) {
+            spawnedTicket.GetComponent<Animator>().Play("Ticket_Spawn");
+            spawnedTicket.GetComponent<Animator>().Play("Ticket_Shrink");
+        } 
+        else {
+            spawnedTicket.GetComponent<Animator>().Play("Ticket_Grow");
+        }
         NetworkServer.Spawn(spawnedTicket);
+    }
+
+    [Command(requiresAuthority = false)]
+    public void CreateTicket() {
+        SpawnTicketCmd(true);
     }
 
     private PlayerController GetPlayerController() {
