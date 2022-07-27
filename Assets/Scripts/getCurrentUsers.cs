@@ -16,7 +16,7 @@ public class getCurrentUsers : MonoBehaviour
     {
         firebaseManager = GameObject.Find("FirebaseManager").GetComponent<FirebaseManager>();
         dropDown = this.GetComponent<TMP_Dropdown>();
-
+        UpdateDropDown();
     }
 
     public void UpdateDropDown()
@@ -26,8 +26,10 @@ public class getCurrentUsers : MonoBehaviour
         users.Add("Nobody");
         foreach (string user in firebaseManager.userList)
         {
+            Debug.Log("User Added: " + user);
             users.Add(user);
         }
         dropDown.AddOptions(users);
     }
+
 }

@@ -16,17 +16,21 @@ public class TicketData : NetworkBehaviour
     public string descriptionData = "N/A";
     [SyncVar(hook = nameof(ChangeAssignedToData))]
     public int assignedToData = 0;
+    [SyncVar(hook = nameof(ChangeAssignedToName))]
+    public string assignedToName = "Not Assigned";
     [SyncVar(hook = nameof(ChangeMaterialData))]
     public int materialData = 0;
 
     [SerializeField] private List<Material> materials = new List<Material>();
     [SerializeField] private TextMeshPro ticketHeaderText;
+    [SerializeField] private TextMeshPro ticketAssignedText;
 
     TicketSaveData ticketSaveData = new TicketSaveData();
 
     void Start()
     {
         ticketHeaderText.text = headerData;
+        ticketAssignedText.text = assignedToName;
         networkIdentities.Add(this.gameObject.GetComponent<NetworkIdentity>());
     }
 
@@ -46,14 +50,19 @@ public class TicketData : NetworkBehaviour
     {
         descriptionData = newValue;
         Debug.Log("descriptionData = newValue;");
-
     }
 
     private void ChangeAssignedToData(int oldValue, int newValue)
     {
         assignedToData = newValue;
         Debug.Log("assignedToData = newValue;");
+    }
 
+    private void ChangeAssignedToName(string oldValue, string newValue)
+    {
+        assignedToName = newValue;
+        ticketAssignedText.text = assignedToName;
+        Debug.Log("assignedToName = newValue;");
     }
 
     private void ChangeMaterialData(int oldValue, int newValue)
@@ -65,11 +74,12 @@ public class TicketData : NetworkBehaviour
     }
 
     [Command(requiresAuthority = false)]
-    public void SubmitEditChangesCmd(string newHeader, string newDescription, int newAssignTo, int newMaterial)
+    public void SubmitEditChangesCmd(string newHeader, string newDescription, int newAssignTo, string newAssignToName,int newMaterial)
     {
         headerData = newHeader;
         descriptionData = newDescription;
         assignedToData = newAssignTo;
+        assignedToName = newAssignToName;
         materialData = newMaterial;
     }
 
@@ -82,6 +92,7 @@ public class TicketData : NetworkBehaviour
         ticketSaveData.headerText = headerData;
         ticketSaveData.descriptionText = descriptionData;
         ticketSaveData.assignedToNumber = assignedToData;
+        ticketSaveData.assignedToText = assignedToName;
         ticketSaveData.materialNumber = materialData;
         string json = JsonUtility.ToJson(ticketSaveData);
         return json;
@@ -97,7 +108,9 @@ public class TicketData : NetworkBehaviour
         this.GetComponent<Rigidbody>().constraints = loadedTicketSaveData.constraints;
 
         headerData = loadedTicketSaveData.headerText;
+        assignedToName = loadedTicketSaveData.assignedToText;
         ticketHeaderText.text = headerData;
+        ticketAssignedText.text = assignedToName;
 
         descriptionData = loadedTicketSaveData.descriptionText;
         assignedToData = loadedTicketSaveData.assignedToNumber;
@@ -115,6 +128,7 @@ public class TicketData : NetworkBehaviour
         public string headerText;
         public string descriptionText;
         public int assignedToNumber;
+        public string assignedToText;
         public int materialNumber;
 
         public void print()
@@ -126,6 +140,7 @@ public class TicketData : NetworkBehaviour
             Debug.Log(headerText);
             Debug.Log(descriptionText);
             Debug.Log(assignedToNumber);
+            Debug.Log(assignedToText);
             Debug.Log(materialNumber);
         }
 

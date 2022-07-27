@@ -53,7 +53,7 @@ public class EditTable : NetworkBehaviour
         if (ticket != null)
         {
             ticketDataScript = ticket.GetComponent<TicketData>();
-            ticketDataScript.SubmitEditChangesCmd(eMCS.headerInputField.text, eMCS.detailInputField.text, eMCS.assignedDropDown.value, eMCS.colorDropDown.value);
+            ticketDataScript.SubmitEditChangesCmd(eMCS.headerInputField.text, eMCS.detailInputField.text, eMCS.assignedDropDown.value, eMCS.assignedDropDown.options[eMCS.assignedDropDown.value].text, eMCS.colorDropDown.value);
             PlayerController.isEditing = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
