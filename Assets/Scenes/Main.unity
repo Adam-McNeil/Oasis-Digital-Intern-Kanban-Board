@@ -3272,7 +3272,6 @@ GameObject:
   - component: {fileID: 464430070}
   - component: {fileID: 464430069}
   - component: {fileID: 464430068}
-  - component: {fileID: 464430072}
   - component: {fileID: 464430073}
   m_Layer: 0
   m_Name: ScriptTestingCube
@@ -3352,26 +3351,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 464430067}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.77, y: 35.84, z: 7.07}
+  m_LocalPosition: {x: 0.7, y: 9.22, z: 7.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &464430072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464430067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 276acd7c0ea8dbd468d45eeb10f0eae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tickets: []
 --- !u!114 &464430073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3384,6 +3370,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78495a53367ca804cbd8c44c181a11c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nonSelcted: 0
+  adam: 0
+  ayden: 0
+  manny: 0
   tickets: []
 --- !u!43 &483610656
 Mesh:
