@@ -89,6 +89,7 @@ public class PlayerController : NetworkBehaviour
                 if (!isEditingColumn)
                 {
                     playerMovement();
+                    PlayerRotation();
                     CheckButtonPresses();
                     PlaceColumnCheck();
                     CheckTicketHits();
@@ -165,10 +166,17 @@ public class PlayerController : NetworkBehaviour
         {
             footStepsAudioSource.Stop();
         }
-
-
     }
 
+    private void PlayerRotation()
+    {
+        if (Input.GetKey(KeyCode.LeftBracket)) {
+            transform.Rotate(0, -(speed * Time.deltaTime * 5), 0);
+        }
+        if (Input.GetKey(KeyCode.RightBracket)) {
+            transform.Rotate(0, speed * Time.deltaTime * 5, 0);
+        }
+    }
 
     void RotateCamera()
     {
