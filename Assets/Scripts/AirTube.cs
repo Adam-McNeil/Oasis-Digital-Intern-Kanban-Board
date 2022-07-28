@@ -10,6 +10,13 @@ public class AirTube : MonoBehaviour
     public bool isActive = true; 
     public Vector3 direction;                                            //Direction where the object is pushed 
     public float speed;                                                  //Speed for the movement of the object 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip moveSound;
+    [SerializeField] private ParticleSystem movementParticle;
+
+    public void Start() {
+        if (isActive) audioSource = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -17,6 +24,7 @@ public class AirTube : MonoBehaviour
             for(int i = 0; i <= objectsOnConveyor.Count -1; i++)
             {
                 objectsOnConveyor[i].GetComponent<Rigidbody>().AddForce(transform.up * speed * Time.deltaTime, ForceMode.Impulse);
+                Destroy(Instantiate(movementParticle, objectsOnConveyor[i].transform.position, movementParticle.transform.rotation), 1);
             }
         }
     }
@@ -27,6 +35,7 @@ public class AirTube : MonoBehaviour
         if (otherRB != null)
         {
             objectsOnConveyor.Add(otherRB);
+            StartCoroutine(PlaySoundEffect());
         }
     }
 
@@ -37,5 +46,12 @@ public class AirTube : MonoBehaviour
         {
             objectsOnConveyor.Remove(otherRB);
         }
+    }
+
+    IEnumerator PlaySoundEffect()
+    {
+        audioSource.PlayOneShot(moveSound); 
+         yield return new WaitForSeconds(0.5f);
+        audioSource.PlayOneShot(moveSound); 
     }
 }
