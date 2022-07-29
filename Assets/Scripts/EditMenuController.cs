@@ -13,6 +13,8 @@ public class EditMenuController : MonoBehaviour
     [SerializeField] public TMP_Dropdown assignedDropDown;
     [SerializeField] public TMP_Dropdown colorDropDown;
 
+
+
     private PlayerController playerControllerScript;
     private EditTable editTableScript;
     private bool editModeEnabled = false;

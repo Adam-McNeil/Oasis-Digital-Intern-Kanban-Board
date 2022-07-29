@@ -57,7 +57,7 @@ public class AllTickets : MonoBehaviour
         Debug.Log("All Tickets are found ");
     }
 
-    public void GetCertainTickets(int lookedFor){
+    void GetCertainTickets(int lookedFor){
         a = 0;
         
         for(int i = 0; i < tickets.Length; i++){
