@@ -20,6 +20,7 @@ public class PlayerController : NetworkBehaviour
 
     static public bool isGamePaused;
     [HideInInspector] static public bool isEditing;
+    [HideInInspector] static public bool isCheckingPlayer;
 
     private DescriptionMenuController myDescriptionMenu;
 
@@ -226,6 +227,22 @@ public class PlayerController : NetworkBehaviour
             }
         }else if(Input.GetKeyDown(KeyCode.Escape) && isEditing){
             isEditing = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+    #endregion
+
+
+    #region CheckPlayer
+
+    private void CheckPlayer(){
+        if (Input.GetMouseButtonDown(2))
+        {
+            isCheckingPlayer = true;
+        }else if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            isCheckingPlayer = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
     }

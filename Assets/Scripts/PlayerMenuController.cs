@@ -3,36 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class EditMenuController : MonoBehaviour
+public class PlayerMenuController : MonoBehaviour
 {
-    //[SerializeField] private GameObject editmenu;
     [SerializeField] private float offset;
     [SerializeField] private Vector3 farAway;
-    [SerializeField] public TMP_InputField headerInputField;
-    [SerializeField] public TMP_InputField detailInputField;
-    [SerializeField] public TMP_Dropdown assignedDropDown;
-    [SerializeField] public TMP_Dropdown colorDropDown;
+    [SerializeField] public TMP_Dropdown users;
 
+    private AllTickets allTicketsScript;
     private PlayerController playerControllerScript;
-    private EditTable editTableScript;
-    private bool editModeEnabled = false;
+    private bool flag = false;
 
-    public GameObject activeEditTable;
-    public GameObject targetedTicket;
     private GameObject activeCamera;
 
     private void Update()
     {
-        editModeEnabled = PlayerController.isEditing;
+        flag = PlayerController.isCheckingPlayer;
         
-        if(editModeEnabled)
+        if(flag)
         {
             Cursor.lockState = CursorLockMode.None;
             Transform localPlayerTransform = activeCamera.transform;
             this.transform.position = localPlayerTransform.position + localPlayerTransform.forward * offset;
             this.transform.LookAt(localPlayerTransform);
             this.transform.Rotate(0, 180, 0);
-
         }
         else
         {
@@ -47,9 +40,10 @@ public class EditMenuController : MonoBehaviour
         GetComponentInChildren<Canvas>().worldCamera = activeCamera.GetComponent<Camera>();
     }
 
-    public void OnButtonSumbit()
+    public void FindTickets()
     {
-        activeEditTable.GetComponent<EditTable>().SubmitEditChanges();
+        int index = users.value;
+        Debug.Log(users.value);
+        users.GetComponent<AllTickets>().GetCertainTickets(users.value);
     }
 }
-
