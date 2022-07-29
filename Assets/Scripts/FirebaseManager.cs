@@ -117,6 +117,22 @@ public class FirebaseManager : MonoBehaviour
       StartCoroutine(LoadJSONString());
     }
 
+    public void GetServerData() {
+        StartCoroutine(FindExistingServer());
+    }
+
+    private IEnumerator FindExistingServer() {
+        var serversDB = DBreference.Child("servers").Child(serverInput.text).GetValueAsync();
+        yield return new WaitUntil(predicate: () => serversDB.IsCompleted);
+        if (serversDB.Result.Value == null) {
+            createButton();
+        }
+        else {
+            loadButton();
+        }
+        yield return new WaitForSeconds(0.5f);
+    }
+
     public void saveJSONCall()
     {
       StartCoroutine(saveJSON());
