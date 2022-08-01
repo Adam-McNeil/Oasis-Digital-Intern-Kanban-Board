@@ -65,9 +65,7 @@ public class AllTickets : MonoBehaviour
 
 
     private void GetCertainTickets(int lookedFor){
-
         a = 0;
-
         for(int i = 0; i < tickets.Length; i++){
             if(tickets[i].GetComponent<TicketData>().assignedToData == lookedFor){
                 Debug.Log("Found: " + a++ + " | At Pos: " + i);
