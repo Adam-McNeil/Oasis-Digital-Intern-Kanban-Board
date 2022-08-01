@@ -101,7 +101,7 @@ public class PlayerController : NetworkBehaviour
     #region Pause
     private void Escape()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && !isEditing)
+        if (Input.GetKeyDown(KeyCode.Tab) && !isEditing && characterController.isGrounded)
         {
             if (isGamePaused)
             {
