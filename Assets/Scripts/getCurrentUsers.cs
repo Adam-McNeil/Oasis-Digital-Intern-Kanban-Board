@@ -27,7 +27,9 @@ public class getCurrentUsers : MonoBehaviour
         foreach (string user in firebaseManager.userList)
         {
             Debug.Log("User Added: " + user);
-            users.Add(user);
+            if(!user.Equals("")){
+                users.Add(user);
+            }
         }
         dropDown.AddOptions(users);
     }
