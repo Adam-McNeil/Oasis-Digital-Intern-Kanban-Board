@@ -10,12 +10,12 @@ public class getCurrentUsers : MonoBehaviour
     static public List<string> usersOld = new List<string>();
 
     private FirebaseManager firebaseManager;
-    private TMP_Dropdown dropDown;
+    public TMP_Dropdown dropDown;
 
     private void Start()
     {
         firebaseManager = GameObject.Find("FirebaseManager").GetComponent<FirebaseManager>();
-        dropDown = this.GetComponent<TMP_Dropdown>();
+        //dropDown = this.GetComponent<TMP_Dropdown>();
         UpdateDropDown();
     }
 
@@ -27,7 +27,9 @@ public class getCurrentUsers : MonoBehaviour
         foreach (string user in firebaseManager.userList)
         {
             Debug.Log("User Added: " + user);
-            users.Add(user);
+            if(!user.Equals("")){
+                users.Add(user);
+            }
         }
         dropDown.AddOptions(users);
     }

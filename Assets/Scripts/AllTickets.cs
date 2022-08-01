@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class AllTickets : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class AllTickets : MonoBehaviour
     int a = 0;
     private Color orginalColor;
     RaycastHit hit;
+    public TMP_Dropdown dropdownUsers;
     
     // Start is called before the first frame update
     void Start()
@@ -51,15 +53,21 @@ public class AllTickets : MonoBehaviour
         GetAllTickets();
     }
 
-    void GetAllTickets(){
+    private void GetAllTickets(){
         tickets = null;
         tickets = GameObject.FindGameObjectsWithTag("Ticket");
-        Debug.Log("All Tickets are found ");
+        Debug.Log("All Tickets are found");
     }
 
-    void GetCertainTickets(int lookedFor){
+    public void FindButton(){
+        GetCertainTickets(dropdownUsers.value);
+    }
+
+
+    private void GetCertainTickets(int lookedFor){
+
         a = 0;
-        
+
         for(int i = 0; i < tickets.Length; i++){
             if(tickets[i].GetComponent<TicketData>().assignedToData == lookedFor){
                 Debug.Log("Found: " + a++ + " | At Pos: " + i);
@@ -67,7 +75,7 @@ public class AllTickets : MonoBehaviour
                 tickets[i].GetComponent<Renderer>().material.color = Color.red;
                 StartCoroutine(TurnBack(10f, tickets[i].GetComponent<Renderer>(), orginalColor));
                 //Debug.Log(tickets[i].transform.position);
-               // Debug.DrawLine(this.transform.position, tickets[i].transform.position, Color.red, 10f);
+                //Debug.DrawLine(this.transform.position, tickets[i].transform.position, Color.red, 10f);
             }
         }
     }
