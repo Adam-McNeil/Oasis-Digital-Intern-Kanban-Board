@@ -1099,6 +1099,7 @@ MonoBehaviour:
   raycastLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  isBuilding: 0
   buttonPressLayerMask:
     serializedVersion: 2
     m_Bits: 0
