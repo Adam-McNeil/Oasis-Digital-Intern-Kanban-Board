@@ -11,7 +11,7 @@ public class AllTickets : NetworkBehaviour
     public bool two = false;
     public bool three = false;
     public GameObject[] tickets;
-    int a = 0;
+    //int a = 0;
     private Color orginalColor;
     public TMP_Dropdown dropdownUsers;
 
