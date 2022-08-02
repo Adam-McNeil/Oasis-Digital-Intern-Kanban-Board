@@ -38,7 +38,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private LayerMask raycastLayerMask;
     private float rotationSnap = 22.5f;
     private GameObject myBlueprint;
-    private bool isBuilding = false;
+    public bool isBuilding = false;
     private Vector3 farAway;
 
     [Header("Button Presses")]
@@ -50,7 +50,7 @@ public class PlayerController : NetworkBehaviour
     public AudioSource gruntsAudioSource;
     public AudioSource impactAudioSource;
 
-    private int gridSize = 5;
+    private float gridSize = 5f;
 
     private void Start()
     {
@@ -311,7 +311,7 @@ public class PlayerController : NetworkBehaviour
                 {
                     myBlueprint.transform.Rotate(Vector3.down * rotationSnap);
                 }
-                if (blueprintColliderCounter.colliderCounter == 0 && Input.GetKeyDown("f"))
+                if (blueprintColliderCounter.canPlaceColumn && Input.GetKeyDown("f"))
                 {
                     SpawnColumnCmd(myBlueprint.transform.position - animationOffset, myBlueprint.transform.rotation);
                 }
