@@ -580,7 +580,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   colliderCounter: 0
-  changeMaterial: 0
   blueprintMaterials:
   - {fileID: 2100000, guid: b730f6a1ba5b54d4a84e1747e8969c7f, type: 2}
   - {fileID: 2100000, guid: 12926aedcbaf29343ab64f0a229b3ac9, type: 2}
@@ -1371,7 +1370,8 @@ PrefabInstance:
       propertyPath: direction.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4600661875894432677, guid: 6fb0b94b28ef08248869923e00c2a1bf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6fb0b94b28ef08248869923e00c2a1bf, type: 3}
 --- !u!4 &208882649523757937 stripped
 Transform:
@@ -1457,7 +1457,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4600661875894432677, guid: 6fb0b94b28ef08248869923e00c2a1bf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6fb0b94b28ef08248869923e00c2a1bf, type: 3}
 --- !u!4 &4129836723356490887 stripped
 Transform:

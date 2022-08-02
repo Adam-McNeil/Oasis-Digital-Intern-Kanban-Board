@@ -29,6 +29,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void RefreshButton()
     {
+        Debug.Log("button was pressed");
         GameObject.Find("FirebaseManager").GetComponent<FirebaseManager>().addUserToServerCall();
     }
 

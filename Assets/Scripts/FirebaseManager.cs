@@ -458,6 +458,7 @@ public class FirebaseManager : MonoBehaviour
             }
             CheckUsers((string)DBTask.Result.Value);
             GameObject.Find("DropdownAssigned").GetComponent<getCurrentUsers>().UpdateDropDown();
+            GameObject.Find("DropdownPlayerUsers").GetComponent<getCurrentUsers>().UpdateDropDown();
         }
     }
 
