@@ -27,7 +27,6 @@ public class UIManager : MonoBehaviour
     }
 
     //Functions to change the login screen UI
-
     public void ClearScreen() //Turn off all screens
     {
         loginUI.SetActive(false);
