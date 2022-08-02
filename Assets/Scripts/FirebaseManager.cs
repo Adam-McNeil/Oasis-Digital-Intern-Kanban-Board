@@ -208,8 +208,15 @@ public class FirebaseManager : MonoBehaviour
 
             yield return new WaitForSeconds(0.5f);
 
-            usernameField.text = User.DisplayName;
-            UIManager.instance.UserDataScreen(); // Change to user data UI
+            if(User.DisplayName.Equals(null) || User.DisplayName.Equals("")){
+                usernameField.text = User.DisplayName;
+                UIManager.instance.UserDataScreen(); // Change to user data UI
+            }
+            else
+            {
+                UIManager.instance.MainMenuScreen();
+            }
+
             confirmLoginText.text = "";
             ClearLoginFeilds();
             ClearRegisterFeilds();
@@ -460,6 +467,7 @@ public class FirebaseManager : MonoBehaviour
             GameObject.Find("DropdownAssigned").GetComponent<getCurrentUsers>().UpdateDropDown();
         }
     }
+
 
     private void CheckUsers(string namesList)
     {
