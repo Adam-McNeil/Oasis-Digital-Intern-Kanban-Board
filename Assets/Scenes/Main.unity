@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123028
+  m_Name: pb_Mesh-303332
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -298,7 +298,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-122968
+  m_Name: pb_Mesh-303272
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -464,12 +464,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 1751041302}
     m_Modifications:
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8996769847488751357, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_RootOrder
@@ -531,7 +543,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-122570
+  m_Name: pb_Mesh-302874
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -697,12 +709,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 1751041302}
     m_Modifications:
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8996769847488751357, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_RootOrder
@@ -769,7 +793,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123088
+  m_Name: pb_Mesh-303392
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1039,7 +1063,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-122686
+  m_Name: pb_Mesh-302990
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1304,12 +1328,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1751041302}
     m_Modifications:
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8996769847488751357, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_RootOrder
@@ -1438,7 +1470,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123014
+  m_Name: pb_Mesh-303318
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1602,7 +1634,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123144
+  m_Name: pb_Mesh-303448
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1766,7 +1798,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123218
+  m_Name: pb_Mesh-303522
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1935,7 +1967,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123056
+  m_Name: pb_Mesh-303360
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2099,7 +2131,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123130
+  m_Name: pb_Mesh-303434
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2452,12 +2484,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1751041302}
     m_Modifications:
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8996769847488751357, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_RootOrder
@@ -2519,7 +2559,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123276
+  m_Name: pb_Mesh-303580
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2683,7 +2723,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123074
+  m_Name: pb_Mesh-303378
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2849,12 +2889,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 1751041302}
     m_Modifications:
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8996769847488751357, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_RootOrder
@@ -2916,7 +2968,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123116
+  m_Name: pb_Mesh-303420
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3189,7 +3241,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123000
+  m_Name: pb_Mesh-303304
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3353,7 +3405,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-122954
+  m_Name: pb_Mesh-303258
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3648,12 +3700,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 1751041302}
     m_Modifications:
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8996769847488751357, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_RootOrder
@@ -3727,12 +3791,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1751041302}
     m_Modifications:
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8996769847488751357, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_RootOrder
@@ -3796,12 +3868,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1751041302}
     m_Modifications:
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8996769847488751357, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_RootOrder
@@ -3928,7 +4008,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-122672
+  m_Name: pb_Mesh-302976
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4092,7 +4172,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-122898
+  m_Name: pb_Mesh-303202
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4256,7 +4336,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-122986
+  m_Name: pb_Mesh-303290
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4577,12 +4657,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1751041302}
     m_Modifications:
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8996769847488751357, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_RootOrder
@@ -4644,7 +4732,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-122912
+  m_Name: pb_Mesh-303216
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4902,7 +4990,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123176
+  m_Name: pb_Mesh-303480
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5076,7 +5164,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123042
+  m_Name: pb_Mesh-303346
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5336,12 +5424,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1751041302}
     m_Modifications:
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8996769847488751357, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_RootOrder
@@ -5403,7 +5499,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-122926
+  m_Name: pb_Mesh-303230
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5634,12 +5730,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 1751041302}
     m_Modifications:
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8996769847488751357, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_RootOrder
@@ -5708,12 +5816,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1751041302}
     m_Modifications:
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8996769847488751357, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_RootOrder
@@ -5947,12 +6063,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1751041302}
     m_Modifications:
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8996769847488751357, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_RootOrder
@@ -6053,12 +6177,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1751041302}
     m_Modifications:
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8996769847488751357, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_RootOrder
@@ -6120,7 +6252,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123162
+  m_Name: pb_Mesh-303466
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6284,7 +6416,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123190
+  m_Name: pb_Mesh-303494
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6588,7 +6720,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123232
+  m_Name: pb_Mesh-303536
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7055,7 +7187,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123102
+  m_Name: pb_Mesh-303406
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7260,7 +7392,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123262
+  m_Name: pb_Mesh-303566
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7424,7 +7556,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-123204
+  m_Name: pb_Mesh-303508
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7588,7 +7720,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-122940
+  m_Name: pb_Mesh-303244
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8611,12 +8743,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1751041302}
     m_Modifications:
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988578098305390124, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8996769847488751357, guid: 9d23087292b04124c931026ca54a83a6, type: 3}
       propertyPath: m_RootOrder
