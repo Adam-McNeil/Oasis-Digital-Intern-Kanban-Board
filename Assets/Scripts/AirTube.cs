@@ -21,7 +21,7 @@ public class AirTube : MonoBehaviour
     private void Update()
     {
         if(isActive){
-            for(int i = 0; i < objectsOnConveyor.Count -1; i++)
+            for(int i = 0; i < objectsOnConveyor.Count; i++)
             {
                 objectsOnConveyor[i].GetComponent<Rigidbody>().AddForce(transform.up * speed * Time.deltaTime, ForceMode.Impulse);
                 Destroy(Instantiate(movementParticle, objectsOnConveyor[i].transform.position, movementParticle.transform.rotation), 1);
