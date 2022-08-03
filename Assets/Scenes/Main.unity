@@ -3287,21 +3287,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trash Can (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3879366771910780911, guid: 24f5063b37f7c8b40a9170ac347ef1cd, type: 3}
+      propertyPath: sceneId
+      value: 2569548571
+      objectReference: {fileID: 0}
     - target: {fileID: 6361243181743958797, guid: 24f5063b37f7c8b40a9170ac347ef1cd, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6361243181743958797, guid: 24f5063b37f7c8b40a9170ac347ef1cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.672421
+      value: 17.14
       objectReference: {fileID: 0}
     - target: {fileID: 6361243181743958797, guid: 24f5063b37f7c8b40a9170ac347ef1cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.94
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 6361243181743958797, guid: 24f5063b37f7c8b40a9170ac347ef1cd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.135248
+      value: 10.04
       objectReference: {fileID: 0}
     - target: {fileID: 6361243181743958797, guid: 24f5063b37f7c8b40a9170ac347ef1cd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5612,7 +5616,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3669106
+  m_Name: pb_Mesh-3874366
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
