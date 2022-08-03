@@ -20,13 +20,13 @@ public class AirTube : MonoBehaviour
 
     private void Update()
     {
-        if(isActive){
-            for(int i = 0; i < objectsOnConveyor.Count -1; i++)
-            {
-                objectsOnConveyor[i].GetComponent<Rigidbody>().AddForce(transform.up * speed * Time.deltaTime, ForceMode.Impulse);
-                Destroy(Instantiate(movementParticle, objectsOnConveyor[i].transform.position, movementParticle.transform.rotation), 1);
-            }
+        for(int i = 0; i < objectsOnConveyor.Count; i++)
+        {
+            Debug.Log("adding force");
+            objectsOnConveyor[i].GetComponent<Rigidbody>().AddForce(transform.up * speed * Time.deltaTime, ForceMode.Impulse);
+            //Destroy(Instantiate(movementParticle, objectsOnConveyor[i].transform.position, movementParticle.transform.rotation), 1);
         }
+
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -34,8 +34,9 @@ public class AirTube : MonoBehaviour
         Rigidbody otherRB = other.GetComponent<Rigidbody>();
         if (otherRB != null)
         {
+            Debug.Log("adding rigidbody");
             objectsOnConveyor.Add(otherRB);
-            StartCoroutine(PlaySoundEffect());
+            //StartCoroutine(PlaySoundEffect());
         }
     }
 
@@ -51,7 +52,7 @@ public class AirTube : MonoBehaviour
     IEnumerator PlaySoundEffect()
     {
         audioSource.PlayOneShot(moveSound); 
-         yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f);
         audioSource.PlayOneShot(moveSound); 
     }
 }
