@@ -7,19 +7,31 @@ using TMPro;
 public class FirebaseCarryOver : MonoBehaviour
 {
 
-    public TMP_InputField serverName;
     public static string serverNameText;
+    static private int firebaseCarryOverCount;
+    private UIReferences uIReferences;
 
     // Start is called before the first frame update
-    public void Start()
+    public void Awake()
     {
+        if (firebaseCarryOverCount != 0)
+        {
+            Destroy(this.gameObject);
+        }
+        FindUIRefences();
+        firebaseCarryOverCount++;
         DontDestroyOnLoad(this);
-        serverName.onValueChanged.AddListener(delegate {ValueChangeCheck(); });
+    }
+
+    public void FindUIRefences()
+    {
+        uIReferences = GameObject.Find("UI Refence").GetComponent<UIReferences>();
+        uIReferences.serverInput.onValueChanged.AddListener(delegate {ValueChangeCheck(); });
     }
 
     public void ValueChangeCheck()
     {
-        serverNameText = serverName.text;
+        serverNameText = uIReferences.serverInput.text;
         Debug.Log(serverNameText);
     }
 }

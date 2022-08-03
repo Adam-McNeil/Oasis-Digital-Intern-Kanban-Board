@@ -15,32 +15,19 @@ public class FirebaseManager : MonoBehaviour
     public FirebaseAuth auth;    
     public FirebaseUser User;
     public DatabaseReference DBreference;
+    private UIReferences uIReferences;
+    static private int firebaseManagerCount = 0;
 
-    //Login variables
-    [Header("Login")]
-    public TMP_InputField emailLoginField;
-    public TMP_InputField passwordLoginField;
-    public TMP_Text warningLoginText;
-    public TMP_Text confirmLoginText;
-
-    //Register variables
-    [Header("Register")]
-    public TMP_InputField usernameRegisterField;
-    public TMP_InputField emailRegisterField;
-    public TMP_InputField passwordRegisterField;
-    public TMP_InputField passwordRegisterVerifyField;
-    public TMP_Text warningRegisterText;
-
-    //User Data variables
-    [Header("UserData")]
-    public TMP_InputField usernameField;
-
-    [Header("serverData")]
-    [SerializeField] TMP_InputField serverInput;
     public List<string> userList;
 
     void Awake()
     {
+        if (firebaseManagerCount != 0)
+        {
+            Destroy(this.gameObject);
+        }
+        FindUIRefences();
+        firebaseManagerCount++;
         DontDestroyOnLoad(this);
         //Check that all of the necessary dependencies for Firebase are present on the system
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
@@ -58,6 +45,16 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
+    public void FindUIRefences()
+    {
+        uIReferences = GameObject.Find("UI Refence").GetComponent<UIReferences>();
+    }
+
+    public void SignOut()
+    {
+        InitializeFirebase();
+    }
+
     private void InitializeFirebase()
     {
         Debug.Log("Setting up Firebase Auth");
@@ -67,28 +64,28 @@ public class FirebaseManager : MonoBehaviour
     }
     public void ClearLoginFeilds()
     {
-        emailLoginField.text = "";
-        passwordLoginField.text = "";
+        uIReferences.emailLoginField.text = "";
+        uIReferences.passwordLoginField.text = "";
     }
     public void ClearRegisterFeilds()
     {
-        usernameRegisterField.text = "";
-        emailRegisterField.text = "";
-        passwordRegisterField.text = "";
-        passwordRegisterVerifyField.text = "";
+        uIReferences.usernameRegisterField.text = "";
+        uIReferences.emailRegisterField.text = "";
+        uIReferences.passwordRegisterField.text = "";
+        uIReferences.passwordRegisterVerifyField.text = "";
     }
 
     //Function for the login button
     public void LoginButton()
     {
         //Call the login coroutine passing the email and password
-        StartCoroutine(Login(emailLoginField.text, passwordLoginField.text));
+        StartCoroutine(Login(uIReferences.emailLoginField.text, uIReferences.passwordLoginField.text));
     }
     //Function for the register button
     public void RegisterButton()
     {
         //Call the register coroutine passing the email, password, and username
-        StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text, usernameRegisterField.text));
+        StartCoroutine(Register(uIReferences.emailRegisterField.text, uIReferences.passwordRegisterField.text, uIReferences.usernameRegisterField.text));
     }
     //Function for the sign out button
     public void SignOutButton()
@@ -101,8 +98,8 @@ public class FirebaseManager : MonoBehaviour
     //Function for the save button
     public void SaveDataButton()
     {
-        StartCoroutine(UpdateUsernameAuth(usernameField.text));
-        StartCoroutine(UpdateUsernameDatabase(usernameField.text));
+        StartCoroutine(UpdateUsernameAuth(uIReferences.usernameField.text));
+        StartCoroutine(UpdateUsernameDatabase(uIReferences.usernameField.text));
     }
 
     //function for when create button is pressed
@@ -122,7 +119,7 @@ public class FirebaseManager : MonoBehaviour
     }
 
     private IEnumerator FindExistingServer() {
-        var serversDB = DBreference.Child("servers").Child(serverInput.text).GetValueAsync();
+        var serversDB = DBreference.Child("servers").Child(uIReferences.serverInput.text).GetValueAsync();
         yield return new WaitUntil(predicate: () => serversDB.IsCompleted);
         if (serversDB.Result.Value == null) {
             createButton();
@@ -140,7 +137,7 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator LoadJSONString()
     {
-        var DBTask = DBreference.Child("servers").Child(serverInput.text).Child("serverJSON").GetValueAsync();
+        var DBTask = DBreference.Child("servers").Child(uIReferences.serverInput.text).Child("serverJSON").GetValueAsync();
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
@@ -194,7 +191,7 @@ public class FirebaseManager : MonoBehaviour
                     message = "Account does not exist";
                     break;
             }
-            warningLoginText.text = message;
+            uIReferences.warningLoginText.text = message;
         }
         else
         {
@@ -202,14 +199,14 @@ public class FirebaseManager : MonoBehaviour
             //Now get the result
             User = LoginTask.Result;
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
-            warningLoginText.text = "";
-            confirmLoginText.text = "Logged In";
+            uIReferences.warningLoginText.text = "";
+            uIReferences.confirmLoginText.text = "Logged In";
             StartCoroutine(LoadUserData());
 
             yield return new WaitForSeconds(0.5f);
 
             if(User.DisplayName.Equals(null) || User.DisplayName.Equals("")){
-                usernameField.text = User.DisplayName;
+                uIReferences.usernameField.text = User.DisplayName;
                 UIManager.instance.UserDataScreen(); // Change to user data UI
             }
             else
@@ -217,7 +214,7 @@ public class FirebaseManager : MonoBehaviour
                 UIManager.instance.MainMenuScreen();
             }
 
-            confirmLoginText.text = "";
+            uIReferences.confirmLoginText.text = "";
             ClearLoginFeilds();
             ClearRegisterFeilds();
         }
@@ -228,12 +225,12 @@ public class FirebaseManager : MonoBehaviour
         if (_username == "")
         {
             //If the username field is blank show a warning
-            warningRegisterText.text = "Missing Username";
+            uIReferences.warningRegisterText.text = "Missing Username";
         }
-        else if(passwordRegisterField.text != passwordRegisterVerifyField.text)
+        else if(uIReferences.passwordRegisterField.text != uIReferences.passwordRegisterVerifyField.text)
         {
             //If the password does not match show a warning
-            warningRegisterText.text = "Password Does Not Match!";
+            uIReferences.warningRegisterText.text = "Password Does Not Match!";
         }
         else 
         {
@@ -265,7 +262,7 @@ public class FirebaseManager : MonoBehaviour
                         message = "Email Already In Use";
                         break;
                 }
-                warningRegisterText.text = message;
+                uIReferences.warningRegisterText.text = message;
             }
             else
             {
@@ -287,14 +284,14 @@ public class FirebaseManager : MonoBehaviour
                     {
                         //If there are errors handle them
                         Debug.LogWarning(message: $"Failed to register task with {ProfileTask.Exception}");
-                        warningRegisterText.text = "Username Set Failed!";
+                        uIReferences.warningRegisterText.text = "Username Set Failed!";
                     }
                     else
                     {
                         //Username is now set
                         //Now return to login screen
-                        UIManager.instance.LoginScreen();                        
-                        warningRegisterText.text = "";
+                        UIManager.instance.LoginScreen();
+                        uIReferences.warningRegisterText.text = "";
                         ClearRegisterFeilds();
                         ClearLoginFeilds();
                     }
@@ -364,7 +361,7 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator createServerChild()
     {
-      string serverName = serverInput.text;
+      string serverName = uIReferences.serverInput.text;
       var DBTask = DBreference.Child("servers").Child(serverName).Child("serverJSON").SetValueAsync("");
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -408,7 +405,6 @@ public class FirebaseManager : MonoBehaviour
     private IEnumerator addUserToServer()
     {
         //get the username of the user currently logged in
-        Debug.Log(User != null);
         if (User != null)
         {
             var DBTaskUser = DBreference.Child("users").Child(User.UserId).Child("username").GetValueAsync();

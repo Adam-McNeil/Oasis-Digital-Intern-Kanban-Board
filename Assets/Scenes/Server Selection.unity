@@ -757,7 +757,7 @@ PrefabInstance:
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1475876600}
+      objectReference: {fileID: 1732467557}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -780,7 +780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GetServerData
+      value: FirebaseGetServerData
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -792,7 +792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: FirebaseManager, Assembly-CSharp
+      value: SceneController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -1210,7 +1210,7 @@ PrefabInstance:
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1475876600}
+      objectReference: {fileID: 1732467557}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -1233,7 +1233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GetServerData
+      value: FirebaseGetServerData
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -1245,7 +1245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: FirebaseManager, Assembly-CSharp
+      value: SceneController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -3829,17 +3829,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dependencyStatus: 0
-  emailLoginField: {fileID: 5025655012991639748}
-  passwordLoginField: {fileID: 5025655012350753573}
-  warningLoginText: {fileID: 5025655012299909513}
-  confirmLoginText: {fileID: 5025655011448415630}
-  usernameRegisterField: {fileID: 6854250341397891057}
-  emailRegisterField: {fileID: 6854250341336134073}
-  passwordRegisterField: {fileID: 6854250341738036878}
-  passwordRegisterVerifyField: {fileID: 6854250340952469170}
-  warningRegisterText: {fileID: 6854250342154308462}
-  usernameField: {fileID: 5025655012700609153}
-  serverInput: {fileID: 957963281}
   userList: []
 --- !u!4 &1475876601
 Transform:
@@ -3885,7 +3874,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bf31a452b05894994dbb086cefb4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverName: {fileID: 957963281}
 --- !u!4 &1506634775
 Transform:
   m_ObjectHideFlags: 0
@@ -4306,6 +4294,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3323754334516285864, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
   m_PrefabInstance: {fileID: 1824463123}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1635851622 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6448206238948163848, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
+  m_PrefabInstance: {fileID: 1824463123}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb83e267ba5f3fd4a98b66c00ce81556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1637917497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4644,6 +4643,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729170704}
   m_CullTransparentMesh: 1
+--- !u!1 &1732467556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1732467558}
+  - component: {fileID: 1732467557}
+  m_Layer: 0
+  m_Name: Scene Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1732467557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732467556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd8d3a990dc9b74595a4f998c8ec765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firebaseManager: {fileID: 0}
+  loginMenu: {fileID: 5025655011967836652}
+  serverSelectionMenu: {fileID: 972344356}
+--- !u!4 &1732467558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732467556}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1744518143
 GameObject:
   m_ObjectHideFlags: 0
@@ -4805,7 +4851,7 @@ PrefabInstance:
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1475876600}
+      objectReference: {fileID: 1732467557}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -4828,7 +4874,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GetServerData
+      value: FirebaseGetServerData
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -4840,7 +4886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: FirebaseManager, Assembly-CSharp
+      value: SceneController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -5166,7 +5212,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -5191,7 +5237,7 @@ PrefabInstance:
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 80281070}
+      objectReference: {fileID: 1635851622}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -5214,7 +5260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: StartServer
+      value: SignOut
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -5226,7 +5272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Mirror.NetworkManager, Mirror
+      value: ButtonFunctions, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -5234,7 +5280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1815485316614199379, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -6346,6 +6392,61 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3323754334516285864, guid: 5c20c663384ed8449b96da50cd5fd5c9, type: 3}
   m_PrefabInstance: {fileID: 1129003415}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2097023729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2097023731}
+  - component: {fileID: 2097023730}
+  m_Layer: 0
+  m_Name: UI Refence
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2097023730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097023729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2f3e340a598e349b8b44bfdf6772ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emailLoginField: {fileID: 5025655012991639748}
+  passwordLoginField: {fileID: 5025655012350753573}
+  warningLoginText: {fileID: 5025655012299909513}
+  confirmLoginText: {fileID: 5025655011448415630}
+  usernameRegisterField: {fileID: 6854250341397891057}
+  emailRegisterField: {fileID: 6854250341336134073}
+  passwordRegisterField: {fileID: 6854250341738036878}
+  passwordRegisterVerifyField: {fileID: 6854250340952469170}
+  warningRegisterText: {fileID: 6854250342154308462}
+  usernameField: {fileID: 5025655012700609153}
+  serverInput: {fileID: 957963281}
+--- !u!4 &2097023731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097023729}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.530843, y: 36.387314, z: -38.384438}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!222 &5025655011062031880
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6566,9 +6667,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1475876600}
-        m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
-        m_MethodName: LoginButton
+      - m_Target: {fileID: 1732467557}
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: FirebaseLoginButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9301,7 +9402,7 @@ GameObject:
   - component: {fileID: 5025655012700609152}
   - component: {fileID: 5025655012700609153}
   m_Layer: 5
-  m_Name: UsernameInput
+  m_Name: Username Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10851,7 +10952,7 @@ GameObject:
   - component: {fileID: 6854250340952469169}
   - component: {fileID: 6854250340952469170}
   m_Layer: 5
-  m_Name: PasswordinputCheck
+  m_Name: Register Password Confirm Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11093,9 +11194,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1475876600}
-        m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
-        m_MethodName: RegisterButton
+      - m_Target: {fileID: 1732467557}
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: FirebaseRegisterButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11608,7 +11709,7 @@ GameObject:
   - component: {fileID: 6854250341336134072}
   - component: {fileID: 6854250341336134073}
   m_Layer: 5
-  m_Name: 'Emailinput '
+  m_Name: Register Email Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12230,7 +12331,7 @@ GameObject:
   - component: {fileID: 6854250341738036877}
   - component: {fileID: 6854250341738036878}
   m_Layer: 5
-  m_Name: Passwordinput
+  m_Name: Register Password Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12729,7 +12830,7 @@ GameObject:
   - component: {fileID: 6854250342154308461}
   - component: {fileID: 6854250342154308462}
   m_Layer: 5
-  m_Name: Warning
+  m_Name: Register Warning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
