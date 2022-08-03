@@ -95,27 +95,24 @@ public class ServerLoaderController : NetworkBehaviour
         }
     }
 
-    private void Update()
+    public void Save()
     {
-        if (Input.GetKeyDown("`"))
+        stringOutput = "";
+        GameObject[] tickets = GameObject.FindGameObjectsWithTag("Ticket");
+        GameObject[] columns = GameObject.FindGameObjectsWithTag("Column");
+        foreach (GameObject ticket in tickets)
         {
-            stringOutput = "";
-            GameObject[] tickets = GameObject.FindGameObjectsWithTag("Ticket");
-            GameObject[] columns = GameObject.FindGameObjectsWithTag("Column");
-            foreach (GameObject ticket in tickets)
-            {
-                TicketData ticketData = ticket.GetComponent<TicketData>();
-                string jsonString = ticketData.Save();
-                stringOutput += "T" + jsonString + "\\n";
-            }
-            foreach (GameObject column in columns)
-            {
-                EditColumn editColumn = column.GetComponent<EditColumn>();
-                string jsonString = editColumn.Save();
-                stringOutput += "C" + jsonString + "\\n";
-            }
-            GameObject FBM = GameObject.Find("FirebaseManager");
-            FBM.GetComponent<FirebaseManager>().saveJSONCall();
+            TicketData ticketData = ticket.GetComponent<TicketData>();
+            string jsonString = ticketData.Save();
+            stringOutput += "T" + jsonString + "\\n";
         }
+        foreach (GameObject column in columns)
+        {
+            EditColumn editColumn = column.GetComponent<EditColumn>();
+            string jsonString = editColumn.Save();
+            stringOutput += "C" + jsonString + "\\n";
+        }
+        GameObject FBM = GameObject.Find("FirebaseManager");
+        FBM.GetComponent<FirebaseManager>().saveJSONCall();
     }
 }
