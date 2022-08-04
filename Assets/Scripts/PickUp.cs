@@ -11,9 +11,9 @@ public class PickUp : NetworkBehaviour
     [Header("PickUp Settings")]
     private GameObject playerCamera;
     [SerializeField] private GameObject holdArea;
-    [SerializeField] private float pickRange = 5f;
+    [SerializeField] private float pickRange = 50f;
     [SerializeField] private float pickUpForce = 150f;
-    [SerializeField] private float dragResistance = 10f;
+    [SerializeField] private float dragResistance = 20f;
     [SerializeField] private float throwForce = 10f;
     [SerializeField] private float slerpSpeed = 10f;
 
@@ -62,6 +62,10 @@ public class PickUp : NetworkBehaviour
                 
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
         if (heldObject != null && isServer)
         {
             MoveObject();
@@ -296,7 +300,7 @@ public class PickUp : NetworkBehaviour
     void MoveObject()
     {
         Vector3 goalPosition = holdArea.transform.position + holdArea.transform.forward * offset;
-        Vector3 changeInPosition = Vector3.Slerp(heldObject.transform.position, goalPosition, slerpSpeed * Time.deltaTime) - heldObject.transform.position;
+        Vector3 changeInPosition = Vector3.Slerp(heldObject.transform.position, goalPosition, slerpSpeed) - heldObject.transform.position;
         heldObjectRB.AddForce(changeInPosition * pickUpForce);
     }
 
