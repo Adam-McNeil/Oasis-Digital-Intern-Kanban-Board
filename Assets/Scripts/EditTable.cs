@@ -31,9 +31,12 @@ public class EditTable : NetworkBehaviour
     }
     
     private void OnTriggerExit(Collider other) {
-        ticket = null;
-        ticketDataScript = null;
-        objectInTable = false;
+        if (other.gameObject.CompareTag("Ticket"))
+        {
+            ticket = null;
+            ticketDataScript = null;
+            objectInTable = false;
+        }
     }
 
     public void OnStartEdit()
