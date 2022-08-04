@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,7 +23,6 @@ public class AirTube : MonoBehaviour
     {
         for(int i = 0; i < objectsOnConveyor.Count; i++)
         {
-            Debug.Log("adding force");
             objectsOnConveyor[i].GetComponent<Rigidbody>().AddForce(transform.up * speed * Time.deltaTime, ForceMode.Impulse);
             //Destroy(Instantiate(movementParticle, objectsOnConveyor[i].transform.position, movementParticle.transform.rotation), 1);
         }
@@ -34,9 +34,8 @@ public class AirTube : MonoBehaviour
         Rigidbody otherRB = other.GetComponent<Rigidbody>();
         if (otherRB != null)
         {
-            Debug.Log("adding rigidbody");
             objectsOnConveyor.Add(otherRB);
-            //StartCoroutine(PlaySoundEffect());
+            StartCoroutine(PlaySoundEffect());
         }
     }
 
@@ -51,8 +50,9 @@ public class AirTube : MonoBehaviour
 
     IEnumerator PlaySoundEffect()
     {
-        audioSource.PlayOneShot(moveSound); 
-        yield return new WaitForSeconds(0.5f);
-        audioSource.PlayOneShot(moveSound); 
+        try {
+            audioSource.PlayOneShot(moveSound); 
+        } catch (Exception e) { }
+        yield return new WaitForSeconds(0f);
     }
 }
