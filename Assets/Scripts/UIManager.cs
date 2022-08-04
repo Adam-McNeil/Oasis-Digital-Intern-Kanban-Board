@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour
     public void LoginScreen() //Back button
     {
         ClearScreen();
+        Debug.Log("we called login screen");
         loginUI.SetActive(true);
     }
     public void RegisterScreen() // Regester button
