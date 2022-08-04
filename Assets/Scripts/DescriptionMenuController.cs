@@ -21,9 +21,13 @@ public class DescriptionMenuController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private TextMeshProUGUI assignedToText;
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip soundEffect;
+ 
     private void Start()
     {
         this.transform.position = farAway;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -37,6 +41,7 @@ public class DescriptionMenuController : MonoBehaviour
 
     public void DisplayTicket(GameObject ticket)
     {
+        audioSource.PlayOneShot(soundEffect);
         TicketData ticketData = ticket.GetComponent<TicketData>();
         titleText.text = ticketData.headerData;
         descriptionText.text = ticketData.descriptionData;

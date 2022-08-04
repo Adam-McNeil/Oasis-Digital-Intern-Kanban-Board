@@ -13,33 +13,51 @@ public class EditMenuController : MonoBehaviour
     [SerializeField] public TMP_Dropdown assignedDropDown;
     [SerializeField] public TMP_Dropdown colorDropDown;
 
-
-
-    private PlayerController playerControllerScript;
-    private EditTable editTableScript;
     private bool editModeEnabled = false;
+    private bool oldEditModeEnabled = false;
 
     public GameObject activeEditTable;
     public GameObject targetedTicket;
     private GameObject activeCamera;
 
+    private Vector3 smallScale = new Vector3(.1f, .1f, .1f);
+    private Vector3 largeScale = new Vector3(1, 1, 1);
+    private float slerpSpeed = 0.5f;
+
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip soundEffect;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
         editModeEnabled = PlayerController.isEditing;
-        
-        if(editModeEnabled)
+        if (editModeEnabled != oldEditModeEnabled)
         {
-            Cursor.lockState = CursorLockMode.None;
-            Transform localPlayerTransform = activeCamera.transform;
-            this.transform.position = localPlayerTransform.position + localPlayerTransform.forward * offset;
-            this.transform.LookAt(localPlayerTransform);
-            this.transform.Rotate(0, 180, 0);
+            if (editModeEnabled)
+            {
+                audioSource.PlayOneShot(soundEffect);
+                Cursor.lockState = CursorLockMode.None;
+                Transform localPlayerTransform = activeCamera.transform;
+                this.transform.localScale = smallScale;
+                this.transform.position = localPlayerTransform.position + localPlayerTransform.forward * offset;
+                this.transform.LookAt(localPlayerTransform);
+                this.transform.Rotate(0, 180, 0);
 
+            }
+            else
+            {
+                this.transform.position = farAway;
+            }
         }
-        else
-        {
-            this.transform.position = farAway;
-        }
+        oldEditModeEnabled = editModeEnabled;
+    }
+    private void FixedUpdate()
+    {
+        this.transform.localScale = Vector3.Slerp(this.transform.localScale, largeScale, slerpSpeed);
     }
 
     public void SetActiveCamera(GameObject camera)

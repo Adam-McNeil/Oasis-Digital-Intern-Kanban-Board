@@ -909,6 +909,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8907275940157212572, guid: 651863db2bda5e44c99417bb65b3cfed, type: 3}
+      propertyPath: soundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: b5436f347d9067c40a9fe6e3679a91fa, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 651863db2bda5e44c99417bb65b3cfed, type: 3}
 --- !u!43 &170155646
@@ -5323,6 +5327,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1256797079, guid: 2da5f8efd24750d468f231433e4f36b7, type: 3}
+      propertyPath: soundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: a44ecc85ea0097f429a1b26dd8d3d93f, type: 3}
     - target: {fileID: 2061370906357907930, guid: 2da5f8efd24750d468f231433e4f36b7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

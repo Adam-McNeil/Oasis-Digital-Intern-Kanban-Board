@@ -1890,7 +1890,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1299388574720283736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1940,6 +1940,7 @@ MonoBehaviour:
   colorDropDown: {fileID: 5618635565739031029}
   activeEditTable: {fileID: 0}
   targetedTicket: {fileID: 0}
+  soundEffect: {fileID: 8300000, guid: a44ecc85ea0097f429a1b26dd8d3d93f, type: 3}
 --- !u!82 &7343620662302247927
 AudioSource:
   m_ObjectHideFlags: 0
