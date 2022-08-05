@@ -223,10 +223,10 @@ public class PlayerController : NetworkBehaviour
 
             if(Physics.Raycast(desktopCamera.transform.position, desktopCamera.transform.forward, out hit, 6))
             {
-                if (hit.transform.gameObject.CompareTag("EditTable"))
+                if (hit.transform.gameObject.CompareTag("Ticket"))
                 {
                     Debug.Log("Edit table hit");
-                    hit.transform.gameObject.GetComponent<EditTable>().OnStartEdit();
+                    EditTable.instance.OnStartEdit(hit.transform.gameObject);
                     isEditing = true;
                     Cursor.lockState = CursorLockMode.None;
                     Debug.Log("Edit Mode enabled");
@@ -370,7 +370,7 @@ public class PlayerController : NetworkBehaviour
 
     private void CheckTicketHits()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             RaycastHit hit;
 

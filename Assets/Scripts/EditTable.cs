@@ -6,6 +6,7 @@ using Mirror;
 
 public class EditTable : NetworkBehaviour
 {
+    static public EditTable instance = null;
 
     public EditMenuController eMCS;
 
@@ -13,42 +14,28 @@ public class EditTable : NetworkBehaviour
     public GameObject ticket = null;
     private TicketData ticketDataScript;
     
-    private bool objectInTable = false;
-
-
     private void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         eMCS = GameObject.Find("Edit Menu").GetComponent<EditMenuController>();
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.CompareTag("Ticket") && !objectInTable){
-            ticket = other.gameObject;
-            ticketDataScript = ticket.GetComponent<TicketData>();
-
-            objectInTable = true;
-        }
-    }
-    
-    private void OnTriggerExit(Collider other) {
-        if (other.gameObject.CompareTag("Ticket"))
-        {
-            ticket = null;
-            ticketDataScript = null;
-            objectInTable = false;
-        }
-    }
-
-    public void OnStartEdit()
+    public void OnStartEdit(GameObject ticketSelected)
     {
+        ticket = ticketSelected;
+        ticketDataScript = ticketSelected.GetComponent<TicketData>();
         eMCS.activeEditTable = this.gameObject;
-        if (ticket != null)
-        {
-            eMCS.headerInputField.SetTextWithoutNotify(ticketDataScript.headerData);
-            eMCS.detailInputField.SetTextWithoutNotify(ticketDataScript.descriptionData);
-            eMCS.assignedDropDown.SetValueWithoutNotify(ticketDataScript.assignedToData);
-            eMCS.colorDropDown.SetValueWithoutNotify(ticketDataScript.materialData);
-        }
+        eMCS.headerInputField.SetTextWithoutNotify(ticketDataScript.headerData);
+        eMCS.detailInputField.SetTextWithoutNotify(ticketDataScript.descriptionData);
+        eMCS.assignedDropDown.SetValueWithoutNotify(ticketDataScript.assignedToData);
+        eMCS.colorDropDown.SetValueWithoutNotify(ticketDataScript.materialData);
     }
 
     public void SubmitEditChanges()
@@ -60,14 +47,5 @@ public class EditTable : NetworkBehaviour
             PlayerController.isEditing = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
-
-        //ticketDataScript.ticketHeaderObject.GetComponent<TextMeshPro>().text = eMCS.headerInputField.text;
-        //ticketDataScript.headerData = eMCS.headerInputField.text;
-        //ticketDataScript.descriptionData = eMCS.detailInputField.text;
-        //ticketDataScript.assignedToData = eMCS.assignedDropDown.value;
-        //ticketDataScript.materialData = eMCS.colorDropDown.value;
-
     }
-
-
 }

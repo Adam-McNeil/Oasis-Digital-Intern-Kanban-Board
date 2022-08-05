@@ -1890,7 +1890,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1299388574720283736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3248,9 +3248,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1256797079}
-        m_TargetAssemblyTypeName: EditMenuController, Assembly-CSharp
-        m_MethodName: OnButtonSumbit
+      - m_Target: {fileID: 7343620662302247927}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3260,9 +3260,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7343620662302247927}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
+      - m_Target: {fileID: 1256797079}
+        m_TargetAssemblyTypeName: EditMenuController, Assembly-CSharp
+        m_MethodName: OnButtonSumbit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

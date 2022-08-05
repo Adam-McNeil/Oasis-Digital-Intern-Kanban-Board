@@ -46,7 +46,7 @@ public class PickUp : NetworkBehaviour
 
     private void Update()
     {
-        if (isLocalPlayer)
+        if (isLocalPlayer && !PlayerController.isEditing)
         {
             UpdateOffset();
             grabAction.action.performed += attemptGrab;
