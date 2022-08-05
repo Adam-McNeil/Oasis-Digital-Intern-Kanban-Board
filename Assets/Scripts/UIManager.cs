@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject registerUI;
     public GameObject userDataUI;
     public GameObject MainMenuUI;
+    public GameObject ControlsUI;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class UIManager : MonoBehaviour
         loginUI.SetActive(false);
         registerUI.SetActive(false);
         MainMenuUI.SetActive(false);
+        ControlsUI.SetActive(false);
     }
 
     public void LoginScreen() //Back button
@@ -55,5 +57,11 @@ public class UIManager : MonoBehaviour
     {
       ClearScreen();
       userDataUI.SetActive(true);
+    }
+
+    public void ControlsScreen()
+    {
+      ClearScreen();
+      ControlsUI.SetActive(true);
     }
 }
