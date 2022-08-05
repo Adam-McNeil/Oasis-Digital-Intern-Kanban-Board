@@ -269,6 +269,7 @@ public class FirebaseManager : MonoBehaviour
                 //User has now been created
                 //Now get the result
                 User = RegisterTask.Result;
+                StartCoroutine(UpdateUsernameDatabase(_username));
 
                 if (User != null)
                 {
@@ -323,6 +324,7 @@ public class FirebaseManager : MonoBehaviour
     private IEnumerator UpdateUsernameDatabase(string _username)
     {
         //Set the currently logged in user username in the database
+         Debug.Log(_username);
         var DBTask = DBreference.Child("users").Child(User.UserId).Child("username").SetValueAsync(_username);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
