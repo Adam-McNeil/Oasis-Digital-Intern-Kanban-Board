@@ -46,7 +46,7 @@ public class PickUp : NetworkBehaviour
 
     private void Update()
     {
-        if (isLocalPlayer && !PlayerController.isEditing)
+        if (isLocalPlayer && !PlayerController.isEditing && playerCamera != null)
         {
             UpdateOffset();
             grabAction.action.performed += attemptGrab;
@@ -83,7 +83,6 @@ public class PickUp : NetworkBehaviour
 
     private void attemptGrab(InputAction.CallbackContext obj)
     {
-
         RaycastHit hit;
         GameObject hitObject = null;
         bool ticketHit = false;
@@ -217,10 +216,8 @@ public class PickUp : NetworkBehaviour
 
     void PickUpObject(GameObject pickedObject)
     {
-        if (pickedObject.CompareTag("Ticket"))
-        {
-            pickedObject.GetComponent<Animator>().Play("Ticket_Shrink");
-        }
+        pickedObject.GetComponent<StraightenTicket>().shouldSlerp = true;
+        pickedObject.GetComponent<TicketSoundEffect>().PlaySoundEffectRpc();
         heldObjectRB = pickedObject.GetComponent<Rigidbody>();
         heldObjectRB.useGravity = false;
         heldObjectRB.drag = dragResistance;
